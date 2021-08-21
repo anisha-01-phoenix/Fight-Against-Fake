@@ -56,6 +56,9 @@ In order to verify whether the complaint lodged by the victim is a authentic or 
  ### Libraries:
  1) Picasso/Glide
  2) Circular Image View
+ 3) Shimmer
+ 4) Dexter
+ 5) Baseflow/PhotoView
  
 
 
