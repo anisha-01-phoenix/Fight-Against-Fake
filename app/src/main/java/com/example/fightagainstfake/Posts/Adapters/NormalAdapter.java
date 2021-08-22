@@ -29,7 +29,7 @@ public class NormalAdapter extends RecyclerView.Adapter<NormalAdapter.NormalView
     Context context;
     ArrayList<ModelClass> list;
     FirebaseUser firebaseUser;
-    public boolean shimmer;
+    public boolean shimmering;
 
     public NormalAdapter(Context context, ArrayList<ModelClass> list) {
         this.context = context;
@@ -46,7 +46,7 @@ public class NormalAdapter extends RecyclerView.Adapter<NormalAdapter.NormalView
 
     @Override
     public void onBindViewHolder(@NonNull NormalViewHolder holder, int position) {
-        if (shimmer)
+        if (shimmering)
         {
             holder.shimmer.startShimmer();
         }

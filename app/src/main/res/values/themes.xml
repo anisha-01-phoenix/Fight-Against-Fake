@@ -4,8 +4,8 @@
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/themeColor</item>
         <item name="colorPrimaryVariant">@color/themeColor</item>
-       
-        <item name="colorOnPrimary">@color/white</item>
+
+        <item name="colorOnPrimary">@color/additionalColor</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/additionalColor</item>
         <item name="colorSecondaryVariant">@color/additionalColor</item>
@@ -14,4 +14,14 @@
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
+
+    <style name="Theme.FightAgainstFake.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme.FightAgainstFake.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Theme.FightAgainstFake.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
 </resources>
