@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+    <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        app:cardCornerRadius="15dp"
+        app:cardElevation="30dp"
+        android:padding="8dp"
+        android:layout_margin="8dp"
+        android:elevation="200dp">
+
+
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/np_shimmer">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@color/white">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="10dp">
+
+
+            <TextView
+                android:id="@+id/np_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="5dp"
+                android:fontFamily="@font/heading"
+                android:text="20-08-2021 11:24"
+                android:background="@color/shimmer"
+                android:textColor="@color/themeColor"
+                android:textSize="13sp" />
+
+
+            <ImageView
+                android:id="@+id/np_share"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="5dp"
+                android:src="@drawable/ic_baseline_share_24" />
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/np_post"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Normal posts"
+            android:layout_margin="5dp"
+            android:padding="10dp"
+            android:textSize="18sp"
+            android:fontFamily="@font/text"
+            android:background="@color/shimmer"
+            android:textColor="@color/additionalColor"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <ImageView
+                android:id="@+id/np_upvote"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="40dp"
+                android:src="@drawable/upvote_outline" />
+
+            <TextView
+                android:id="@+id/np_upvote_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_toRightOf="@id/np_upvote"
+                android:fontFamily="@font/heading"
+                android:textColor="@color/themeColor"
+                android:textSize="16sp" />
+
+
+            <ImageView
+                android:id="@+id/np_downvote"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="300dp"
+                android:src="@drawable/downvote_outline" />
+
+            <TextView
+                android:id="@+id/np_downvote_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_toRightOf="@id/np_downvote"
+                android:fontFamily="@font/heading"
+                android:textColor="@color/themeColor"
+                android:textSize="16sp" />
+
+        </RelativeLayout>
+
+
+
+
+        </LinearLayout>
+
+    </com.facebook.shimmer.ShimmerFrameLayout>
+
+</androidx.cardview.widget.CardView>

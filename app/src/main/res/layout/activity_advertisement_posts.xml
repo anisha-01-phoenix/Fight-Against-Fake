@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/themeColor"
+    tools:context=".Posts.Activities.AdvertisementPosts">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add Posts"
+        android:textAllCaps="true"
+        android:textColor="@color/white"
+        android:fontFamily="@font/heading"
+        android:gravity="center"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:textSize="25dp"
+        android:layout_marginTop="15dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/background"
+        android:orientation="vertical"
+        android:layout_marginTop="80dp">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/addAdvertisePostEditText"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:padding="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Add Post"
+                android:background="@drawable/tab_text"
+                android:fontFamily="@font/text"
+                android:textColor="@color/additionalColor"
+                android:textColorHint="@color/additionalColor"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+            <ImageView
+                android:id="@+id/imgUploadedFiles"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:src="@drawable/docs"
+                android:padding="10dp"
+                android:layout_margin="10dp"
+                android:layout_gravity="center_horizontal"
+                android:background="@drawable/img_border"/>
+
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/upload_files"
+            android:id="@+id/upload"
+            android:elevation="200dp"/>
+
+
+
+        <Button
+            android:id="@+id/btn_addAP"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:background="@drawable/tab_indicator"
+            android:layout_gravity="center_horizontal"
+            android:text="  Add Post  "
+            android:fontFamily="@font/button"
+            android:textColor="@color/white"
+            android:layout_marginTop="10dp"/>
+
+
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
