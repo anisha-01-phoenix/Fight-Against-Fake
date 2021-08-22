@@ -33,15 +33,15 @@
         android:layout_marginTop="20dp"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
-        android:padding="10dp"
         android:layout_width="match_parent"
+        android:padding="5dp"
+        android:background="@drawable/tab_text"
         android:layout_height="wrap_content">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Add Post"
-            android:background="@drawable/tab_text"
             android:fontFamily="@font/text"
             android:textColor="@color/additionalColor"
             android:textColorHint="@color/additionalColor"/>

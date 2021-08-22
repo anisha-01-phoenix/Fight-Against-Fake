@@ -78,7 +78,7 @@ public class AdvertisementPostsFragment extends Fragment {
                 adapter.notifyDataSetChanged();
 
             }
-        },7000);
+        },6000);
         return fragmentAdvertisementPostsBinding.getRoot();
     }
 }

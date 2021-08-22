@@ -73,11 +73,11 @@ public class NormalPostsFragment extends Fragment {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                adapter.shimmer=false;
+                adapter.shimmering=false;
                 adapter.notifyDataSetChanged();
 
             }
-        },5000);
+        },3000);
         return fragmentNormalPostsBinding.getRoot();
     }
 

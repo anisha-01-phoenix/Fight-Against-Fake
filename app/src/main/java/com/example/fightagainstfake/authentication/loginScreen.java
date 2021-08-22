@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.fightagainstfake.MainActivity;
+import com.example.fightagainstfake.Posts.AddPosts;
 import com.example.fightagainstfake.databinding.ActivityLoginScreenBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -21,39 +22,44 @@ import com.google.firebase.auth.FirebaseUser;
 public class loginScreen extends AppCompatActivity {
 
     ActivityLoginScreenBinding binding;
-    int ans = 0;
     FirebaseAuth mAuth;
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null) {
+            Intent intent = new Intent(loginScreen.this, MainActivity.class);
+            startActivity(intent);
+            finish();
+
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityLoginScreenBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        getSupportActionBar().hide();
         mAuth = FirebaseAuth.getInstance();
 
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        if (user != null) {
-            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-            startActivity(intent);
-            finish();
-
-        }
 
 
         binding.bttn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String email = binding.lemail.getText().toString().trim();
-                String password = binding.lpassword.getText().toString().trim();
+                String email = binding.lemail.getEditText().getText().toString().trim();
+                String password = binding.lpassword.getEditText().getText().toString().trim();
 
                 if (email.isEmpty()) {
-                    binding.lemail.setError("Username can't be empty");
+                    binding.lemail.setError("Field can't be empty");
                     binding.lemail.requestFocus();
                     return;
                 }
 
                 if (password.isEmpty()) {
-                    binding.lpassword.setError("Username can't be empty");
+                    binding.lpassword.setError("Field can't be empty");
                     binding.lpassword.requestFocus();
                     return;
                 }
@@ -95,5 +101,9 @@ public class loginScreen extends AppCompatActivity {
 
         ActivityOptions optionsCompat = ActivityOptions.makeSceneTransitionAnimation(this, pairs);
         startActivity(intent, optionsCompat.toBundle());
+    }
+
+    public void forgot(View view) {
+        startActivity(new Intent(loginScreen.this,Forgot_Password.class));
     }
 }

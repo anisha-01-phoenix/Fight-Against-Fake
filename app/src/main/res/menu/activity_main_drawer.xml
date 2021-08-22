@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/nav_register_complain"
+            android:icon="@drawable/ic_baseline_registration_24"
+            android:title="Lodge Complaint"/>
+
+        <item
+            android:id="@+id/nav_complaint_status"
+            android:icon="@drawable/ic_baseline_status_24"
+            android:title="Complaint Status"/>
+
+
+    </group>
+
+    <item android:title="Info Booth">
+        <menu>
+
+            <item
+                android:id="@+id/nav_posts"
+                android:icon="@drawable/ic_baseline_post_24"
+                android:title="Posts"/>
+
+            <item
+                android:id="@+id/nav_info"
+                android:icon="@drawable/ic_baseline_info_24"
+                android:title="Info Corner"/>
+
+            <item
+                android:id="@+id/nav_maps"
+                android:icon="@drawable/ic_baseline_my_location_24"
+                android:title="Police Stations"/>
+
+
+        </menu>
+    </item>
+
+
+    <item android:title="Settings">
+    <menu>
+
+        <item
+            android:id="@+id/nav_contact"
+            android:icon="@drawable/contact_us"
+            android:title="Contact Us"/>
+
+        <item
+            android:id="@+id/logout"
+            android:icon="@drawable/ic_baseline_logout_24"
+            android:title="Logout"/>
+
+    </menu>
+</item>
+</menu>

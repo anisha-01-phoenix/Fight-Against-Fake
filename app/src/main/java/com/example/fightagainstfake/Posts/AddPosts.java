@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import com.example.fightagainstfake.MainActivity;
 import com.example.fightagainstfake.Posts.Adapters.ViewPagerAdapter;
 import com.example.fightagainstfake.Posts.Fragments.AdvertisementPostsFragment;
 import com.example.fightagainstfake.Posts.Fragments.NormalPostsFragment;
@@ -25,6 +26,18 @@ public class AddPosts extends AppCompatActivity {
         adapter.add(new AdvertisementPostsFragment(), "Advertisement");
         activityAddPostsBinding.viewPager.setAdapter(adapter);
         activityAddPostsBinding.tablayout.setupWithViewPager(activityAddPostsBinding.viewPager);
+
+    }
+
+    public void goBack(View view) {
+        startActivity(new Intent(AddPosts.this, MainActivity.class));
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+
+        startActivity(new Intent(AddPosts.this, MainActivity.class));
 
     }
 }
