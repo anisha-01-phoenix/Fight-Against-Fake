@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "1033605726167",
+    "firebase_url": "https://fight-against-fake-default-rtdb.firebaseio.com",
+    "project_id": "fight-against-fake",
+    "storage_bucket": "fight-against-fake.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1033605726167:android:4de69ed4b00299fc81d592",
+        "android_client_info": {
+          "package_name": "com.example.fightagainstfake"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1033605726167-ovtl9cndbs33rqm1sihvcfjg9m4ch9i9.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.fightagainstfake",
+            "certificate_hash": "d2a71633896ef564109a75e211d7a0eba19125ae"
+          }
+        },
+        {
+          "client_id": "1033605726167-gl4k62bk0k7sg3s27di76skiktfm22qp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA9yDqs428KEWHsm53nKqEX7yUNe6v9xU0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1033605726167-gl4k62bk0k7sg3s27di76skiktfm22qp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
