@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.fightagainstfake.MainActivity;
 import com.example.fightagainstfake.Posts.AddPosts;
+
 import com.example.fightagainstfake.databinding.ActivityLoginScreenBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -43,6 +44,16 @@ public class loginScreen extends AppCompatActivity {
         setContentView(binding.getRoot());
         getSupportActionBar().hide();
         mAuth = FirebaseAuth.getInstance();
+
+
+
+        binding.loginasadmin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(loginScreen.this, com.example.fightagainstfake.admin_package.dashboard.class));
+            }
+        });
+
 
 
 
