@@ -18,6 +18,8 @@ public class adapter extends RecyclerView.Adapter<adapter.vh> {
     ArrayList<model> data;
     Context context;
 
+
+
     public adapter(ArrayList<model> data, Context context) {
         this.data = data;
         this.context = context;
@@ -51,6 +53,14 @@ public class adapter extends RecyclerView.Adapter<adapter.vh> {
     public int getItemCount() {
         return data.size();
     }
+
+    public  void filterList(ArrayList<model>filteredList){
+
+        data=filteredList;
+        notifyDataSetChanged();
+    }
+
+
 
     public class vh extends RecyclerView.ViewHolder {
 
