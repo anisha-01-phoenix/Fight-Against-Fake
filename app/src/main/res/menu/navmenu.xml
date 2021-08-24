@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<item
+    android:id="@+id/complaints"
+    android:icon="@drawable/ic_baseline_share_24"
+    android:title="Complaints"/>
+    <item
+        android:id="@+id/advert_admin"
+        android:icon="@drawable/ic_baseline_share_24"
+        android:title="Advertisments"/>
+    <item
+        android:id="@+id/recentsearches"
+        android:icon="@drawable/ic_baseline_search_24"
+        android:title="Recent Searches"/>
+    <item
+        android:id="@+id/aboutus"
+        android:icon="@drawable/ic_baseline_search_24"
+        android:title="AboutUs"/>
+    <item
+        android:id="@+id/my_profiles"
+        android:icon="@drawable/ic_baseline_search_24"
+        android:title="Profile"/>
+
+</menu>

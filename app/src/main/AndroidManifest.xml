@@ -14,8 +14,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FightAgainstFake">
         <activity
+
             android:name=".complaints.complaintAdd"
             android:exported="true" />
+
+            android:name=".admin_package.dashboard"
+            android:exported="true"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+
+
         <activity
             android:name=".authentication.Forgot_Password"
             android:exported="true" />
