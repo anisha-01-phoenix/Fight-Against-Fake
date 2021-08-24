@@ -31,6 +31,8 @@ public class loginScreen extends AppCompatActivity {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if (user != null) {
             Intent intent = new Intent(loginScreen.this, MainActivity.class);
+            intent.putExtra("check","0");
+
             startActivity(intent);
             finish();
 
@@ -82,6 +84,8 @@ public class loginScreen extends AppCompatActivity {
 
                         if (task.isSuccessful()) {
                             Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                            intent.putExtra("check","0");
+
                             startActivity(intent);
                             finish();
                         } else {
