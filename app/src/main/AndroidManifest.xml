@@ -17,7 +17,7 @@
 
             android:name=".complaints.complaintAdd"
             android:exported="true" />
-
+<activity
             android:name=".admin_package.dashboard"
             android:exported="true"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
