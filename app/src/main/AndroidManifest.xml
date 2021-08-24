@@ -14,6 +14,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FightAgainstFake">
         <activity
+            android:name=".complaints.complaintAdd"
+            android:exported="true" />
+        <activity
             android:name=".authentication.Forgot_Password"
             android:exported="true" />
         <activity

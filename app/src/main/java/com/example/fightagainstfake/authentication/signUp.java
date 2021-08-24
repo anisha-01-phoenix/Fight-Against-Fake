@@ -96,9 +96,11 @@ public class signUp extends AppCompatActivity {
 
         Intent intent = new Intent(getApplicationContext(), otpScreen.class);
 
+        String phoneNos="+91"+sPhoneNo;
+
         intent.putExtra("name",sname);
         intent.putExtra("username",sUsername);
-        intent.putExtra("phone",sPhoneNo);
+        intent.putExtra("phone",phoneNos);
 
         startActivity(intent);
 

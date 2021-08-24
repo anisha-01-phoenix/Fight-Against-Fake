@@ -157,6 +157,8 @@ public class otpScreen extends AppCompatActivity {
                     map.put("id", uid);
                     reference.setValue(map);
                     Intent intent1 = new Intent(getApplicationContext(), MainActivity.class);
+                    intent1.putExtra("check","0");
+
                     startActivity(intent1);
                     finish();
                 }
