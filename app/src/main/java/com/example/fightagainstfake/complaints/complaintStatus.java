@@ -1,14 +1,20 @@
 package com.example.fightagainstfake.complaints;
 
+import android.app.ActionBar;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.SearchView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import com.example.fightagainstfake.R;
 import com.example.fightagainstfake.databinding.FragmentComplaintStatusBinding;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -18,6 +24,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Locale;
 import java.util.Map;
 
 
@@ -32,6 +39,7 @@ public class complaintStatus extends Fragment {
                              Bundle savedInstanceState) {
 
         binding = FragmentComplaintStatusBinding.inflate(inflater, container, false);
+
 
         data = new ArrayList<>();
         adapter = new adapter(data, getContext());
@@ -80,6 +88,22 @@ public class complaintStatus extends Fragment {
             }
         });
 
+
+    }
+
+
+    private void filter(String text){
+
+        ArrayList<model> filteredList=new ArrayList<>();
+
+        for(model item:data){
+
+            if(item.getComplaintTitle().toLowerCase().contains(text.toLowerCase(Locale.ROOT))){
+                filteredList.add(item);
+            }
+        }
+
+        adapter.filterList(filteredList);
 
     }
 }

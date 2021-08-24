@@ -3,7 +3,10 @@ package com.example.fightagainstfake;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.SearchView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -12,15 +15,21 @@ import androidx.core.view.GravityCompat;
 
 import com.example.fightagainstfake.Posts.AddPosts;
 import com.example.fightagainstfake.authentication.loginScreen;
+import com.example.fightagainstfake.complaints.adapter;
 import com.example.fightagainstfake.complaints.addComplaint;
 import com.example.fightagainstfake.complaints.complaintStatus;
+import com.example.fightagainstfake.complaints.model;
 import com.example.fightagainstfake.databinding.ActivityMainBinding;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 
+import java.util.ArrayList;
+import java.util.Locale;
+
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     ActivityMainBinding activityMainBinding;
 
+    ArrayList<model>data;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,7 +41,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         toggle.syncState();
         activityMainBinding.navView.setNavigationItemSelectedListener(this);
 
-
+data=new ArrayList<>();
         Intent intent = getIntent();
         String  check = intent.getStringExtra("check");
 
@@ -78,4 +87,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         activityMainBinding.drawerLayout.closeDrawer(GravityCompat.START);
         return true;
     }
+
+
+
+
+
 }
