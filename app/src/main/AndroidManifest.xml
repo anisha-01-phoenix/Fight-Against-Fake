@@ -24,7 +24,7 @@
             android:name=".admin_package.dashboard"
             android:exported="true"
 
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
 
 
 

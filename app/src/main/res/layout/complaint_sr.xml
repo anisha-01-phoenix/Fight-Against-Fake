@@ -41,10 +41,11 @@
                     android:id="@+id/id"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="170dp"
-                    android:layout_toRightOf="@id/com_date"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginRight="5dp"
                     android:text="complaint Id"
-                    android:textColor="@color/black"
+                    android:textColor="@color/additionalColor"
+                    android:fontFamily="@font/heading"
                     android:textStyle="bold" />
 
             </RelativeLayout>
@@ -66,14 +67,14 @@
                 android:layout_height="wrap_content">
 
                 <TextView
+                    android:id="@+id/status"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="130dp"
+                    android:layout_marginLeft="10dp"
                     android:layout_marginBottom="15dp"
                     android:text="Registered Successfully"
                     android:textColor="#31A736"
-                    android:textStyle="bold"
-                    android:id="@+id/status"/>
+                    android:textStyle="bold" />
 
 
             </RelativeLayout>

@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import com.example.fightagainstfake.MainActivity;
 import com.example.fightagainstfake.R;
+import com.example.fightagainstfake.admin_package.dashboard;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -47,6 +48,7 @@ public class Startscreen extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(Startscreen.this,loginScreen.class);
+                intent.putExtra("check",0);
                 startActivity(intent);
             }
         });
@@ -84,8 +86,10 @@ public class Startscreen extends AppCompatActivity {
                         String password = input.getText().toString();
                         if (password.equals("1413914"))
                         {
+                            Intent intent=new Intent(Startscreen.this, dashboard.class);
                             Toast.makeText(Startscreen.this, "Welcome back!", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(Startscreen.this,loginScreen.class));
+                            intent.putExtra("check",1);
+                            startActivity(intent);
                         }
                         else
                         {

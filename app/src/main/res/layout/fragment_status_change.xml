@@ -3,19 +3,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-android:background="@drawable/background2"
+    android:background="@drawable/bg1"
     android:orientation="vertical"
     tools:context=".admin_package.status_change">
 <TextView
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_gravity="center"
-    android:text="Set The Status"
+    android:text="Set Status"
     android:textColor="@color/white"
     android:gravity="center"
+    android:fontFamily="@font/heading"
     android:layout_marginBottom="23dp"
     android:layout_marginTop="17dp"
-    android:textSize="23dp"/>
+    android:textSize="28dp"/>
     <!-- TODO: Update blank fragment layout -->
 <RelativeLayout
     android:layout_width="match_parent"
@@ -31,9 +32,10 @@ android:background="@drawable/background2"
         android:layout_marginLeft="23dp"
         android:layout_marginTop="15dp"
         android:text="Accepted"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:textSize="15sp"
         android:textStyle="bold"
+        android:fontFamily="@font/text"
         tools:layout_editor_absoluteX="47dp"
         tools:layout_editor_absoluteY="548dp" />
 
@@ -47,9 +49,10 @@ android:background="@drawable/background2"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="58dp"
         android:text="In Progress"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:textSize="15sp"
         android:textStyle="bold"
+        android:fontFamily="@font/text"
         tools:layout_editor_absoluteX="47dp"
         tools:layout_editor_absoluteY="548dp" />
 
@@ -63,9 +66,10 @@ android:background="@drawable/background2"
         android:layout_marginLeft="23dp"
         android:layout_marginTop="79dp"
         android:text="Completed"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:textSize="15sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:fontFamily="@font/text"/>
 
     <CheckBox
         android:id="@+id/rejected"
@@ -77,9 +81,10 @@ android:background="@drawable/background2"
         android:layout_marginTop="80dp"
         android:layout_marginEnd="75dp"
         android:text="Rejected"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:textSize="15sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:fontFamily="@font/text"/>
 
 
 </RelativeLayout>
@@ -87,11 +92,12 @@ android:background="@drawable/background2"
         android:id="@+id/status_change"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
-
+        android:padding="5dp"
         android:layout_gravity="center"
-    android:layout_marginTop="39dp"
-        android:background="@drawable/tab_indicator2"
+        android:layout_marginTop="39dp"
+        android:background="@drawable/tab_indicator"
         android:fontFamily="@font/button"
+        android:textColor="@color/white"
         android:gravity="center"
         android:layout_marginBottom="19dp"
         android:text="  Save Status  " />
