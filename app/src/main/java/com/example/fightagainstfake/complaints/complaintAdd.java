@@ -3,6 +3,7 @@ package com.example.fightagainstfake.complaints;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -23,7 +24,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 
-import es.dmoral.toasty.Toasty;
 
 public class complaintAdd extends AppCompatActivity {
 
@@ -34,6 +34,7 @@ public class complaintAdd extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityComplaintAddBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        getSupportActionBar().hide();
 
 
         binding.btnAddNP.setOnClickListener(new View.OnClickListener() {
@@ -96,10 +97,11 @@ public class complaintAdd extends AppCompatActivity {
 
                     binding.addNormalPostEditText.getEditText().setText("");
 
-                    Toasty.success(getApplicationContext(), "Successfully Registered").show();
+                  //  Toasty.success(getApplicationContext(), "Successfully Registered").show();
+                    Toast.makeText(complaintAdd.this, "Succesfully Registered!", Toast.LENGTH_SHORT).show();
 
                     Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                    intent.putExtra("check", "1");
+                    intent.putExtra("check", 1);
                     startActivity(intent);
 
 

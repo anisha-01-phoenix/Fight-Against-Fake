@@ -100,6 +100,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         activityMainBinding.navView.setNavigationItemSelectedListener(this);
         update_nav_header();
 
+        data=new ArrayList<>();
+        Intent intent = getIntent();
+        int  check = intent.getIntExtra("check",0);
+
+        if (check==1) {
+            getSupportFragmentManager().beginTransaction().replace(R.id.complaintContainer, new complaintStatus()).commit();
+
+        } else {
+            getSupportFragmentManager().beginTransaction().add(R.id.complaintContainer, new addComplaint()).commit();
+        }
+
+
     }
 
 
@@ -110,19 +122,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         ActionBar bar = getSupportActionBar();
         bar.setBackgroundDrawable(new ColorDrawable(getResources().getColor(resourcecolor)));
-
-data=new ArrayList<>();
-        Intent intent = getIntent();
-        String  check = intent.getStringExtra("check");
-
-        if (check.equals("1")) {
-            getSupportFragmentManager().beginTransaction().replace(R.id.complaintContainer, new complaintStatus()).commit();
-
-        } else {
-            getSupportFragmentManager().beginTransaction().add(R.id.complaintContainer, new addComplaint()).commit();
-        }
-
     }
+
+
+
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
