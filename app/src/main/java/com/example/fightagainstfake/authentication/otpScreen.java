@@ -35,7 +35,7 @@ import java.util.concurrent.TimeUnit;
 public class otpScreen extends AppCompatActivity {
     ActivityOtpScreenBinding binding;
     FirebaseAuth mAuth;
-    private String sname, susername, mVerificationId;
+    private String sname="", susername="", sphone="", mVerificationId;
     private PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallbacks;
     private PhoneAuthProvider.ForceResendingToken forceResendingToken;
 
@@ -57,7 +57,7 @@ public class otpScreen extends AppCompatActivity {
         Intent intent = getIntent();
         sname = intent.getStringExtra("name");
         susername = intent.getStringExtra("username");
-        String sphone = intent.getStringExtra("phone");
+        sphone = intent.getStringExtra("phone");
         mAuth=FirebaseAuth.getInstance();
         mAuth.setLanguageCode("fr");
 
@@ -150,13 +150,16 @@ public class otpScreen extends AppCompatActivity {
 
                     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                     String uid = user.getUid();
-                    DatabaseReference reference = FirebaseDatabase.getInstance().getReference("userList").child(uid);
+                    DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users").child(uid);
                     Map<String, String> map = new HashMap<>();
                     map.put("name", sname);
                     map.put("username", susername);
                     map.put("id", uid);
+                    map.put("imageurl",null);
+                    map.put("phoneNo",sphone);
                     reference.setValue(map);
                     Intent intent1 = new Intent(getApplicationContext(), MainActivity.class);
+                    intent1.putExtra("phone",sphone);
                     startActivity(intent1);
                     finish();
                 }

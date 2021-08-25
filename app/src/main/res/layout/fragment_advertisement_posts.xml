@@ -6,6 +6,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".Posts.Fragments.AdvertisementPostsFragment">
 
+    <SearchView
+        android:id="@+id/search_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginLeft="5dp"
+        android:background="@drawable/tab_text" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
@@ -13,6 +21,7 @@
         android:layout_marginTop="15dp"
         android:paddingTop="20dp"
         android:background="@drawable/rv_bg"
+        android:layout_below="@id/search_view"
         android:id="@+id/rv_advertisementPosts"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton

@@ -1,18 +1,31 @@
 package com.example.fightagainstfake.Posts;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.SearchView;
 
 import com.example.fightagainstfake.MainActivity;
+import com.example.fightagainstfake.ModelClass;
 import com.example.fightagainstfake.Posts.Adapters.ViewPagerAdapter;
 import com.example.fightagainstfake.Posts.Fragments.AdvertisementPostsFragment;
 import com.example.fightagainstfake.Posts.Fragments.NormalPostsFragment;
+import com.example.fightagainstfake.UserModel;
 import com.example.fightagainstfake.databinding.ActivityAddPostsBinding;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
-public class AddPosts extends AppCompatActivity {
+import java.util.ArrayList;
+import java.util.List;
+
+public class AddPosts extends AppCompatActivity  {
     ActivityAddPostsBinding activityAddPostsBinding;
 
     @Override
@@ -27,6 +40,7 @@ public class AddPosts extends AppCompatActivity {
         activityAddPostsBinding.viewPager.setAdapter(adapter);
         activityAddPostsBinding.tablayout.setupWithViewPager(activityAddPostsBinding.viewPager);
 
+
     }
 
     public void goBack(View view) {
@@ -40,4 +54,5 @@ public class AddPosts extends AppCompatActivity {
         startActivity(new Intent(AddPosts.this, MainActivity.class));
 
     }
+
 }

@@ -17,6 +17,9 @@
             android:name=".authentication.Forgot_Password"
             android:exported="true" />
         <activity
+            android:name=".authentication.Startscreen"
+            android:exported="true" />
+        <activity
             android:name=".SplashActivity"
             android:exported="true">
             <intent-filter>
@@ -25,10 +28,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".IntroActivity"
-            android:exported="true"
-            android:theme="@style/Theme.Intro" />
         <activity
             android:name=".Posts.Activities.FullImageView"
             android:exported="true" />

@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.fightagainstfake.MainActivity;
 import com.example.fightagainstfake.Posts.AddPosts;
+
 import com.example.fightagainstfake.databinding.ActivityLoginScreenBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -30,6 +31,8 @@ public class loginScreen extends AppCompatActivity {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if (user != null) {
             Intent intent = new Intent(loginScreen.this, MainActivity.class);
+            intent.putExtra("check","0");
+
             startActivity(intent);
             finish();
 
@@ -43,6 +46,8 @@ public class loginScreen extends AppCompatActivity {
         setContentView(binding.getRoot());
         getSupportActionBar().hide();
         mAuth = FirebaseAuth.getInstance();
+
+
 
 
 
@@ -71,6 +76,8 @@ public class loginScreen extends AppCompatActivity {
 
                         if (task.isSuccessful()) {
                             Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                            intent.putExtra("check","0");
+
                             startActivity(intent);
                             finish();
                         } else {
