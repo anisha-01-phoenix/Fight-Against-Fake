@@ -15,10 +15,16 @@ import com.example.fightagainstfake.Posts.AddPosts;
 
 import com.example.fightagainstfake.databinding.ActivityLoginScreenBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.GetTokenResult;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.iid.FirebaseInstanceIdReceiver;
+import com.google.firebase.iid.internal.FirebaseInstanceIdInternal;
 
 public class loginScreen extends AppCompatActivity {
 
@@ -48,14 +54,14 @@ public class loginScreen extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
 
 
-
+/*
         binding.loginasadmin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(loginScreen.this, com.example.fightagainstfake.admin_package.dashboard.class));
             }
         });
-
+*/
 
 
 
@@ -83,6 +89,23 @@ public class loginScreen extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
 
                         if (task.isSuccessful()) {
+
+                            FirebaseUser user=FirebaseAuth.getInstance().getCurrentUser();
+
+
+                           user.getIdToken(true).addOnSuccessListener(new OnSuccessListener<GetTokenResult>() {
+                               @Override
+                               public void onSuccess(GetTokenResult getTokenResult) {
+
+                                   String currentuserId=user.getUid();
+                                   String token=getTokenResult.getToken();
+
+                                   DatabaseReference reference= FirebaseDatabase.getInstance().getReference("Users").child(currentuserId).child("DeviceToken");
+                                   reference.setValue(token);
+
+                               }
+                           });
+
                             Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                             intent.putExtra("check","0");
 

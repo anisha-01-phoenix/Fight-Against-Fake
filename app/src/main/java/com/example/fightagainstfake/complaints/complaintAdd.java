@@ -86,13 +86,13 @@ public class complaintAdd extends AppCompatActivity {
                     map.put("status", status);
                     map.put("uid", uid);
                     map.put("complainId", complainId);
-                    map.put("username",username);
+                    map.put("username", username);
 
                     reference.setValue(map);
 
 
                     DatabaseReference reference1 = FirebaseDatabase.getInstance().getReference("totalcomplaints");
-                    reference1.push().setValue(map);
+                    reference1.child(complainId).setValue(map);
 
                     binding.addNormalPostEditText.getEditText().setText("");
 
