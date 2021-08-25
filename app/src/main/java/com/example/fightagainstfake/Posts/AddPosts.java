@@ -44,14 +44,20 @@ public class AddPosts extends AppCompatActivity  {
     }
 
     public void goBack(View view) {
-        startActivity(new Intent(AddPosts.this, MainActivity.class));
+        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+        intent.putExtra("check","0");
+
+        startActivity(intent);
     }
 
     @Override
     public void onBackPressed() {
         super.onBackPressed();
 
-        startActivity(new Intent(AddPosts.this, MainActivity.class));
+        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+        intent.putExtra("check","0");
+
+        startActivity(intent);
 
     }
 

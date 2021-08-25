@@ -108,7 +108,9 @@ public class signUp extends AppCompatActivity {
 
         Intent intent = new Intent(getApplicationContext(), otpScreen.class);
 
+
         String phoneNos=binding.cpp.getSelectedCountryCodeWithPlus()+sPhoneNo;
+
         intent.putExtra("name",sname);
         intent.putExtra("username",sUsername);
         intent.putExtra("phone",phoneNos);

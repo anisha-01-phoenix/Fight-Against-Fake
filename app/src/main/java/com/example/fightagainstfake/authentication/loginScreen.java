@@ -49,6 +49,14 @@ public class loginScreen extends AppCompatActivity {
 
 
 
+        binding.loginasadmin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(loginScreen.this, com.example.fightagainstfake.admin_package.dashboard.class));
+            }
+        });
+
+
 
 
         binding.bttn.setOnClickListener(new View.OnClickListener() {

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    tools:context=".complaints.addComplaint">
+
+
+    <Button
+        android:id="@+id/addComplaint"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="150dp"
+        android:background="@drawable/tab_indicator"
+        android:elevation="100dp"
+        android:text="LODGE COMPLAINT"
+        android:textColor="@color/white" />
+
+
+</LinearLayout>

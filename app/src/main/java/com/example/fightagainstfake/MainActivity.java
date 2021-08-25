@@ -11,6 +11,7 @@ import androidx.core.view.GravityCompat;
 
 import android.Manifest;
 import android.app.ProgressDialog;
+
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -18,16 +19,31 @@ import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
+
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import android.widget.SearchView;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.GravityCompat;
+
+
 import com.bumptech.glide.Glide;
 import com.example.fightagainstfake.Posts.AddPosts;
 import com.example.fightagainstfake.authentication.Startscreen;
 import com.example.fightagainstfake.authentication.loginScreen;
+import com.example.fightagainstfake.complaints.adapter;
+import com.example.fightagainstfake.complaints.addComplaint;
+import com.example.fightagainstfake.complaints.complaintStatus;
+import com.example.fightagainstfake.complaints.model;
 import com.example.fightagainstfake.databinding.ActivityMainBinding;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.navigation.NavigationView;
@@ -54,7 +70,8 @@ import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
-
+import java.util.ArrayList;
+import java.util.Locale;
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     ActivityMainBinding activityMainBinding;
     FirebaseUser firebaseUser;
@@ -65,15 +82,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private Uri filepath;
     private Bitmap bitmap;
 
+    ArrayList<model>data;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         activityMainBinding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(activityMainBinding.getRoot());
         setSupportActionBar(activityMainBinding.toolBar);
+
         changeColor(R.color.themeColor);
         phone = getIntent().getStringExtra("phone");
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, activityMainBinding.drawerLayout, activityMainBinding.toolBar, R.string.open, R.string.close);
         activityMainBinding.drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
@@ -82,6 +102,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     }
 
+
     public void changeColor(int resourcecolor) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             getWindow().setStatusBarColor(ContextCompat.getColor(getApplicationContext(), resourcecolor));
@@ -89,6 +110,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         ActionBar bar = getSupportActionBar();
         bar.setBackgroundDrawable(new ColorDrawable(getResources().getColor(resourcecolor)));
+
+data=new ArrayList<>();
+        Intent intent = getIntent();
+        String  check = intent.getStringExtra("check");
+
+        if (check.equals("1")) {
+            getSupportFragmentManager().beginTransaction().replace(R.id.complaintContainer, new complaintStatus()).commit();
+
+        } else {
+            getSupportFragmentManager().beginTransaction().add(R.id.complaintContainer, new addComplaint()).commit();
+        }
 
     }
 
@@ -103,8 +135,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.nav_maps:
                 break;
             case R.id.nav_register_complain:
+                getSupportFragmentManager().beginTransaction().addToBackStack(null).replace(R.id.complaintContainer, new addComplaint()).commit();
                 break;
             case R.id.nav_complaint_status:
+                getSupportFragmentManager().beginTransaction().addToBackStack(null).replace(R.id.complaintContainer, new complaintStatus()).commit();
                 break;
             case R.id.nav_contact:
                 Intent intent = new Intent(Intent.ACTION_SEND);
@@ -123,6 +157,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         activityMainBinding.drawerLayout.closeDrawer(GravityCompat.START);
         return true;
     }
+
 
     public void update_nav_header() {
         View headerView = activityMainBinding.navView.getHeaderView(0);
@@ -251,4 +286,5 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             progressDialog.setMessage("Uploaded : " + (int) percent + "%");
         });
     }
+
 }
