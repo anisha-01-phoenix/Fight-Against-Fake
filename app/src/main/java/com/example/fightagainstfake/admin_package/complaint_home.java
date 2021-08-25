@@ -62,13 +62,14 @@ admin_recv_adapter adapter;
                     String uid=map.get("uid");
                  // Toast.makeText(getContext(), uid, Toast.LENGTH_SHORT).show();
                     String username=map.get("username");
-                    Toast.makeText(getContext(), username, Toast.LENGTH_SHORT).show();
+                  //  Toast.makeText(getContext(), username, Toast.LENGTH_SHORT).show();
                     model_admin_recv model = new model_admin_recv();
                     model.setComplaintId(id);
                     model.setStatus(status);
                     model.setTitle(title);
                     model.setDate(date);
                     model.setUsername(username);
+                    model.setUid(uid);
                     data.add(model);
 
 
