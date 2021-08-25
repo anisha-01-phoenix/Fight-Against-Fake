@@ -27,7 +27,7 @@ public class dashboard extends AppCompatActivity {
         setContentView(v);
         setSupportActionBar(binding.toolbar);
 
-        getSupportFragmentManager().beginTransaction().addToBackStack(null).replace(R.id.homecontainer,new complaint_home()).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.homecontainer,new complaint_home()).commit();
 
         toggle=new ActionBarDrawerToggle(this,binding.drawer,binding.toolbar,R.string.open,R.string.close);
         binding.drawer.addDrawerListener(toggle);
