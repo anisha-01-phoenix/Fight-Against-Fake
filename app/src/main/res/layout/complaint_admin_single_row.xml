@@ -4,6 +4,7 @@
     android:layout_height="wrap_content"
     android:background="@color/white"
     app:cardCornerRadius="15dp"
+    android:id="@+id/cvg"
     app:cardElevation="30dp"
     android:padding="8dp"
     android:layout_margin="8dp"
@@ -71,10 +72,12 @@
                     android:layout_height="wrap_content"
 
 
-                    android:layout_alignParentTop="true"
+                    android:layout_alignParentStart="true"
 
+                    android:layout_alignParentTop="true"
+                    android:layout_marginStart="22dp"
                     android:layout_marginTop="0dp"
-                    android:layout_marginEnd="23dp"
+                    android:layout_marginEnd="15dp"
                     android:layout_toStartOf="@+id/status_admin"
                     android:text="Username"
                     android:textColor="#31A736"
