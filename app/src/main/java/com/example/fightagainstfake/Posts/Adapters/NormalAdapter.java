@@ -29,7 +29,7 @@ public class NormalAdapter extends RecyclerView.Adapter<NormalAdapter.NormalView
     Context context;
     ArrayList<ModelClass> list;
     FirebaseUser firebaseUser;
-    public boolean shimmering;
+    public boolean shimmering=true;
 
     public NormalAdapter(Context context, ArrayList<ModelClass> list) {
         this.context = context;
@@ -63,8 +63,8 @@ public class NormalAdapter extends RecyclerView.Adapter<NormalAdapter.NormalView
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(Intent.ACTION_SEND);
-                    intent.setType("text/post");
-                    String mssg = holder.post.toString();
+                    intent.setType("text/*");
+                    String mssg = modelClass.getPost();
                     intent.putExtra(Intent.EXTRA_TEXT, mssg);
                     context.startActivity(Intent.createChooser(intent, "Send To"));
                 }
@@ -112,7 +112,7 @@ public class NormalAdapter extends RecyclerView.Adapter<NormalAdapter.NormalView
     @Override
     public int getItemCount() {
 
-        return list.size();
+        return shimmering? 10: list.size();
     }
 
     public class NormalViewHolder extends RecyclerView.ViewHolder{

@@ -11,6 +11,7 @@ import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.SearchView;
 
 import com.example.fightagainstfake.ModelClass;
 import com.example.fightagainstfake.Posts.Activities.AdvertisementPosts;
@@ -24,7 +25,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class AdvertisementPostsFragment extends Fragment {
+public class AdvertisementPostsFragment extends Fragment implements SearchView.OnQueryTextListener {
     FragmentAdvertisementPostsBinding fragmentAdvertisementPostsBinding;
     private LinearLayoutManager layoutManager;
     private DatabaseReference reference;
@@ -71,14 +72,28 @@ public class AdvertisementPostsFragment extends Fragment {
         });
 
 
+
+        fragmentAdvertisementPostsBinding.searchView.setOnQueryTextListener(this);
+
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                adapter.isShimmer=false;
-                adapter.notifyDataSetChanged();
+              adapter.isApShimmer=false;
+              adapter.notifyDataSetChanged();
 
             }
-        },6000);
+        },3000);
         return fragmentAdvertisementPostsBinding.getRoot();
+    }
+
+    @Override
+    public boolean onQueryTextSubmit(String query) {
+        return false;
+    }
+
+    @Override
+    public boolean onQueryTextChange(String newText) {
+  // adapter.getFilter().flter(newText);
+        return false;
     }
 }
