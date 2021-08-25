@@ -21,7 +21,7 @@
         android:textSize="25dp"
         android:layout_marginTop="15dp"/>
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/background"
@@ -33,7 +33,7 @@
             android:layout_marginTop="20dp"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
-            android:layout_width="match_parent"
+            android:layout_width="360dp"
             android:padding="5dp"
             android:background="@drawable/tab_text"
             android:layout_height="wrap_content">
@@ -47,41 +47,61 @@
                 android:textColorHint="@color/additionalColor"/>
         </com.google.android.material.textfield.TextInputLayout>
 
-            <ImageView
-                android:id="@+id/imgUploadedFiles"
-                android:layout_width="200dp"
-                android:layout_height="200dp"
-                android:src="@drawable/docs"
-                android:padding="10dp"
-                android:layout_margin="10dp"
-                android:layout_gravity="center_horizontal"
-                android:background="@drawable/img_border"/>
+        <ImageView
+            android:id="@+id/imgUploadedFiles"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_marginStart="100dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="100dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/img_border"
+            android:padding="10dp"
+            android:layout_below="@id/addAdvertisePostEditText"
+            android:src="@drawable/docs" />
 
 
         <ImageView
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_gravity="center_horizontal"
-            android:src="@drawable/upload_files"
             android:id="@+id/upload"
-            android:elevation="200dp"/>
-
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="5dp"
+            android:layout_toRightOf="@id/addAdvertisePostEditText"
+            android:elevation="200dp"
+            android:src="@drawable/upload_files" />
 
 
         <Button
             android:id="@+id/btn_addAP"
-            android:layout_height="wrap_content"
             android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/imgUploadedFiles"
+            android:layout_marginLeft="100dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="100dp"
             android:background="@drawable/tab_indicator"
-            android:layout_gravity="center_horizontal"
-            android:text="     Add Post      "
-            android:fontFamily="@font/button"
             android:elevation="50dp"
+            android:fontFamily="@font/button"
+            android:text="     Add Post      "
+            android:textColor="@color/white" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="#4CAF50"
+            android:fontFamily="@font/text"
+            android:gravity="center_horizontal"
+            android:padding="5dp"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:text="Please upload supporting images in one file; else your post will be marked as fake! \n*Images once uploaded cannot be edited."
             android:textColor="@color/white"
-            android:layout_marginTop="10dp"/>
+            android:textStyle="italic" />
 
 
-
-    </LinearLayout>
+    </RelativeLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
