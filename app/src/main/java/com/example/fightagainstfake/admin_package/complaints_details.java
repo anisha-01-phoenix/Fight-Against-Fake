@@ -28,7 +28,7 @@ ActivityComplaintsDetailsBinding binding;
         setContentView(binding.getRoot());
         Intent intent=getIntent();
        post_date=intent.getStringExtra("date");
-       status=intent.getStringExtra("status");
+       //status=intent.getStringExtra("status");
        complaintId=intent.getStringExtra("compid");
        title=intent.getStringExtra("title");
        username=intent.getStringExtra("username");
@@ -37,13 +37,14 @@ ActivityComplaintsDetailsBinding binding;
        binding.idCA.setText(complaintId);
        binding.titleCA.setText(title);
        binding.usernameCA.setText(username);
-       binding.statusCA.setText(status);
+
 DatabaseReference ref1= FirebaseDatabase.getInstance().getReference("complaint").child(uid).child(complaintId);
 ref1.addValueEventListener(new ValueEventListener() {
     @Override
     public void onDataChange(@NonNull DataSnapshot snapshot) {
        Map<String, String> map = (Map<String, String>) snapshot.getValue();
         binding.proofCA.setText(map.get("proof"));
+        binding.statusCA.setText(map.get("status"));
 
     }
 

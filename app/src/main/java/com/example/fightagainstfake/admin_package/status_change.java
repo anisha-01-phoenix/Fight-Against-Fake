@@ -111,6 +111,7 @@ binding.statusChange.setOnClickListener(new View.OnClickListener() {
                 // DatabaseReference db2= FirebaseDatabase.getInstance().getReference("complaint").child(uid).child(complaintId);
                 //    db2.removeValue();
                 DatabaseReference db3= FirebaseDatabase.getInstance().getReference("complaint").child(uid).child(complaintId);
+                DatabaseReference db1= FirebaseDatabase.getInstance().getReference("totalcomplaints").child(complaintId);
                 com.example.fightagainstfake.admin_package.complaint_model complaintModel=new complaint_model();
                 complaintModel.setComplaintTitle(titlee);
                 complaintModel.setComplainId(compId);
@@ -121,6 +122,7 @@ binding.statusChange.setOnClickListener(new View.OnClickListener() {
                 Log.v("yuyu",status);
                 complaintModel.setStatus(status);
                 db3.setValue(complaintModel);
+                db1.setValue(complaintModel);
             }
 
             @Override
