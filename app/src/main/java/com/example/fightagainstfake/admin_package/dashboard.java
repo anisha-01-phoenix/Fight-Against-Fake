@@ -64,7 +64,7 @@ binding.logo00.setText("COMPLAINTS");
             }
         });
     }
-    public void changeColor(int resourcecolor) {
+  /*  public void changeColor(int resourcecolor) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             getWindow().setStatusBarColor(ContextCompat.getColor(getApplicationContext(), resourcecolor));
         }
@@ -72,4 +72,6 @@ binding.logo00.setText("COMPLAINTS");
         ActionBar bar = getSupportActionBar();
         bar.setBackgroundDrawable(new ColorDrawable(getResources().getColor(resourcecolor)));
     }
+    */
+
 }
