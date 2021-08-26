@@ -43,7 +43,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/text"
-                android:hint="Title"
+                android:hint="Your Complain here..."
                 android:paddingLeft="15dp"
                 android:textColor="@color/additionalColor"
                 android:textColorHint="@color/additionalColor" />
@@ -60,6 +60,7 @@
             android:fontFamily="@font/button"
             android:paddingLeft="20dp"
             android:paddingRight="20dp"
+            android:textSize="18dp"
             android:text="Add"
             android:textColor="@color/white" />
 

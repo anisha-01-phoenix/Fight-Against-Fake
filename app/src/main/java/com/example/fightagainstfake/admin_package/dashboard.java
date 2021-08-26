@@ -1,15 +1,11 @@
 package com.example.fightagainstfake.admin_package;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
 import androidx.core.view.GravityCompat;
 
 import android.content.Intent;
-import android.graphics.drawable.ColorDrawable;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -36,13 +32,11 @@ binding.logo00.setText("COMPLAINTS");
         toggle=new ActionBarDrawerToggle(this,binding.drawer,binding.toolbar,R.string.open,R.string.close);
         binding.drawer.addDrawerListener(toggle);
         toggle.syncState();
-        changeColor(R.color.themeColor);
         binding.navmenu1.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch(item.getItemId()){
                     case R.id.complaints:
-                        binding.logo00.setText("COMPLAINTS");
                         getSupportFragmentManager().beginTransaction().replace(R.id.homecontainer,new complaint_home()).commit();
                         binding.drawer.closeDrawer(GravityCompat.START);
                         break;
