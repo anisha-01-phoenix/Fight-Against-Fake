@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import com.example.fightagainstfake.MainActivity;
 import com.example.fightagainstfake.R;
+import com.example.fightagainstfake.admin_package.dashboard;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -85,7 +86,7 @@ public class Startscreen extends AppCompatActivity {
                         if (password.equals("1413914"))
                         {
                             Toast.makeText(Startscreen.this, "Welcome back!", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(Startscreen.this,loginScreen.class));
+                            startActivity(new Intent(Startscreen.this, MainActivity.class));
                         }
                         else
                         {

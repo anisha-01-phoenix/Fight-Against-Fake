@@ -38,6 +38,7 @@ import androidx.core.view.GravityCompat;
 
 import com.bumptech.glide.Glide;
 import com.example.fightagainstfake.Posts.AddPosts;
+import com.example.fightagainstfake.admin_package.info_for_customer.customer_info_corner;
 import com.example.fightagainstfake.authentication.Startscreen;
 import com.example.fightagainstfake.authentication.loginScreen;
 import com.example.fightagainstfake.complaints.adapter;
@@ -131,6 +132,7 @@ data=new ArrayList<>();
                 startActivity(new Intent(MainActivity.this, AddPosts.class));
                 break;
             case R.id.nav_info:
+                getSupportFragmentManager().beginTransaction().addToBackStack(null).replace(R.id.complaintContainer, new customer_info_corner()).commit();
                 break;
             case R.id.nav_maps:
                 break;

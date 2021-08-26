@@ -28,7 +28,7 @@ public class dashboard extends AppCompatActivity {
         setSupportActionBar(binding.toolbar);
 
         getSupportFragmentManager().beginTransaction().replace(R.id.homecontainer,new complaint_home()).commit();
-
+binding.logo00.setText("COMPLAINTS");
         toggle=new ActionBarDrawerToggle(this,binding.drawer,binding.toolbar,R.string.open,R.string.close);
         binding.drawer.addDrawerListener(toggle);
         toggle.syncState();
@@ -41,17 +41,21 @@ public class dashboard extends AppCompatActivity {
                         binding.drawer.closeDrawer(GravityCompat.START);
                         break;
                     case R.id.advert_admin:
+                        binding.logo00.setText("ADVRTISEMENTS");
                         getSupportFragmentManager().beginTransaction().replace(R.id.homecontainer,new post_home()).commit();
                         binding.drawer.closeDrawer(GravityCompat.START);
                         break;
                     case R.id.recentsearches:
+                        binding.logo00.setText("COMPLAINTS");
                         Toast.makeText(getApplicationContext(),"recent searches",Toast.LENGTH_SHORT).show();
                         binding.drawer.closeDrawer(GravityCompat.START);
                         break;
-                    case R.id.aboutus:
+                    case R.id.Info_Corner:
+                        binding.logo00.setText("GENERAL INFO");
                       //  Intent intent=new Intent(getApplicationContext(),webview.class);
                        // intent.putExtra("url",abouturl);
                        // startActivity(intent);
+                        getSupportFragmentManager().beginTransaction().replace(R.id.homecontainer,new admin_info_corner()).commit();
                         binding.drawer.closeDrawer(GravityCompat.START);
                         break;
 

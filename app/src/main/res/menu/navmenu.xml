@@ -13,9 +13,9 @@
         android:icon="@drawable/ic_baseline_search_24"
         android:title="Recent Searches"/>
     <item
-        android:id="@+id/aboutus"
+        android:id="@+id/Info_Corner"
         android:icon="@drawable/ic_baseline_search_24"
-        android:title="AboutUs"/>
+        android:title="Info Corner"/>
     <item
         android:id="@+id/my_profiles"
         android:icon="@drawable/ic_baseline_search_24"
