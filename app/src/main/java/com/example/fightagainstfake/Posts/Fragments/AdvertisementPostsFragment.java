@@ -17,7 +17,7 @@ import com.example.fightagainstfake.ModelClass;
 import com.example.fightagainstfake.Posts.Activities.AdvertisementPosts;
 import com.example.fightagainstfake.Posts.Adapters.AdvertiseAdapter;
 import com.example.fightagainstfake.databinding.FragmentAdvertisementPostsBinding;
-import com.example.fightagainstfake.notification.Token;
+
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -91,14 +91,7 @@ public class AdvertisementPostsFragment extends Fragment implements SearchView.O
             }
         },3000);
 
-       user = FirebaseAuth.getInstance().getCurrentUser();
 
-        user.getIdToken(true).addOnSuccessListener(new OnSuccessListener<GetTokenResult>() {
-            @Override
-            public void onSuccess(GetTokenResult getTokenResult) {
-                updateToken(getTokenResult.getToken());
-            }
-        });
 
         return fragmentAdvertisementPostsBinding.getRoot();
     }
@@ -112,14 +105,6 @@ public class AdvertisementPostsFragment extends Fragment implements SearchView.O
     public boolean onQueryTextChange(String newText) {
   // adapter.getFilter().flter(newText);
         return false;
-    }
-
-    private void updateToken(String  token){
-
-        DatabaseReference reference=FirebaseDatabase.getInstance().getReference("Tokens");
-        Token token1=new Token(token);
-        reference.child(user.getUid()).setValue(token1);
-
     }
 
 
