@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Fight-Against-Fake/app/src/main/res/layout/activity_chat.xml" value="0.12409420289855072" />
         <entry key="..\:/Users/ANISHA/AndroidStudioProjects/FightAgainstFake/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2703125" />
         <entry key="..\:/Users/ANISHA/AndroidStudioProjects/FightAgainstFake/app/src/main/res/drawable/admin.xml" value="0.2703125" />
         <entry key="..\:/Users/ANISHA/AndroidStudioProjects/FightAgainstFake/app/src/main/res/drawable/arrow.xml" value="0.2703125" />
@@ -68,26 +69,6 @@
         <entry key="..\:/Users/ANISHA/AndroidStudioProjects/FightAgainstFake/app/src/main/res/layout/activity_login.xml" value="0.24010416666666667" />
         <entry key="..\:/Users/ANISHA/AndroidStudioProjects/FightAgainstFake/app/src/main/res/layout/activity_login_screen.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/ANISHA/AndroidStudioProjects/FightAgainstFake/app/src/main/res/layout/activity_main.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/Saurav Kumar/AndroidStudioProjects/Fight-Against-Fake/app/src/main/res/drawable-v24/background2.xml" value="0.2351851851851852" />
-        <entry key="..\:/Users/Saurav Kumar/AndroidStudioProjects/Fight-Against-Fake/app/src/main/res/drawable-v24/tab_indicator2.xml" value="0.2351851851851852" />
-        <entry key="..\:/Users/Saurav Kumar/AndroidStudioProjects/Fight-Against-Fake/app/src/main/res/drawable/background.xml" value="0.2351851851851852" />
-        <entry key="..\:/Users/Saurav Kumar/AndroidStudioProjects/Fight-Against-Fake/app/src/main/res/layout/activity_add_posts.xml" value="0.12158054711246201" />
-        <entry key="..\:/Users/Saurav Kumar/AndroidStudioProjects/Fight-Against-Fake/app/src/main/res/layout/activity_advertisement_posts.xml" value="0.23143115942028986" />
-        <entry key="..\:/Users/Saurav Kumar/AndroidStudioProjects/Fight-Against-Fake/app/src/main/res/layout/activity_complaints_details.xml" value="0.2368659420289855" />
-        <entry key="..\:/Users/Saurav Kumar/AndroidStudioProjects/Fight-Against-Fake/app/src/main/res/layout/activity_dashboard.xml" value="0.10410334346504559" />
-        <entry key="..\:/Users/Saurav Kumar/AndroidStudioProjects/Fight-Against-Fake/app/src/main/res/layout/activity_info_corner_post.xml" value="0.23143115942028986" />
-        <entry key="..\:/Users/Saurav Kumar/AndroidStudioProjects/Fight-Against-Fake/app/src/main/res/layout/activity_login_screen.xml" value="0.12158054711246201" />
-        <entry key="..\:/Users/Saurav Kumar/AndroidStudioProjects/Fight-Against-Fake/app/src/main/res/layout/activity_normal_posts.xml" value="0.23143115942028986" />
-        <entry key="..\:/Users/Saurav Kumar/AndroidStudioProjects/Fight-Against-Fake/app/src/main/res/layout/admin_info_corner.xml" value="0.23143115942028986" />
-        <entry key="..\:/Users/Saurav Kumar/AndroidStudioProjects/Fight-Against-Fake/app/src/main/res/layout/complaint_admin_single_row.xml" value="0.12158054711246201" />
-        <entry key="..\:/Users/Saurav Kumar/AndroidStudioProjects/Fight-Against-Fake/app/src/main/res/layout/fragment_add_complaint.xml" value="0.23143115942028986" />
-        <entry key="..\:/Users/Saurav Kumar/AndroidStudioProjects/Fight-Against-Fake/app/src/main/res/layout/fragment_admin_info_corner.xml" value="0.23143115942028986" />
-        <entry key="..\:/Users/Saurav Kumar/AndroidStudioProjects/Fight-Against-Fake/app/src/main/res/layout/fragment_complaint_home.xml" value="0.12360688956433637" />
-        <entry key="..\:/Users/Saurav Kumar/AndroidStudioProjects/Fight-Against-Fake/app/src/main/res/layout/fragment_customer_info_corner.xml" value="0.2140625" />
-        <entry key="..\:/Users/Saurav Kumar/AndroidStudioProjects/Fight-Against-Fake/app/src/main/res/layout/fragment_normal_posts.xml" value="0.23143115942028986" />
-        <entry key="..\:/Users/Saurav Kumar/AndroidStudioProjects/Fight-Against-Fake/app/src/main/res/layout/fragment_status_change.xml" value="0.2368659420289855" />
-        <entry key="..\:/Users/Saurav Kumar/AndroidStudioProjects/Fight-Against-Fake/app/src/main/res/menu/activity_main_drawer.xml" value="0.25025641025641027" />
-        <entry key="..\:/Users/Saurav Kumar/AndroidStudioProjects/Fight-Against-Fake/app/src/main/res/menu/navmenu.xml" value="0.18888888888888888" />
         <entry key="..\:/Users/ANISHA/AndroidStudioProjects/FightAgainstFake/app/src/main/res/layout/activity_normal_posts.xml" value="0.25" />
         <entry key="..\:/Users/ANISHA/AndroidStudioProjects/FightAgainstFake/app/src/main/res/layout/activity_otp_screen.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/ANISHA/AndroidStudioProjects/FightAgainstFake/app/src/main/res/layout/activity_show_chats.xml" value="0.264" />
@@ -122,6 +103,26 @@
         <entry key="..\:/Users/ANISHA/AndroidStudioProjects/FightAgainstFake/app/src/main/res/menu/activity_main_drawer.xml" value="0.4" />
         <entry key="..\:/Users/ANISHA/AndroidStudioProjects/FightAgainstFake/app/src/main/res/menu/navmenu.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/ANISHA/AndroidStudioProjects/FightAgainstFake/app/src/main/res/menu/searchtoolbar.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Saurav Kumar/AndroidStudioProjects/Fight-Against-Fake/app/src/main/res/drawable-v24/background2.xml" value="0.2351851851851852" />
+        <entry key="..\:/Users/Saurav Kumar/AndroidStudioProjects/Fight-Against-Fake/app/src/main/res/drawable-v24/tab_indicator2.xml" value="0.2351851851851852" />
+        <entry key="..\:/Users/Saurav Kumar/AndroidStudioProjects/Fight-Against-Fake/app/src/main/res/drawable/background.xml" value="0.2351851851851852" />
+        <entry key="..\:/Users/Saurav Kumar/AndroidStudioProjects/Fight-Against-Fake/app/src/main/res/layout/activity_add_posts.xml" value="0.12158054711246201" />
+        <entry key="..\:/Users/Saurav Kumar/AndroidStudioProjects/Fight-Against-Fake/app/src/main/res/layout/activity_advertisement_posts.xml" value="0.23143115942028986" />
+        <entry key="..\:/Users/Saurav Kumar/AndroidStudioProjects/Fight-Against-Fake/app/src/main/res/layout/activity_complaints_details.xml" value="0.2368659420289855" />
+        <entry key="..\:/Users/Saurav Kumar/AndroidStudioProjects/Fight-Against-Fake/app/src/main/res/layout/activity_dashboard.xml" value="0.10410334346504559" />
+        <entry key="..\:/Users/Saurav Kumar/AndroidStudioProjects/Fight-Against-Fake/app/src/main/res/layout/activity_info_corner_post.xml" value="0.23143115942028986" />
+        <entry key="..\:/Users/Saurav Kumar/AndroidStudioProjects/Fight-Against-Fake/app/src/main/res/layout/activity_login_screen.xml" value="0.12158054711246201" />
+        <entry key="..\:/Users/Saurav Kumar/AndroidStudioProjects/Fight-Against-Fake/app/src/main/res/layout/activity_normal_posts.xml" value="0.23143115942028986" />
+        <entry key="..\:/Users/Saurav Kumar/AndroidStudioProjects/Fight-Against-Fake/app/src/main/res/layout/admin_info_corner.xml" value="0.23143115942028986" />
+        <entry key="..\:/Users/Saurav Kumar/AndroidStudioProjects/Fight-Against-Fake/app/src/main/res/layout/complaint_admin_single_row.xml" value="0.12158054711246201" />
+        <entry key="..\:/Users/Saurav Kumar/AndroidStudioProjects/Fight-Against-Fake/app/src/main/res/layout/fragment_add_complaint.xml" value="0.23143115942028986" />
+        <entry key="..\:/Users/Saurav Kumar/AndroidStudioProjects/Fight-Against-Fake/app/src/main/res/layout/fragment_admin_info_corner.xml" value="0.23143115942028986" />
+        <entry key="..\:/Users/Saurav Kumar/AndroidStudioProjects/Fight-Against-Fake/app/src/main/res/layout/fragment_complaint_home.xml" value="0.12360688956433637" />
+        <entry key="..\:/Users/Saurav Kumar/AndroidStudioProjects/Fight-Against-Fake/app/src/main/res/layout/fragment_customer_info_corner.xml" value="0.2140625" />
+        <entry key="..\:/Users/Saurav Kumar/AndroidStudioProjects/Fight-Against-Fake/app/src/main/res/layout/fragment_normal_posts.xml" value="0.23143115942028986" />
+        <entry key="..\:/Users/Saurav Kumar/AndroidStudioProjects/Fight-Against-Fake/app/src/main/res/layout/fragment_status_change.xml" value="0.2368659420289855" />
+        <entry key="..\:/Users/Saurav Kumar/AndroidStudioProjects/Fight-Against-Fake/app/src/main/res/menu/activity_main_drawer.xml" value="0.25025641025641027" />
+        <entry key="..\:/Users/Saurav Kumar/AndroidStudioProjects/Fight-Against-Fake/app/src/main/res/menu/navmenu.xml" value="0.18888888888888888" />
       </map>
     </option>
   </component>
