@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
+import com.example.fightagainstfake.FcmNotificationsSender;
 import com.example.fightagainstfake.ModelClass;
 import com.example.fightagainstfake.Posts.Activities.NormalPosts;
 import com.example.fightagainstfake.Posts.AddPosts;
@@ -15,6 +16,7 @@ import com.example.fightagainstfake.databinding.ActivityInfoCornerPostBinding;
 import com.example.fightagainstfake.databinding.ActivityNormalPostsBinding;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -24,6 +26,11 @@ ActivityInfoCornerPostBinding binding;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        FirebaseMessaging.getInstance().subscribeToTopic("all");
+
+
+
         binding= ActivityInfoCornerPostBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         getSupportActionBar().hide();
@@ -39,6 +46,10 @@ ActivityInfoCornerPostBinding binding;
                 }
                 else
                 {
+
+                    sendNOtification();
+
+
                     DatabaseReference reference;
                     reference= FirebaseDatabase.getInstance().getReference("info_corner");
                     Calendar calendar=Calendar.getInstance();
@@ -54,5 +65,15 @@ ActivityInfoCornerPostBinding binding;
                 }
             }
         });
+    }
+
+    private void sendNOtification() {
+
+        FcmNotificationsSender notificationsSender=new FcmNotificationsSender("/topics/all","tittle","body",getApplicationContext(),info_corner_post.this);
+
+notificationsSender.SendNotifications();
+
+
+
     }
 }
