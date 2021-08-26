@@ -16,7 +16,9 @@
         <item name="android:fontFamily">@font/text</item>
         <item name="android:textStyle">bold</item>
         <item name="textAllCaps">false</item>
-        <item name="android:textSize">18dp</item>
+        <item name="android:textSize">15dp</item>
     </style>
+
+    <string name="title_activity_maps">MapsActivity</string>
 
 </resources>

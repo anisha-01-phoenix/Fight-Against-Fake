@@ -81,7 +81,7 @@
                     android:layout_marginEnd="15dp"
                     android:layout_toStartOf="@+id/status_admin"
                     android:text="Username"
-                    android:textColor="#31A736"
+                    android:textColor="@color/themeColor"
                     android:textStyle="bold" />
 
                 <TextView

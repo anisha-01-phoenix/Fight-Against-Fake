@@ -15,7 +15,6 @@
         android:fontFamily="@font/heading"
         android:gravity="center"
         android:text="SIGIN"
-        android:onClick="nnnnnnnnnnnnnnnnnnn"
         android:textAllCaps="true"
         android:textColor="@color/white"
         android:textSize="25dp"
@@ -42,6 +41,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.7" />
+
+
+    <ProgressBar
+        android:id="@+id/pbar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/nextScreen"
+        android:elevation="100dp"
+        android:layout_marginTop="80dp"
+        android:visibility="gone"/>
+
 
 
     <LinearLayout
@@ -119,6 +131,7 @@
             android:fontFamily="@font/text"/>
 
 
+
     </LinearLayout>
 
     <TextView
@@ -138,8 +151,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/bttn"
         app:layout_constraintVertical_bias="0.103" />
-
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

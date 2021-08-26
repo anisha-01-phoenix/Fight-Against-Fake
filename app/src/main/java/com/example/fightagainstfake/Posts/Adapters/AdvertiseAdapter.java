@@ -239,10 +239,10 @@ public class AdvertiseAdapter extends RecyclerView.Adapter<AdvertiseAdapter.Adve
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
 
-                                FirebaseDatabase.getInstance().getReference().child("Advertisement Post").child(modelClass.getPostID()).removeValue();
+                            /*    FirebaseDatabase.getInstance().getReference().child("Advertisement Post").child(modelClass.getPostID()).removeValue();
 
                                 notifyItemRemoved(position);
-                                Toast.makeText(context, "Post Deleted!", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(context, "Post Deleted!", Toast.LENGTH_SHORT).show();*/
 
                             }
                         });

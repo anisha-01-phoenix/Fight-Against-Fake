@@ -5,7 +5,6 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
 import androidx.core.view.GravityCompat;
 
@@ -19,29 +18,17 @@ import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import android.widget.SearchView;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.view.GravityCompat;
-
-
-import com.bumptech.glide.Glide;
+import com.example.fightagainstfake.Maps.MapsActivity;
 import com.example.fightagainstfake.Posts.AddPosts;
 import com.example.fightagainstfake.admin_package.info_for_customer.customer_info_corner;
 import com.example.fightagainstfake.authentication.Startscreen;
-import com.example.fightagainstfake.authentication.loginScreen;
-import com.example.fightagainstfake.complaints.adapter;
 import com.example.fightagainstfake.complaints.addComplaint;
 import com.example.fightagainstfake.complaints.complaintStatus;
 import com.example.fightagainstfake.complaints.model;
@@ -65,14 +52,12 @@ import com.karumi.dexter.listener.PermissionGrantedResponse;
 import com.karumi.dexter.listener.PermissionRequest;
 import com.karumi.dexter.listener.single.PermissionListener;
 
-import org.w3c.dom.Text;
-
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.ArrayList;
-import java.util.Locale;
+
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     ActivityMainBinding activityMainBinding;
     FirebaseUser firebaseUser;
@@ -138,6 +123,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 getSupportFragmentManager().beginTransaction().addToBackStack(null).replace(R.id.complaintContainer, new customer_info_corner()).commit();
                 break;
             case R.id.nav_maps:
+                startActivity(new Intent(MainActivity.this, MapsActivity.class));
                 break;
             case R.id.nav_register_complain:
                 getSupportFragmentManager().beginTransaction().addToBackStack(null).replace(R.id.complaintContainer, new addComplaint()).commit();
