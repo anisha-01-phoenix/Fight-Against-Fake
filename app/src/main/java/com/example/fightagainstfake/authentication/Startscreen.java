@@ -88,8 +88,11 @@ public class Startscreen extends AppCompatActivity {
                         {
                             Intent intent=new Intent(Startscreen.this, dashboard.class);
                             Toast.makeText(Startscreen.this, "Welcome back!", Toast.LENGTH_SHORT).show();
+
+
                             intent.putExtra("check",1);
                             startActivity(intent);
+
                         }
                         else
                         {

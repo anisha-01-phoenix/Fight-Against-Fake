@@ -157,4 +157,8 @@ public class loginScreen extends AppCompatActivity {
     public void forgot(View view) {
         startActivity(new Intent(loginScreen.this,Forgot_Password.class));
     }
+
+    public void nnnnnnnnnnnnnnnnnnn(View view) {
+        startActivity(new Intent(loginScreen.this, dashboard.class));
+    }
 }

@@ -3,19 +3,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".Posts.Fragments.NormalPostsFragment">
+    tools:context=".admin_package.admin_info_corner">
 
+    <!-- TODO: Update blank fragment layout -->
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_normalPosts"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="15dp"
-        android:paddingTop="20dp"
-        android:background="@drawable/rv_bg" />
+        android:layout_height="wrap_content"
+        android:id="@+id/recv"
+        android:layout_marginTop="12dp"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/addNormalPost"
+        android:tint="@color/white"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
@@ -25,7 +24,6 @@
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="10dp"
         android:backgroundTint="@color/themeColor"
-        android:src="@drawable/ic_baseline_add"
-        app:tint="@color/white" />
+        android:src="@drawable/ic_baseline_add" />
 
 </RelativeLayout>

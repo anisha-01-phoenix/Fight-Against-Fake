@@ -13,9 +13,15 @@
         android:icon="@drawable/ic_baseline_search_24"
         android:title="Recent Searches"/>
     <item
+
+        android:id="@+id/Info_Corner"
+        android:icon="@drawable/ic_baseline_info_24"
+        android:title="Info Corner"/>
+<item
         android:id="@+id/aboutus"
         android:icon="@drawable/ic_baseline_people_24"
         android:title="AboutUs"/>
+
     <item
         android:id="@+id/my_profiles"
         android:icon="@drawable/ic_baseline_person_24"
