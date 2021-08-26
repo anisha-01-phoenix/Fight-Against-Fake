@@ -45,6 +45,7 @@ import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Random;
 
 public class AdvertisementPosts extends AppCompatActivity {
 
@@ -62,6 +63,7 @@ public class AdvertisementPosts extends AppCompatActivity {
         activityAdvertisementPostsBinding = ActivityAdvertisementPostsBinding.inflate(getLayoutInflater());
         setContentView(activityAdvertisementPostsBinding.getRoot());
         getSupportActionBar().hide();
+        String complainId = getrandomstring(6);
         activityAdvertisementPostsBinding.upload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -112,7 +114,9 @@ public class AdvertisementPosts extends AppCompatActivity {
                                 uploader.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                                     @Override
                                     public void onSuccess(Uri uri) {
-                                        ModelClass modelClass = new ModelClass(firebaseUser.getUid(), reference.push().getKey(), time, post, uri.toString());
+                                        String complainId = getrandomstring(6);
+                                        Toast.makeText(getApplicationContext(), complainId, Toast.LENGTH_SHORT).show();
+                                        ModelClass modelClass = new ModelClass(firebaseUser.getUid(), complainId, time, post, uri.toString());
                                         reference.push().setValue(modelClass);
                                         Toast.makeText(AdvertisementPosts.this, "Post Added", Toast.LENGTH_SHORT).show();
                                         progressDialog.dismiss();
@@ -130,7 +134,7 @@ public class AdvertisementPosts extends AppCompatActivity {
                     }
                     else
                     {
-                        ModelClass modelClass = new ModelClass(firebaseUser.getUid(), reference.push().getKey(), time, post, null);
+                        ModelClass modelClass = new ModelClass(firebaseUser.getUid(), complainId, time, post, "not uploaded");
                         reference.push().setValue(modelClass);
                         Toast.makeText(AdvertisementPosts.this, "Post Added", Toast.LENGTH_SHORT).show();
                         startActivity(new Intent(AdvertisementPosts.this, AddPosts.class));
@@ -157,6 +161,15 @@ public class AdvertisementPosts extends AppCompatActivity {
             }
         }
     }
-
+    public static String getrandomstring(int i) {
+        final String chaaracters = "abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGHIJklMNOPQRSTUV";
+        StringBuilder result = new StringBuilder();
+        while (i > 0) {
+            Random rand = new Random();
+            result.append(chaaracters.charAt(rand.nextInt(chaaracters.length())));
+            i--;
+        }
+        return result.toString();
+    }
 
 }
