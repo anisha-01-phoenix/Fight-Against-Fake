@@ -22,6 +22,7 @@ import com.example.fightagainstfake.Posts.Activities.ChatActivity;
 import com.example.fightagainstfake.Posts.Activities.FullImageView;
 import com.example.fightagainstfake.R;
 import com.example.fightagainstfake.UserModel;
+import com.example.fightagainstfake.edit_advertisements;
 import com.facebook.shimmer.ShimmerFrameLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -36,13 +37,14 @@ import com.orhanobut.dialogplus.ViewHolder;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 
 public class AdvertiseAdapter extends RecyclerView.Adapter<AdvertiseAdapter.AdvertiseViewHolder> {
 
     Context context;
     ArrayList<ModelClass> list;
     FirebaseUser firebaseUser;
-    public boolean isApShimmer =true;
+    public boolean isApShimmer = true;
 
     public AdvertiseAdapter(Context context, ArrayList<ModelClass> list) {
         this.context = context;
@@ -50,11 +52,10 @@ public class AdvertiseAdapter extends RecyclerView.Adapter<AdvertiseAdapter.Adve
     }
 
 
-
     @NonNull
     @Override
     public AdvertiseViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view= LayoutInflater.from(context).inflate(R.layout.advertisement_post_item,parent,false);
+        View view = LayoutInflater.from(context).inflate(R.layout.advertisement_post_item, parent, false);
         return new AdvertiseViewHolder(view);
     }
 
@@ -62,32 +63,28 @@ public class AdvertiseAdapter extends RecyclerView.Adapter<AdvertiseAdapter.Adve
     public void onBindViewHolder(@NonNull AdvertiseViewHolder holder, int position) {
         if (isApShimmer)
             holder.shimmer.startShimmer();
-        else
-        {
+        else {
             holder.shimmer.setVisibility(View.INVISIBLE);
             holder.shimmer.stopShimmer();
             holder.shimmer.setShimmer(null);
             holder.dateTime.setBackground(null);
             holder.user.setBackground(null);
             holder.post.setBackground(null);
-            firebaseUser=FirebaseAuth.getInstance().getCurrentUser();
-            ModelClass modelClass= list.get(position);
+            firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+            ModelClass modelClass = list.get(position);
             holder.dateTime.setText(modelClass.getTime());
             holder.post.setText(modelClass.getPost());
-            if (modelClass.getImageUrl()!=null) {
+            if (modelClass.getImageUrl() != null) {
                 Glide.with(context).load(modelClass.getImageUrl()).into(holder.docs);
                 holder.docs.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Intent intent=new Intent(context, FullImageView.class);
-                        intent.putExtra("zoom",modelClass.getImageUrl());
+                        Intent intent = new Intent(context, FullImageView.class);
+                        intent.putExtra("zoom", modelClass.getImageUrl());
                         context.startActivity(intent);
                     }
                 });
-            }
-
-            else
-            {
+            } else {
                 holder.docs.setVisibility(View.GONE);
                 holder.scam_alert.setVisibility(View.VISIBLE);
             }
@@ -95,34 +92,29 @@ public class AdvertiseAdapter extends RecyclerView.Adapter<AdvertiseAdapter.Adve
             holder.share.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent=new Intent(Intent.ACTION_SEND);
+                    Intent intent = new Intent(Intent.ACTION_SEND);
                     intent.setType("text/*");
-                    String mssg= modelClass.getPost();
-                    intent.putExtra(Intent.EXTRA_TEXT,mssg );
-                    context.startActivity(Intent.createChooser(intent,"Send To"));
+                    String mssg = modelClass.getPost();
+                    intent.putExtra(Intent.EXTRA_TEXT, mssg);
+                    context.startActivity(Intent.createChooser(intent, "Send To"));
                 }
             });
 
             isUpvote(holder.upvote, modelClass.getPostID());
             isDownvote(holder.downvote, modelClass.getPostID());
-            getUpvotes(holder.upvote_count,modelClass.getPostID());
+            getUpvotes(holder.upvote_count, modelClass.getPostID());
             getDownvotes(holder.downvote_count, modelClass.getPostID());
 
             holder.upvote.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (holder.upvote.getTag().equals("Upvote") && holder.downvote.getTag().equals("Downvote"))
-                    {
+                    if (holder.upvote.getTag().equals("Upvote") && holder.downvote.getTag().equals("Downvote")) {
                         FirebaseDatabase.getInstance().getReference().child("Upvote").child(modelClass.getPostID()).child(firebaseUser.getUid()).setValue(true);
-                    }
-                    else  if (holder.upvote.getTag().equals("Upvote") && holder.downvote.getTag().equals("Downvoted"))
-                    {
+                    } else if (holder.upvote.getTag().equals("Upvote") && holder.downvote.getTag().equals("Downvoted")) {
                         FirebaseDatabase.getInstance().getReference().child("Downvote").child(modelClass.getPostID()).child(firebaseUser.getUid()).removeValue();
                         FirebaseDatabase.getInstance().getReference().child("Upvote").child(modelClass.getPostID()).child(firebaseUser.getUid()).setValue(true);
 
-                    }
-                    else
-                    {
+                    } else {
                         FirebaseDatabase.getInstance().getReference().child("Upvote").child(modelClass.getPostID()).child(firebaseUser.getUid()).removeValue();
                     }
                 }
@@ -131,18 +123,13 @@ public class AdvertiseAdapter extends RecyclerView.Adapter<AdvertiseAdapter.Adve
             holder.downvote.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (holder.upvote.getTag().equals("Upvote") && holder.downvote.getTag().equals("Downvote"))
-                    {
+                    if (holder.upvote.getTag().equals("Upvote") && holder.downvote.getTag().equals("Downvote")) {
                         FirebaseDatabase.getInstance().getReference().child("Downvote").child(modelClass.getPostID()).child(firebaseUser.getUid()).setValue(true);
-                    }
-                    else  if (holder.upvote.getTag().equals("Upvoted") && holder.downvote.getTag().equals("Downvote"))
-                    {
+                    } else if (holder.upvote.getTag().equals("Upvoted") && holder.downvote.getTag().equals("Downvote")) {
                         FirebaseDatabase.getInstance().getReference().child("Upvote").child(modelClass.getPostID()).child(firebaseUser.getUid()).removeValue();
                         FirebaseDatabase.getInstance().getReference().child("Downvote").child(modelClass.getPostID()).child(firebaseUser.getUid()).setValue(true);
 
-                    }
-                    else
-                    {
+                    } else {
                         FirebaseDatabase.getInstance().getReference().child("Downvote").child(modelClass.getPostID()).child(firebaseUser.getUid()).removeValue();
                     }
                 }
@@ -151,7 +138,7 @@ public class AdvertiseAdapter extends RecyclerView.Adapter<AdvertiseAdapter.Adve
             ref.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    UserModel userModel=snapshot.getValue(UserModel.class);
+                    UserModel userModel = snapshot.getValue(UserModel.class);
                     holder.user.setText(userModel.getName());
                 }
 
@@ -164,18 +151,28 @@ public class AdvertiseAdapter extends RecyclerView.Adapter<AdvertiseAdapter.Adve
             holder.chat.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent=new Intent(context, ChatActivity.class);
-                    intent.putExtra("userid",modelClass.getUserID());
+                    Intent intent = new Intent(context, ChatActivity.class);
+                    intent.putExtra("userid", modelClass.getUserID());
                     context.startActivity(intent);
                 }
             });
 
             if (modelClass.getUserID().equals(firebaseUser.getUid())) {
-                holder.delete.setVisibility(View.VISIBLE);
-                /*holder.edit.setVisibility(View.VISIBLE);
-                holder.edit.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
+              //  holder.delete.setVisibility(View.VISIBLE);
+                holder.edit.setVisibility(View.VISIBLE);
+           holder.edit.setOnClickListener(new View.OnClickListener() {
+                                              @Override
+                                              public void onClick(View v) {
+Intent intent =new Intent(context, edit_advertisements.class);
+intent.putExtra("uid",modelClass.getUserID());
+intent.putExtra("imageurl",modelClass.getImageUrl());
+intent.putExtra("time",modelClass.getTime());
+intent.putExtra("postid",modelClass.getPostID());
+intent.putExtra("post",modelClass.getPost());
+context.startActivity(intent);
+                                              }
+                                          });
+                       /*
                         final DialogPlus dialogPlus=DialogPlus.newDialog(context)
                                 .setContentHolder(new ViewHolder(R.layout.dialog_content))
                                 .setExpanded(true)
@@ -204,7 +201,7 @@ public class AdvertiseAdapter extends RecyclerView.Adapter<AdvertiseAdapter.Adve
                                 dialogPlus.dismiss();
                                             notifyDataSetChanged();  Toast.makeText(context, "Posts Updated!", Toast.LENGTH_SHORT).show();
 *//*
-                               *//* final Map<String,Object> map=new HashMap<>();
+                 *//* final Map<String,Object> map=new HashMap<>();
                                 map.put("post",editPost.getText().toString());
                                 DatabaseReference reference=FirebaseDatabase.getInstance().getReference("AdvertisementPosts");
                                 reference.child(modelClass.getPostID()).addValueEventListener(new ValueEventListener() {
@@ -229,32 +226,7 @@ public class AdvertiseAdapter extends RecyclerView.Adapter<AdvertiseAdapter.Adve
 
                     }
                 });*/
-                holder.delete.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        final AlertDialog.Builder builder=new AlertDialog.Builder(context);
-                        builder.setTitle("Delete Post");
-                        builder.setMessage("Are you sure you want to delete this post?");
-                        builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
 
-                                FirebaseDatabase.getInstance().getReference().child("Advertisement Post").child(modelClass.getPostID()).removeValue();
-
-                                notifyItemRemoved(position);
-                                Toast.makeText(context, "Post Deleted!", Toast.LENGTH_SHORT).show();
-
-                            }
-                        });
-                        builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                dialog.dismiss();
-                            }
-                        });
-                        builder.create().show();
-                    }
-                });
             }
 
 
@@ -265,46 +237,43 @@ public class AdvertiseAdapter extends RecyclerView.Adapter<AdvertiseAdapter.Adve
 
     @Override
     public int getItemCount() {
-        return isApShimmer ?5:list.size();
+        return isApShimmer ? 5 : list.size();
     }
 
-    public class AdvertiseViewHolder extends RecyclerView.ViewHolder{
+    public class AdvertiseViewHolder extends RecyclerView.ViewHolder {
         TextView dateTime, post, upvote_count, downvote_count, user, scam_alert;
-        ImageView share, upvote, downvote,docs,delete,chat,edit;
+        ImageView share, upvote, downvote, docs, delete, chat, edit;
         ShimmerFrameLayout shimmer;
+
         public AdvertiseViewHolder(@NonNull View itemView) {
             super(itemView);
-            dateTime=itemView.findViewById(R.id.ap_date);
-            post=itemView.findViewById(R.id.ap_post);
-            upvote_count=itemView.findViewById(R.id.ap_upvote_count);
-            downvote_count=itemView.findViewById(R.id.ap_downvote_count);
-            share=itemView.findViewById(R.id.ap_share);
-            upvote=itemView.findViewById(R.id.ap_upvote);
-            downvote=itemView.findViewById(R.id.ap_downvote);
-            user =itemView.findViewById(R.id.ap_username);
-            scam_alert=itemView.findViewById(R.id.ap_scam);
-            docs=itemView.findViewById(R.id.ap_uploadedDoc);
-            shimmer=itemView.findViewById(R.id.ap_shimmer);
-            delete=itemView.findViewById(R.id.ap_delete);
-            chat=itemView.findViewById(R.id.ap_comment);
-            edit=itemView.findViewById(R.id.ap_edit);
+            dateTime = itemView.findViewById(R.id.ap_date);
+            post = itemView.findViewById(R.id.ap_post);
+            upvote_count = itemView.findViewById(R.id.ap_upvote_count);
+            downvote_count = itemView.findViewById(R.id.ap_downvote_count);
+            share = itemView.findViewById(R.id.ap_share);
+            upvote = itemView.findViewById(R.id.ap_upvote);
+            downvote = itemView.findViewById(R.id.ap_downvote);
+            user = itemView.findViewById(R.id.ap_username);
+            scam_alert = itemView.findViewById(R.id.ap_scam);
+            docs = itemView.findViewById(R.id.ap_uploadedDoc);
+            shimmer = itemView.findViewById(R.id.ap_shimmer);
+
+            chat = itemView.findViewById(R.id.ap_comment);
+            edit = itemView.findViewById(R.id.ap_edit);
         }
     }
 
-    private void isUpvote(ImageView imageView, String postID)
-    {
-        FirebaseUser firebaseUser= FirebaseAuth.getInstance().getCurrentUser();
-        DatabaseReference reference= FirebaseDatabase.getInstance().getReference().child("Upvote").child(postID);
+    private void isUpvote(ImageView imageView, String postID) {
+        FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Upvote").child(postID);
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (snapshot.child(firebaseUser.getUid()).exists())
-                {
+                if (snapshot.child(firebaseUser.getUid()).exists()) {
                     imageView.setImageResource(R.drawable.upvote_filled);
                     imageView.setTag("Upvoted");
-                }
-                else
-                {
+                } else {
                     imageView.setImageResource(R.drawable.upvote_outline);
                     imageView.setTag("Upvote");
                 }
@@ -319,20 +288,16 @@ public class AdvertiseAdapter extends RecyclerView.Adapter<AdvertiseAdapter.Adve
 
     }
 
-    private void isDownvote(ImageView imageView, String postID)
-    {
-        FirebaseUser firebaseUser= FirebaseAuth.getInstance().getCurrentUser();
-        DatabaseReference reference= FirebaseDatabase.getInstance().getReference().child("Downvote").child(postID);
+    private void isDownvote(ImageView imageView, String postID) {
+        FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Downvote").child(postID);
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (snapshot.child(firebaseUser.getUid()).exists())
-                {
+                if (snapshot.child(firebaseUser.getUid()).exists()) {
                     imageView.setImageResource(R.drawable.downvote_filled);
                     imageView.setTag("Downvoted");
-                }
-                else
-                {
+                } else {
                     imageView.setImageResource(R.drawable.downvote_outline);
                     imageView.setTag("Downvote");
                 }
@@ -347,13 +312,12 @@ public class AdvertiseAdapter extends RecyclerView.Adapter<AdvertiseAdapter.Adve
 
     }
 
-    private void getUpvotes(TextView textView, String postID)
-    {
-        DatabaseReference reference=FirebaseDatabase.getInstance().getReference("Upvote").child(postID);
+    private void getUpvotes(TextView textView, String postID) {
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Upvote").child(postID);
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (((int) (snapshot.getChildrenCount()))>0) {
+                if (((int) (snapshot.getChildrenCount())) > 0) {
                     String text = String.valueOf(snapshot.getChildrenCount());
                     textView.setText(text);
                 }
@@ -367,13 +331,12 @@ public class AdvertiseAdapter extends RecyclerView.Adapter<AdvertiseAdapter.Adve
     }
 
 
-    private void getDownvotes(TextView textView, String postID)
-    {
-        DatabaseReference reference=FirebaseDatabase.getInstance().getReference("Downvote").child(postID);
+    private void getDownvotes(TextView textView, String postID) {
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Downvote").child(postID);
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (((int) (snapshot.getChildrenCount()))>0) {
+                if (((int) (snapshot.getChildrenCount())) > 0) {
                     String text = String.valueOf(snapshot.getChildrenCount());
                     textView.setText(text);
                 }
@@ -387,4 +350,5 @@ public class AdvertiseAdapter extends RecyclerView.Adapter<AdvertiseAdapter.Adve
     }
 
 
-}
+
+    }
