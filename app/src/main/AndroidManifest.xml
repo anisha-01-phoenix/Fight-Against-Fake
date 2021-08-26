@@ -27,6 +27,10 @@
             android:name=".admin_package.dashboard"
             android:exported="true"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+
+
+
+
         <activity
             android:name=".authentication.Forgot_Password"
             android:exported="true" />

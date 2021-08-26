@@ -31,17 +31,28 @@ public class loginScreen extends AppCompatActivity {
 
     ActivityLoginScreenBinding binding;
     FirebaseAuth mAuth;
-
+    int check;
     @Override
     protected void onStart() {
         super.onStart();
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if (user != null) {
-            Intent intent = new Intent(loginScreen.this, MainActivity.class);
-            intent.putExtra("check","0");
+            if (check==0) {
+                Intent intent = new Intent(loginScreen.this, MainActivity.class);
 
-            startActivity(intent);
-            finish();
+
+                startActivity(intent);
+                finish();
+            }
+
+            else
+            {
+                Intent intent = new Intent(loginScreen.this, dashboard.class);
+
+
+                startActivity(intent);
+                finish();
+            }
 
         }
     }
@@ -53,6 +64,7 @@ public class loginScreen extends AppCompatActivity {
         setContentView(binding.getRoot());
         getSupportActionBar().hide();
         mAuth = FirebaseAuth.getInstance();
+        check=getIntent().getIntExtra("check",0);
 
 
 /*
@@ -108,7 +120,7 @@ public class loginScreen extends AppCompatActivity {
                            });
 
                             Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                            intent.putExtra("check","0");
+                            intent.putExtra("check",check);
 
                             startActivity(intent);
                             finish();
