@@ -1,24 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    >
+    <group android:checkableBehavior="single"
+        >
 <item
     android:id="@+id/complaints"
-    android:icon="@drawable/ic_baseline_share_24"
+    android:icon="@drawable/ic_baseline_registration_24"
     android:title="Complaints"/>
     <item
         android:id="@+id/advert_admin"
-        android:icon="@drawable/ic_baseline_share_24"
+        android:icon="@drawable/ic_baseline_post_24"
         android:title="Advertisments"/>
+    </group>
     <item
         android:id="@+id/recentsearches"
         android:icon="@drawable/ic_baseline_search_24"
         android:title="Recent Searches"/>
+    <item android:title="Info Booth">
+        <menu>
     <item
         android:id="@+id/Info_Corner"
-        android:icon="@drawable/ic_baseline_search_24"
+        android:icon="@drawable/ic_baseline_info_24"
         android:title="Info Corner"/>
+        </menu>
+    </item>
+    <item android:title="Settings">
+        <menu>
+            <item
+                android:id="@+id/nav_contact"
+                android:icon="@drawable/contact_us"
+                android:title="Contact Us"/>
     <item
         android:id="@+id/my_profiles"
-        android:icon="@drawable/ic_baseline_search_24"
+        android:icon="@drawable/ic_baseline_verified_user_24"
         android:title="Profile"/>
-
+        </menu>
+    </item>
 </menu>
