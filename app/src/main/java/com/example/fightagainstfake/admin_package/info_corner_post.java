@@ -69,7 +69,7 @@ ActivityInfoCornerPostBinding binding;
 
     private void sendNOtification() {
 
-        FcmNotificationsSender notificationsSender=new FcmNotificationsSender("/topics/all","tittle","body",getApplicationContext(),info_corner_post.this);
+        FcmNotificationsSender notificationsSender=new FcmNotificationsSender("/topics/all","Admin Info","IMPORTANT",getApplicationContext(),info_corner_post.this);
 
 notificationsSender.SendNotifications();
 
