@@ -74,6 +74,7 @@ public class signUp extends AppCompatActivity {
         String sname = binding.name.getText().toString().trim();
         String sUsername = binding.username.getText().toString().trim();
         String sEmail = binding.email.getText().toString().trim();
+        String sPassword=binding.pass.getText().toString().trim();
         String sPhoneNo=binding.phoneNo.getText().toString().trim();
 
 
@@ -99,6 +100,19 @@ public class signUp extends AppCompatActivity {
             return;
         }
 
+        if (sPassword.isEmpty()) {
+            binding.pass.setError("Field can't be empty");
+            binding.pass.requestFocus();
+            return;
+        }
+        else
+            if(sPassword.length()<6)
+            {
+                binding.pass.setError("Minimum 6 characters!");
+                binding.pass.requestFocus();
+                return;
+            }
+
         if (sPhoneNo.isEmpty()) {
             binding.phoneNo.setError("Field can't be empty");
             binding.phoneNo.requestFocus();
@@ -114,6 +128,8 @@ public class signUp extends AppCompatActivity {
         intent.putExtra("name",sname);
         intent.putExtra("username",sUsername);
         intent.putExtra("phone",phoneNos);
+        intent.putExtra("email",sEmail);
+        intent.putExtra("password",sPassword);
 
         startActivity(intent);
 

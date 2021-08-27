@@ -30,14 +30,18 @@ public class admin_info_corner extends Fragment {
     FragmentAdminInfoCornerBinding binding;
     admin_info_corner_adapter adapter;
     ArrayList<model_info_corner> data;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        binding=FragmentAdminInfoCornerBinding.inflate(inflater,container,false);
+        binding = FragmentAdminInfoCornerBinding.inflate(inflater, container, false);
         data = new ArrayList<>();
         adapter = new admin_info_corner_adapter(data, getContext());
-        binding.recv.setLayoutManager(new LinearLayoutManager(getContext()));
+        LinearLayoutManager layoutManager=new LinearLayoutManager(getContext());
+        layoutManager.setReverseLayout(true);
+        layoutManager.setStackFromEnd(true);
+        binding.recv.setLayoutManager(layoutManager);
         binding.recv.setAdapter(adapter);
         getData();
         binding.addNormalPost.setOnClickListener(new View.OnClickListener() {
@@ -46,11 +50,11 @@ public class admin_info_corner extends Fragment {
                 startActivity(new Intent(getActivity(), info_corner_post.class));
             }
         });
-        return  binding.getRoot();
+        return binding.getRoot();
     }
 
     private void getData() {
-        DatabaseReference ref= FirebaseDatabase.getInstance().getReference("info_corner");
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("info_corner");
         ref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -60,9 +64,16 @@ public class admin_info_corner extends Fragment {
 
                     String date = map.get("date");
                     String postdata = map.get("postdata");
+                    String imgUrl=null;
+                    if (map.get("imgUrl") != null) {
+                        imgUrl = map.get("imgUrl");
+                    }
                     model_info_corner model = new model_info_corner();
                     model.setPostdata(postdata);
                     model.setDate(date);
+                    if (imgUrl!=null) {
+                        model.setImgUrl(imgUrl);
+                    }
                     data.add(model);
 
 
@@ -71,6 +82,7 @@ public class admin_info_corner extends Fragment {
 
 
             }
+
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 

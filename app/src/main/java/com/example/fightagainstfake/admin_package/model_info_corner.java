@@ -1,7 +1,15 @@
 package com.example.fightagainstfake.admin_package;
 
 public class model_info_corner {
-    String date,postdata;
+    String date,postdata,imgUrl;
+
+    public String getImgUrl() {
+        return imgUrl;
+    }
+
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
+    }
 
     public String getDate() {
         return date;

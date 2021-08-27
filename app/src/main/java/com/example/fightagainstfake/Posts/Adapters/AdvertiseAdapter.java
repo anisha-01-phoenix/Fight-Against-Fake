@@ -158,7 +158,7 @@ public class AdvertiseAdapter extends RecyclerView.Adapter<AdvertiseAdapter.Adve
             });
 
             if (modelClass.getUserID().equals(firebaseUser.getUid())) {
-              //  holder.delete.setVisibility(View.VISIBLE);
+               holder.delete.setVisibility(View.VISIBLE);
                 holder.edit.setVisibility(View.VISIBLE);
            holder.edit.setOnClickListener(new View.OnClickListener() {
                                               @Override
@@ -226,6 +226,33 @@ context.startActivity(intent);
 
                     }
                 });*/
+
+                holder.delete.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        final AlertDialog.Builder builder=new AlertDialog.Builder(context);
+                        builder.setTitle("Delete Post");
+                        builder.setMessage("Are you sure you want to delete this post?");
+                        builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+
+                            /*    FirebaseDatabase.getInstance().getReference().child("Advertisement Post").child(modelClass.getPostID()).removeValue();
+
+                                notifyItemRemoved(position);
+                                Toast.makeText(context, "Post Deleted!", Toast.LENGTH_SHORT).show();*/
+
+                            }
+                        });
+                        builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        });
+                        builder.create().show();
+                    }
+                });
 
             }
 

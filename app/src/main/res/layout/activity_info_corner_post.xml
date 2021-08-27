@@ -20,6 +20,7 @@
         android:textSize="25dp"
         android:layout_marginTop="15dp"/>
 
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -46,19 +47,58 @@
                 android:textColorHint="@color/additionalColor"/>
         </com.google.android.material.textfield.TextInputLayout>
 
+        <ImageView
+            android:id="@+id/show_info_pic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/docs"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/img_border"/>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Upload Screenshots/Photo: "
+                android:layout_marginRight="5dp"
+                android:layout_marginLeft="80dp"
+                android:padding="5dp"
+                android:fontFamily="@font/text"
+                android:textSize="15dp"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/additionalColor"
+                android:gravity="center_horizontal"/>
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/upload_files"
+                android:id="@+id/upload_info"
+                android:padding="3dp"/>
+
+
+        </LinearLayout>
+
+
 
         <Button
             android:id="@+id/btn_addNP"
-            android:layout_height="wrap_content"
             android:layout_width="wrap_content"
-            android:background="@drawable/tab_indicator"
+            android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:text="  Add Post  "
+            android:layout_marginTop="20dp"
+            android:background="@drawable/tab_indicator"
             android:fontFamily="@font/button"
-            android:textColor="@color/white"
-            android:layout_marginTop="20dp"/>
+            android:text="  Add Updates"
+            android:textColor="@color/white" />
 
 
 
     </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

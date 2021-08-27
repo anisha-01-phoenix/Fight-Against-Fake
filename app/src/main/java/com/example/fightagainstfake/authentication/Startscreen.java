@@ -1,5 +1,6 @@
 package com.example.fightagainstfake.authentication;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
@@ -18,7 +19,10 @@ import android.widget.Toast;
 import com.example.fightagainstfake.MainActivity;
 import com.example.fightagainstfake.R;
 import com.example.fightagainstfake.admin_package.dashboard;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -86,13 +90,23 @@ public class Startscreen extends AppCompatActivity {
                         String password = input.getText().toString();
                         if (password.equals("1413914"))
                         {
-                            Intent intent=new Intent(Startscreen.this, dashboard.class);
-                            Toast.makeText(Startscreen.this, "Welcome back!", Toast.LENGTH_SHORT).show();
+
+                            FirebaseAuth auth=FirebaseAuth.getInstance();
+                            auth.signInWithEmailAndPassword("admin58@sceptre.com","admin#7").addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                                @Override
+                                public void onComplete(@NonNull Task<AuthResult> task) {
+                                        if (task.isSuccessful())
+                                        {
+                                            Intent intent=new Intent(Startscreen.this, dashboard.class);
+                                            Toast.makeText(Startscreen.this, "Welcome back!", Toast.LENGTH_SHORT).show();
 
 
-                            intent.putExtra("check",1);
-                            startActivity(intent);
+                                            intent.putExtra("check",1);
+                                            startActivity(intent);
 
+                                        }
+                                }
+                            });
                         }
                         else
                         {

@@ -26,6 +26,7 @@ ActivityComplaintsDetailsBinding binding;
         super.onCreate(savedInstanceState);
         binding=ActivityComplaintsDetailsBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        getSupportActionBar().hide();
         Intent intent=getIntent();
        post_date=intent.getStringExtra("date");
        //status=intent.getStringExtra("status");

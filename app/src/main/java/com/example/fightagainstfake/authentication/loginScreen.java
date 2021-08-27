@@ -82,6 +82,7 @@ public class loginScreen extends AppCompatActivity {
         binding.bttn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                binding.pbar.setVisibility(View.VISIBLE);
                 String email = binding.lemail.getEditText().getText().toString().trim();
                 String password = binding.lpassword.getEditText().getText().toString().trim();
 
@@ -114,6 +115,10 @@ public class loginScreen extends AppCompatActivity {
 
                                     DatabaseReference reference= FirebaseDatabase.getInstance().getReference("Users").child(currentuserId).child("DeviceToken");
                                     reference.setValue(s);
+
+
+                                
+                                   binding.pbar.setVisibility(View.INVISIBLE);
 
 
                                 }
@@ -158,7 +163,5 @@ public class loginScreen extends AppCompatActivity {
         startActivity(new Intent(loginScreen.this,Forgot_Password.class));
     }
 
-    public void nnnnnnnnnnnnnnnnnnn(View view) {
-        startActivity(new Intent(loginScreen.this, dashboard.class));
-    }
+
 }

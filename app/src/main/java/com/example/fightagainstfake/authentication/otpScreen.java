@@ -34,7 +34,9 @@ import java.util.concurrent.TimeUnit;
 public class otpScreen extends AppCompatActivity {
     ActivityOtpScreenBinding binding;
     FirebaseAuth mAuth;
-    private String sname = "", susername = "", sphone = "", mVerificationId;
+
+    private String sname="", susername="", sphone="",smail="",sPassword="", mVerificationId;
+
     private PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallbacks;
     private PhoneAuthProvider.ForceResendingToken forceResendingToken;
     String token;
@@ -57,10 +59,24 @@ public class otpScreen extends AppCompatActivity {
         sname = intent.getStringExtra("name");
         susername = intent.getStringExtra("username");
         sphone = intent.getStringExtra("phone");
-        mAuth = FirebaseAuth.getInstance();
+
+        smail=intent.getStringExtra("email");
+        sPassword=intent.getStringExtra("password");
+        mAuth=FirebaseAuth.getInstance();
         mAuth.setLanguageCode("fr");
 
-        mCallbacks = new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
+
+        FirebaseAuth firebaseAuth=FirebaseAuth.getInstance();
+        firebaseAuth.createUserWithEmailAndPassword(smail,sPassword).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+
+            }
+        });
+        mCallbacks=new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
+
+
+      
             @Override
             public void onVerificationCompleted(@NonNull PhoneAuthCredential phoneAuthCredential) {
                 signIn(phoneAuthCredential);

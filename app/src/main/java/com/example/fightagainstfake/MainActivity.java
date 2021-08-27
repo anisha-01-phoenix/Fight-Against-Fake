@@ -1,5 +1,15 @@
 package com.example.fightagainstfake;
 
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
+import androidx.core.view.GravityCompat;
+
+
 import android.Manifest;
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -9,11 +19,16 @@ import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+
 import android.util.Log;
+
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
+
+
+import com.example.fightagainstfake.Maps.MapsActivity;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -55,6 +70,9 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+
+import java.util.ArrayList;
+
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     ActivityMainBinding activityMainBinding;
@@ -128,12 +146,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.nav_posts:
-                startActivity(new Intent(MainActivity.this, AddPosts.class));
+                Intent i=new Intent(MainActivity.this, AddPosts.class);
+                i.putExtra("check",0);
+                startActivity(i);
                 break;
             case R.id.nav_info:
                 getSupportFragmentManager().beginTransaction().addToBackStack(null).replace(R.id.complaintContainer, new customer_info_corner()).commit();
                 break;
             case R.id.nav_maps:
+                startActivity(new Intent(MainActivity.this, MapsActivity.class));
                 break;
             case R.id.nav_register_complain:
                 getSupportFragmentManager().beginTransaction().addToBackStack(null).replace(R.id.complaintContainer, new addComplaint()).commit();
@@ -250,6 +271,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
         }
     }
+
 
 
     public void updateFirebase() {
