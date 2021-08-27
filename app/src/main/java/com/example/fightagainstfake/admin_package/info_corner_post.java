@@ -14,6 +14,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
+import com.example.fightagainstfake.FcmNotificationsSender;
 import com.example.fightagainstfake.ModelClass;
 import com.example.fightagainstfake.Posts.Activities.NormalPosts;
 import com.example.fightagainstfake.Posts.AddPosts;
@@ -23,6 +24,7 @@ import com.example.fightagainstfake.databinding.ActivityNormalPostsBinding;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
@@ -33,6 +35,9 @@ import com.karumi.dexter.listener.PermissionDeniedResponse;
 import com.karumi.dexter.listener.PermissionGrantedResponse;
 import com.karumi.dexter.listener.PermissionRequest;
 import com.karumi.dexter.listener.single.PermissionListener;
+
+import com.google.firebase.messaging.FirebaseMessaging;
+
 
 import java.io.FileNotFoundException;
 import java.io.InputStream;
@@ -49,7 +54,15 @@ Boolean isUpload=false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         binding = ActivityInfoCornerPostBinding.inflate(getLayoutInflater());
+
+        FirebaseMessaging.getInstance().subscribeToTopic("all");
+
+
+
+        binding= ActivityInfoCornerPostBinding.inflate(getLayoutInflater());
+
         setContentView(binding.getRoot());
         getSupportActionBar().hide();
         binding.uploadInfo.setOnClickListener(new View.OnClickListener() {
@@ -84,7 +97,14 @@ Boolean isUpload=false;
                     binding.addNormalPostEditText.setError("Add Updates!");
                     binding.addNormalPostEditText.requestFocus();
                     return;
-                } else {
+
+                } 
+                else
+                {
+
+                    sendNOtification();
+
+
                     DatabaseReference reference;
                     reference = FirebaseDatabase.getInstance().getReference("info_corner");
                     storageReference = FirebaseStorage.getInstance().getReference();
@@ -137,6 +157,7 @@ Boolean isUpload=false;
         });
     }
 
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -152,6 +173,14 @@ Boolean isUpload=false;
                 e.printStackTrace();
             }
         }
+
+    private void sendNOtification() {
+
+        FcmNotificationsSender notificationsSender=new FcmNotificationsSender("/topics/all","Admin Info","IMPORTANT",getApplicationContext(),info_corner_post.this);
+
+notificationsSender.SendNotifications();
+
+
 
     }
 }

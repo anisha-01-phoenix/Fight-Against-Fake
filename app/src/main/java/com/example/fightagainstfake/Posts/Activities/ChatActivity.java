@@ -2,6 +2,7 @@ package com.example.fightagainstfake.Posts.Activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -10,21 +11,30 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.fightagainstfake.Chat;
+import com.example.fightagainstfake.FcmNotificationsSender;
 import com.example.fightagainstfake.Posts.Adapters.ChatAdapter;
+import com.example.fightagainstfake.R;
 import com.example.fightagainstfake.UserModel;
+import com.example.fightagainstfake.admin_package.info_corner_post;
 import com.example.fightagainstfake.databinding.ActivityChatBinding;
+
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class ChatActivity extends AppCompatActivity {
     FirebaseUser user;
@@ -35,14 +45,19 @@ public class ChatActivity extends AppCompatActivity {
     private LinearLayoutManager layoutManager;
     private ChatAdapter adapter;
 
+    String userid;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         activityChatBinding = ActivityChatBinding.inflate(getLayoutInflater());
         setContentView(activityChatBinding.getRoot());
         getSupportActionBar().hide();
+
+
         intent = getIntent();
-        String userid = intent.getStringExtra("userid");
+         userid = intent.getStringExtra("userid");
         user = FirebaseAuth.getInstance().getCurrentUser();
         reference = FirebaseDatabase.getInstance().getReference("Users").child(userid);
         reference.addValueEventListener(new ValueEventListener() {
@@ -58,6 +73,8 @@ public class ChatActivity extends AppCompatActivity {
             }
         });
 
+
+
         activityChatBinding.send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -70,6 +87,9 @@ public class ChatActivity extends AppCompatActivity {
                 else {
                     if (activityChatBinding.startRv.getVisibility() == View.VISIBLE)
                         activityChatBinding.startRv.setVisibility(View.INVISIBLE);
+
+                    sendNotification();
+
                     Chat chat = new Chat(user.getUid(), userid, datetime, mssg);
                     FirebaseDatabase.getInstance().getReference().child("Chats").push().setValue(chat);
 
@@ -80,6 +100,21 @@ public class ChatActivity extends AppCompatActivity {
 
                     DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Notification").child(userid);
                     reference.push().setValue(chatNotification);
+
+
+                    FirebaseDatabase.getInstance().getReference("Users").child(user.getUid()).addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            UserModel userModel = snapshot.getValue(UserModel.class);
+
+
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });
 
 
                 }
@@ -97,6 +132,34 @@ public class ChatActivity extends AppCompatActivity {
 
 
     }
+
+    private void sendNotification() {
+
+       DatabaseReference reference=FirebaseDatabase.getInstance().getReference("Users").child(userid).child("DeviceToken");
+       reference.addValueEventListener(new ValueEventListener() {
+           @Override
+           public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+               String token=snapshot.getValue(String.class);
+
+               FcmNotificationsSender notificationsSender=new FcmNotificationsSender(token,"Chats","IMPORTANT",getApplicationContext(), ChatActivity.this);
+
+               notificationsSender.SendNotifications();
+
+           }
+
+           @Override
+           public void onCancelled(@NonNull DatabaseError error) {
+
+           }
+       });
+
+
+
+
+
+    }
+
 
     private void messages(String myID, String otherID) {
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Chats");
@@ -125,4 +188,6 @@ public class ChatActivity extends AppCompatActivity {
         });
 
     }
+
+
 }

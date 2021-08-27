@@ -17,6 +17,11 @@ import com.example.fightagainstfake.ModelClass;
 import com.example.fightagainstfake.Posts.Activities.AdvertisementPosts;
 import com.example.fightagainstfake.Posts.Adapters.AdvertiseAdapter;
 import com.example.fightagainstfake.databinding.FragmentAdvertisementPostsBinding;
+
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.GetTokenResult;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -32,6 +37,8 @@ public class AdvertisementPostsFragment extends Fragment implements SearchView.O
     private ArrayList<ModelClass> list;
     private AdvertiseAdapter adapter;
     private ModelClass modelClass;
+    FirebaseUser user;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -83,6 +90,9 @@ public class AdvertisementPostsFragment extends Fragment implements SearchView.O
 
             }
         },3000);
+
+
+
         return fragmentAdvertisementPostsBinding.getRoot();
     }
 
@@ -96,4 +106,9 @@ public class AdvertisementPostsFragment extends Fragment implements SearchView.O
   // adapter.getFilter().flter(newText);
         return false;
     }
+
+
+
+
+
 }

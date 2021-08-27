@@ -1,5 +1,6 @@
 package com.example.fightagainstfake;
 
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
@@ -8,9 +9,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.core.view.GravityCompat;
 
+
 import android.Manifest;
 import android.app.ProgressDialog;
-
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -18,14 +19,25 @@ import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.view.MenuItem;
 
+import android.util.Log;
+
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
 
 import com.example.fightagainstfake.Maps.MapsActivity;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
+import androidx.core.view.GravityCompat;
+
 import com.example.fightagainstfake.Posts.AddPosts;
 import com.example.fightagainstfake.admin_package.info_for_customer.customer_info_corner;
 import com.example.fightagainstfake.authentication.Startscreen;
@@ -42,6 +54,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -54,9 +67,12 @@ import com.karumi.dexter.listener.single.PermissionListener;
 
 import java.io.FileNotFoundException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+
 import java.util.ArrayList;
+
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     ActivityMainBinding activityMainBinding;
@@ -68,13 +84,28 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private Uri filepath;
     private Bitmap bitmap;
 
-    ArrayList<model>data;
+    ArrayList<model> data;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         activityMainBinding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(activityMainBinding.getRoot());
         setSupportActionBar(activityMainBinding.toolBar);
+        FirebaseUser user=FirebaseAuth.getInstance().getCurrentUser();
+
+        FirebaseMessaging.getInstance().getToken().addOnSuccessListener(new OnSuccessListener<String>() {
+                                @Override
+                                public void onSuccess(String s) {
+
+                                    String currentuserId=user.getUid();
+
+                                    DatabaseReference reference= FirebaseDatabase.getInstance().getReference("Users").child(currentuserId).child("DeviceToken");
+                                    reference.setValue(s);
+
+
+                                }
+                            });
 
         changeColor(R.color.themeColor);
         phone = getIntent().getStringExtra("phone");
@@ -86,11 +117,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         activityMainBinding.navView.setNavigationItemSelectedListener(this);
         update_nav_header();
 
-        data=new ArrayList<>();
+        data = new ArrayList<>();
         Intent intent = getIntent();
-        int  check = intent.getIntExtra("check",0);
+        int check = intent.getIntExtra("check", 0);
 
-        if (check==1) {
+        if (check == 1) {
             getSupportFragmentManager().beginTransaction().replace(R.id.complaintContainer, new complaintStatus()).commit();
 
         } else {
@@ -109,8 +140,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         ActionBar bar = getSupportActionBar();
         bar.setBackgroundDrawable(new ColorDrawable(getResources().getColor(resourcecolor)));
     }
-
-
 
 
     @Override
@@ -142,6 +171,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 startActivity(chooser);
                 break;
             case R.id.logout:
+                FirebaseMessaging.getInstance().deleteToken();
+
+
+                DatabaseReference reference= FirebaseDatabase.getInstance().getReference("Users").child(firebaseUser.getUid()).child("DeviceToken");
+                reference.setValue("NotSet");
+
+
                 FirebaseAuth.getInstance().signOut();
                 startActivity(new Intent(MainActivity.this, Startscreen.class));
                 finish();
@@ -211,9 +247,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 if (bitmap != null) {
                     updateFirebase();
                     editDp.setVisibility(View.INVISIBLE);
-                }
-
-                else {
+                } else {
                     Toast.makeText(MainActivity.this, "Upload Photo!", Toast.LENGTH_SHORT).show();
                     editDp.setVisibility(View.INVISIBLE);
                 }

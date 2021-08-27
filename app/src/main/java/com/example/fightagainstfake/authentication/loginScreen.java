@@ -26,6 +26,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.iid.FirebaseInstanceIdReceiver;
 import com.google.firebase.iid.internal.FirebaseInstanceIdInternal;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 public class loginScreen extends AppCompatActivity {
 
@@ -106,20 +107,22 @@ public class loginScreen extends AppCompatActivity {
 
                             FirebaseUser user=FirebaseAuth.getInstance().getCurrentUser();
 
+                            FirebaseMessaging.getInstance().getToken().addOnSuccessListener(new OnSuccessListener<String>() {
+                                @Override
+                                public void onSuccess(String s) {
 
-                           user.getIdToken(true).addOnSuccessListener(new OnSuccessListener<GetTokenResult>() {
-                               @Override
-                               public void onSuccess(GetTokenResult getTokenResult) {
+                                    String currentuserId=user.getUid();
 
-                                   String currentuserId=user.getUid();
-                                   String token=getTokenResult.getToken();
+                                    DatabaseReference reference= FirebaseDatabase.getInstance().getReference("Users").child(currentuserId).child("DeviceToken");
+                                    reference.setValue(s);
 
-                                   DatabaseReference reference= FirebaseDatabase.getInstance().getReference("Users").child(currentuserId).child("DeviceToken");
-                                   reference.setValue(token);
+
+                                
                                    binding.pbar.setVisibility(View.INVISIBLE);
 
-                               }
-                           });
+
+                                }
+                            });
 
                             Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                             intent.putExtra("check",check);

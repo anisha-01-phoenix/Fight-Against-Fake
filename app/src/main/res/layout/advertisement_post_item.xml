@@ -35,17 +35,7 @@
                 android:textColor="@color/themeColor"
                 android:textSize="15dp"/>
 
-            <ImageView
-                android:id="@+id/ap_delete"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_marginStart="5dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginEnd="5dp"
-                android:layout_marginBottom="5dp"
-                android:visibility="gone"
-                android:src="@drawable/ic_baseline_delete_24" />
+
 
 
             <ImageView
@@ -55,9 +45,10 @@
                 android:layout_alignParentEnd="true"
                 android:layout_marginStart="5dp"
                 android:layout_marginTop="5dp"
-                android:layout_marginEnd="45dp"
-                android:layout_marginBottom="5dp"
+                android:layout_marginEnd="14dp"
                 android:visibility="gone"
+                android:layout_marginBottom="5dp"
+
                 android:src="@drawable/ic_baseline_edit_24"/>
 
         </RelativeLayout>

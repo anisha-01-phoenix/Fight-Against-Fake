@@ -3,10 +3,8 @@ package com.example.fightagainstfake.authentication;
 import android.animation.ObjectAnimator;
 import android.animation.PropertyValuesHolder;
 import android.animation.ValueAnimator;
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -16,8 +14,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.fightagainstfake.MainActivity;
 import com.example.fightagainstfake.databinding.ActivityOtpScreenBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.gms.tasks.TaskExecutors;
 import com.google.firebase.FirebaseException;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -27,6 +25,7 @@ import com.google.firebase.auth.PhoneAuthOptions;
 import com.google.firebase.auth.PhoneAuthProvider;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -35,10 +34,12 @@ import java.util.concurrent.TimeUnit;
 public class otpScreen extends AppCompatActivity {
     ActivityOtpScreenBinding binding;
     FirebaseAuth mAuth;
+
     private String sname="", susername="", sphone="",smail="",sPassword="", mVerificationId;
+
     private PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallbacks;
     private PhoneAuthProvider.ForceResendingToken forceResendingToken;
-
+    String token;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,9 +47,9 @@ public class otpScreen extends AppCompatActivity {
         binding = ActivityOtpScreenBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         getSupportActionBar().hide();
-        ObjectAnimator objectAnimator=ObjectAnimator.ofPropertyValuesHolder(binding.mob,
-                PropertyValuesHolder.ofFloat("scaleX",1.2f),
-                PropertyValuesHolder.ofFloat("scaleY",1.2f));
+        ObjectAnimator objectAnimator = ObjectAnimator.ofPropertyValuesHolder(binding.mob,
+                PropertyValuesHolder.ofFloat("scaleX", 1.2f),
+                PropertyValuesHolder.ofFloat("scaleY", 1.2f));
         objectAnimator.setDuration(500);
         objectAnimator.setRepeatCount(ValueAnimator.INFINITE);
         objectAnimator.setRepeatMode(ValueAnimator.REVERSE);
@@ -58,6 +59,7 @@ public class otpScreen extends AppCompatActivity {
         sname = intent.getStringExtra("name");
         susername = intent.getStringExtra("username");
         sphone = intent.getStringExtra("phone");
+
         smail=intent.getStringExtra("email");
         sPassword=intent.getStringExtra("password");
         mAuth=FirebaseAuth.getInstance();
@@ -72,9 +74,12 @@ public class otpScreen extends AppCompatActivity {
             }
         });
         mCallbacks=new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
+
+
+      
             @Override
             public void onVerificationCompleted(@NonNull PhoneAuthCredential phoneAuthCredential) {
-                    signIn(phoneAuthCredential);
+                signIn(phoneAuthCredential);
             }
 
             @Override
@@ -85,8 +90,8 @@ public class otpScreen extends AppCompatActivity {
             @Override
             public void onCodeSent(@NonNull String s, @NonNull PhoneAuthProvider.ForceResendingToken token) {
                 super.onCodeSent(s, forceResendingToken);
-                mVerificationId=s;
-                forceResendingToken=token;
+                mVerificationId = s;
+                forceResendingToken = token;
                 binding.progressBar.setVisibility(View.INVISIBLE);
                 Toast.makeText(otpScreen.this, "OTP has been sent...", Toast.LENGTH_SHORT).show();
             }
@@ -97,7 +102,7 @@ public class otpScreen extends AppCompatActivity {
         binding.resend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                resendVerificationCode(sphone,forceResendingToken);
+                resendVerificationCode(sphone, forceResendingToken);
             }
         });
 
@@ -111,7 +116,7 @@ public class otpScreen extends AppCompatActivity {
                     binding.otpNo.requestFocus();
                     return;
                 }
-                verifyPhoneNo(mVerificationId,otp);
+                verifyPhoneNo(mVerificationId, otp);
             }
         });
 
@@ -119,7 +124,7 @@ public class otpScreen extends AppCompatActivity {
     }
 
     private void verifyPhoneNo(String verificationId, String code) {
-        PhoneAuthCredential credential=PhoneAuthProvider.getCredential(verificationId,code);
+        PhoneAuthCredential credential = PhoneAuthProvider.getCredential(verificationId, code);
         signIn(credential);
     }
 
@@ -134,8 +139,7 @@ public class otpScreen extends AppCompatActivity {
         PhoneAuthProvider.verifyPhoneNumber(options);
     }
 
-    private void resendVerificationCode(String sphone, PhoneAuthProvider.ForceResendingToken token)
-    {
+    private void resendVerificationCode(String sphone, PhoneAuthProvider.ForceResendingToken token) {
         PhoneAuthOptions options =
                 PhoneAuthOptions.newBuilder(mAuth)
                         .setPhoneNumber(sphone)       // Phone number to verify
@@ -148,9 +152,6 @@ public class otpScreen extends AppCompatActivity {
     }
 
 
-
-
-
     private void signIn(PhoneAuthCredential credential) {
         mAuth.signInWithCredential(credential).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
@@ -159,26 +160,41 @@ public class otpScreen extends AppCompatActivity {
                     binding.progressBar.setVisibility(View.INVISIBLE);
 
                     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                    FirebaseMessaging.getInstance().getToken().addOnSuccessListener(new OnSuccessListener<String>() {
+                        @Override
+                        public void onSuccess(String s) {
+
+                            String currentuserId = user.getUid();
+                            token = s;
+
+
+                        }
+                    });
+
+
                     String uid = user.getUid();
                     DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users").child(uid);
                     Map<String, String> map = new HashMap<>();
                     map.put("name", sname);
                     map.put("username", susername);
                     map.put("id", uid);
-                    map.put("imageurl",null);
-                    map.put("phoneNo",sphone);
+                    map.put("imageurl", null);
+                    map.put("phoneNo", sphone);
+                    map.put("DeviceToken",token);
                     reference.setValue(map);
+
+
                     Intent intent1 = new Intent(getApplicationContext(), MainActivity.class);
 
-                    intent1.putExtra("phone",sphone);
+                    intent1.putExtra("phone", sphone);
 
-                    intent1.putExtra("check","0");
+                    intent1.putExtra("check", "0");
 
 
                     startActivity(intent1);
                     finish();
-                }
-                else Toast.makeText(otpScreen.this, (CharSequence) task.getException(), Toast.LENGTH_SHORT).show();
+                } else
+                    Toast.makeText(otpScreen.this, (CharSequence) task.getException(), Toast.LENGTH_SHORT).show();
             }
         });
 
