@@ -13,14 +13,7 @@
         android:title="Advertisments"/>
     </group>
 
-    <item android:title="Info Booth">
-        <menu>
-    <item
-        android:id="@+id/Info_Corner"
-        android:icon="@drawable/ic_baseline_info_24"
-        android:title="Info Corner"/>
-        </menu>
-    </item>
+
     <item android:title="Settings">
         <menu>
             <item

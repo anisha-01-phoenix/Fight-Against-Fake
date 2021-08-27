@@ -7,11 +7,15 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentActivity;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.IntentSender;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
+import android.view.View;
 
+import com.example.fightagainstfake.MainActivity;
+import com.example.fightagainstfake.Posts.AddPosts;
 import com.example.fightagainstfake.R;
 import com.example.fightagainstfake.databinding.ActivityMapsBinding;
 import com.google.android.gms.common.ConnectionResult;
@@ -281,5 +285,16 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 }
             }
         }
+    }
+
+    public void back(View view) {
+        startActivity(new Intent(getApplicationContext(), MainActivity.class));
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        startActivity(new Intent(getApplicationContext(),MainActivity.class));
+
     }
 }

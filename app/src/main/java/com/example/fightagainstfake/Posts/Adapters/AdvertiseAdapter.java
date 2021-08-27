@@ -61,20 +61,24 @@ public class AdvertiseAdapter extends RecyclerView.Adapter<AdvertiseAdapter.Adve
 
     @Override
     public void onBindViewHolder(@NonNull AdvertiseViewHolder holder, int position) {
-        if (isApShimmer)
+        if (isApShimmer) {
             holder.shimmer.startShimmer();
-        else {
+            holder.docs.setVisibility(View.VISIBLE);
+        } else {
             holder.shimmer.setVisibility(View.INVISIBLE);
             holder.shimmer.stopShimmer();
             holder.shimmer.setShimmer(null);
             holder.dateTime.setBackground(null);
             holder.user.setBackground(null);
             holder.post.setBackground(null);
+            holder.docs.setBackground(null);
+            holder.docs.setVisibility(View.INVISIBLE);
             firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
             ModelClass modelClass = list.get(position);
             holder.dateTime.setText(modelClass.getTime());
             holder.post.setText(modelClass.getPost());
             if (modelClass.getImageUrl() != null) {
+                holder.docs.setVisibility(View.VISIBLE);
                 Glide.with(context).load(modelClass.getImageUrl()).into(holder.docs);
                 holder.docs.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -85,7 +89,7 @@ public class AdvertiseAdapter extends RecyclerView.Adapter<AdvertiseAdapter.Adve
                     }
                 });
             } else {
-                holder.docs.setVisibility(View.GONE);
+                holder.docs.setVisibility(View.INVISIBLE);
                 holder.scam_alert.setVisibility(View.VISIBLE);
             }
 
@@ -158,20 +162,20 @@ public class AdvertiseAdapter extends RecyclerView.Adapter<AdvertiseAdapter.Adve
             });
 
             if (modelClass.getUserID().equals(firebaseUser.getUid())) {
-               holder.delete.setVisibility(View.VISIBLE);
+//               holder.delete.setVisibility(View.VISIBLE);
                 holder.edit.setVisibility(View.VISIBLE);
-           holder.edit.setOnClickListener(new View.OnClickListener() {
-                                              @Override
-                                              public void onClick(View v) {
-Intent intent =new Intent(context, edit_advertisements.class);
-intent.putExtra("uid",modelClass.getUserID());
-intent.putExtra("imageurl",modelClass.getImageUrl());
-intent.putExtra("time",modelClass.getTime());
-intent.putExtra("postid",modelClass.getPostID());
-intent.putExtra("post",modelClass.getPost());
-context.startActivity(intent);
-                                              }
-                                          });
+                holder.edit.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(context, edit_advertisements.class);
+                        intent.putExtra("uid", modelClass.getUserID());
+                        intent.putExtra("imageurl", modelClass.getImageUrl());
+                        intent.putExtra("time", modelClass.getTime());
+                        intent.putExtra("postid", modelClass.getPostID());
+                        intent.putExtra("post", modelClass.getPost());
+                        context.startActivity(intent);
+                    }
+                });
                        /*
                         final DialogPlus dialogPlus=DialogPlus.newDialog(context)
                                 .setContentHolder(new ViewHolder(R.layout.dialog_content))
@@ -227,6 +231,7 @@ context.startActivity(intent);
                     }
                 });*/
 
+/*
                 holder.delete.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -237,10 +242,12 @@ context.startActivity(intent);
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
 
-                            /*    FirebaseDatabase.getInstance().getReference().child("Advertisement Post").child(modelClass.getPostID()).removeValue();
+                            */
+/*    FirebaseDatabase.getInstance().getReference().child("Advertisement Post").child(modelClass.getPostID()).removeValue();
 
                                 notifyItemRemoved(position);
-                                Toast.makeText(context, "Post Deleted!", Toast.LENGTH_SHORT).show();*/
+                                Toast.makeText(context, "Post Deleted!", Toast.LENGTH_SHORT).show();*//*
+
 
                             }
                         });
@@ -253,6 +260,7 @@ context.startActivity(intent);
                         builder.create().show();
                     }
                 });
+*/
 
             }
 
@@ -377,5 +385,4 @@ context.startActivity(intent);
     }
 
 
-
-    }
+}
