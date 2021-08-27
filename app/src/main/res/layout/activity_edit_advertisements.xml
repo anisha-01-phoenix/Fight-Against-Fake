@@ -25,6 +25,7 @@
         android:layout_height="match_parent"
         android:background="@drawable/background"
         android:orientation="vertical"
+        android:id="@+id/fgh"
         android:layout_marginTop="80dp">
 
         <com.google.android.material.textfield.TextInputLayout
@@ -43,7 +44,8 @@
                 android:hint="Add Post"
                 android:fontFamily="@font/text"
                 android:textColor="@color/additionalColor"
-                android:textColorHint="@color/additionalColor"/>
+                android:textColorHint="@color/additionalColor"
+              />
         </com.google.android.material.textfield.TextInputLayout>
 
 
