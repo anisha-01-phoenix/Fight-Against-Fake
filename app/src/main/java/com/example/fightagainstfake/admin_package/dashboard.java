@@ -50,11 +50,6 @@ public class dashboard extends AppCompatActivity {
         setContentView(v);
         setSupportActionBar(binding.toolbar);
 
-        changeColor(R.color.themeColor);
-        getSupportFragmentManager().beginTransaction().replace(R.id.homecontainer,new complaint_home()).commit();
-        binding.logo00.setText("COMPLAINTS");
-        toggle=new ActionBarDrawerToggle(this,binding.drawer,binding.toolbar,R.string.open,R.string.close);
-
 
         getSupportFragmentManager().beginTransaction().replace(R.id.homecontainer, new complaint_home()).commit();
         binding.logo00.setText("COMPLAINTS");
@@ -87,30 +82,13 @@ public class dashboard extends AppCompatActivity {
                         
                         binding.drawer.closeDrawer(GravityCompat.START);
                         break;
-                   
-                    case R.id.Info_Corner:
-                        binding.logo00.setText("GENERAL INFO");
-                        //  Intent intent=new Intent(getApplicationContext(),webview.class);
-                        // intent.putExtra("url",abouturl);
-                        // startActivity(intent);
-                        getSupportFragmentManager().beginTransaction().replace(R.id.homecontainer, new admin_info_corner()).commit();
-                        binding.drawer.closeDrawer(GravityCompat.START);
-                        break;
+
 
                 }
                 return true;
             }
         });
     }
-  /*  public void changeColor(int resourcecolor) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            getWindow().setStatusBarColor(ContextCompat.getColor(getApplicationContext(), resourcecolor));
-        }
-
-        ActionBar bar = getSupportActionBar();
-        bar.setBackgroundDrawable(new ColorDrawable(getResources().getColor(resourcecolor)));
-    }
-    */
 
 
 }

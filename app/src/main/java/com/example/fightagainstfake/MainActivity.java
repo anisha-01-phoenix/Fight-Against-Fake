@@ -151,12 +151,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 startActivity(i);
                 break;
             case R.id.nav_info:
+                activityMainBinding.textView10.setText("INFO UPDATES");
                 getSupportFragmentManager().beginTransaction().addToBackStack(null).replace(R.id.complaintContainer, new customer_info_corner()).commit();
                 break;
             case R.id.nav_maps:
                 startActivity(new Intent(MainActivity.this, MapsActivity.class));
                 break;
             case R.id.nav_register_complain:
+                activityMainBinding.textView10.setText("COMPLAIN");
                 getSupportFragmentManager().beginTransaction().addToBackStack(null).replace(R.id.complaintContainer, new addComplaint()).commit();
                 break;
             case R.id.nav_complaint_status:

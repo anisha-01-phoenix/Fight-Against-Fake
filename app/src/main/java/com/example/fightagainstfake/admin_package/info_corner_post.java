@@ -157,6 +157,12 @@ Boolean isUpload=false;
         });
     }
 
+    private void sendNOtification() {
+        FcmNotificationsSender notificationsSender=new FcmNotificationsSender("/topics/all","Admin Info","IMPORTANT",getApplicationContext(),info_corner_post.this);
+        notificationsSender.SendNotifications();
+
+    }
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -168,19 +174,11 @@ Boolean isUpload=false;
                 inputStream = getContentResolver().openInputStream(filepath);
                 bitmap = BitmapFactory.decodeStream(inputStream);
                 binding.showInfoPic.setImageBitmap(bitmap);
-                isUpload=true;
+                isUpload = true;
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             }
         }
-
-    private void sendNOtification() {
-
-        FcmNotificationsSender notificationsSender=new FcmNotificationsSender("/topics/all","Admin Info","IMPORTANT",getApplicationContext(),info_corner_post.this);
-
-notificationsSender.SendNotifications();
-
-
 
     }
 }
