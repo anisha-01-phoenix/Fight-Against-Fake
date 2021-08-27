@@ -119,7 +119,7 @@ binding.statusChange.setOnClickListener(new View.OnClickListener() {
                 complaintModel.setDatetime(datetime);
                 complaintModel.setUsername(username);
                 complaintModel.setUid(uid);
-                Log.v("yuyu",status);
+                Log.v("status",status);
                 complaintModel.setStatus(status);
                 db3.setValue(complaintModel);
                 db1.setValue(complaintModel);

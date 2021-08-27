@@ -65,10 +65,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
-       // setUpGClient();
+        setUpGClient();
     }
 
-   /* private void setUpGClient() {
+    private void setUpGClient() {
         mGoogleApiClient = new GoogleApiClient.Builder(this)
                 .enableAutoManage(this, 0, this)
                 .addConnectionCallbacks(this)
@@ -76,7 +76,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 .addApi(LocationServices.API)
                 .build();
         mGoogleApiClient.connect();
-    }*/
+    }
 
     /**
      * Manipulates the map once available.
@@ -164,7 +164,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 currentLat = location.getLatitude();
                 currentLng = location.getLongitude();
                 BitmapDescriptor icon= BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE);
-                mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(currentLat,currentLng),15.0f));
+                mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(currentLat,currentLng),5.0f));
                 MarkerOptions markerOptions=new MarkerOptions();
                 markerOptions.position(new LatLng(currentLat,currentLng));
                 markerOptions.title("Your Location");
@@ -220,7 +220,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                             .addLocationRequest(locationRequest);
                     builder.setAlwaysShow(true);
 
-                   /* LocationSettingsRequest.Builder builder1 = new LocationSettingsRequest.Builder();
+                /*    LocationSettingsRequest.Builder builder1 = new LocationSettingsRequest.Builder();
                     SettingsClient client = LocationServices.getSettingsClient(this);
                     Task<LocationSettingsResponse> task = client.checkLocationSettings(builder1.build());*/
 

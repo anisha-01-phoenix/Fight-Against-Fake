@@ -15,9 +15,13 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import com.example.fightagainstfake.MainActivity;
+import com.example.fightagainstfake.Posts.AddPosts;
 import com.example.fightagainstfake.R;
+import com.example.fightagainstfake.authentication.Startscreen;
 import com.example.fightagainstfake.databinding.ActivityDashboardBinding;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class dashboard extends AppCompatActivity {
    ActivityDashboardBinding binding;
@@ -30,9 +34,9 @@ public class dashboard extends AppCompatActivity {
         View v=binding.getRoot();
         setContentView(v);
         setSupportActionBar(binding.toolbar);
-
+        changeColor(R.color.themeColor);
         getSupportFragmentManager().beginTransaction().replace(R.id.homecontainer,new complaint_home()).commit();
-binding.logo00.setText("COMPLAINTS");
+        binding.logo00.setText("COMPLAINTS");
         toggle=new ActionBarDrawerToggle(this,binding.drawer,binding.toolbar,R.string.open,R.string.close);
         binding.drawer.addDrawerListener(toggle);
         toggle.syncState();
@@ -45,13 +49,17 @@ binding.logo00.setText("COMPLAINTS");
                         binding.drawer.closeDrawer(GravityCompat.START);
                         break;
                     case R.id.advert_admin:
-                        binding.logo00.setText("ADVRTISEMENTS");
-                        getSupportFragmentManager().beginTransaction().replace(R.id.homecontainer,new post_home()).commit();
+                        Intent intent=new Intent(dashboard.this,AddPosts.class);
+                        intent.putExtra("check",1);
+                        startActivity(intent);
+                        /*binding.logo00.setText("ADVRTISEMENTS");
+                        getSupportFragmentManager().beginTransaction().replace(R.id.homecontainer,new post_home()).commit();*/
                         binding.drawer.closeDrawer(GravityCompat.START);
                         break;
-                    case R.id.recentsearches:
-                        binding.logo00.setText("COMPLAINTS");
-                        Toast.makeText(getApplicationContext(),"recent searches",Toast.LENGTH_SHORT).show();
+                    case R.id.logout2:
+                        FirebaseAuth.getInstance().signOut();
+                        startActivity(new Intent(dashboard.this, Startscreen.class));
+                        finish();
                         binding.drawer.closeDrawer(GravityCompat.START);
                         break;
                     case R.id.Info_Corner:

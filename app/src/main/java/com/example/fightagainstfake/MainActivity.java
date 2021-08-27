@@ -117,7 +117,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.nav_posts:
-                startActivity(new Intent(MainActivity.this, AddPosts.class));
+                Intent i=new Intent(MainActivity.this, AddPosts.class);
+                i.putExtra("check",0);
+                startActivity(i);
                 break;
             case R.id.nav_info:
                 getSupportFragmentManager().beginTransaction().addToBackStack(null).replace(R.id.complaintContainer, new customer_info_corner()).commit();
@@ -235,6 +237,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
         }
     }
+
 
 
     public void updateFirebase() {

@@ -15,6 +15,7 @@ import com.example.fightagainstfake.Posts.Adapters.ViewPagerAdapter;
 import com.example.fightagainstfake.Posts.Fragments.AdvertisementPostsFragment;
 import com.example.fightagainstfake.Posts.Fragments.NormalPostsFragment;
 import com.example.fightagainstfake.UserModel;
+import com.example.fightagainstfake.admin_package.dashboard;
 import com.example.fightagainstfake.databinding.ActivityAddPostsBinding;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -27,6 +28,7 @@ import java.util.List;
 
 public class AddPosts extends AppCompatActivity  {
     ActivityAddPostsBinding activityAddPostsBinding;
+    int check;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,25 +41,46 @@ public class AddPosts extends AppCompatActivity  {
         adapter.add(new AdvertisementPostsFragment(), "Advertisement");
         activityAddPostsBinding.viewPager.setAdapter(adapter);
         activityAddPostsBinding.tablayout.setupWithViewPager(activityAddPostsBinding.viewPager);
-
+        check=getIntent().getIntExtra("check",0);
 
     }
 
     public void goBack(View view) {
-        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-        intent.putExtra("check","0");
+        if (check==0)
+        {
+            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+            intent.putExtra("check",check);
 
-        startActivity(intent);
+            startActivity(intent);
+        }
+        else
+        {
+            Intent intent = new Intent(getApplicationContext(), dashboard.class);
+            intent.putExtra("check",check);
+
+            startActivity(intent);
+        }
+
     }
 
     @Override
     public void onBackPressed() {
         super.onBackPressed();
 
-        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-        intent.putExtra("check","0");
+        if (check==0)
+        {
+            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+            intent.putExtra("check",check);
 
-        startActivity(intent);
+            startActivity(intent);
+        }
+        else
+        {
+            Intent intent = new Intent(getApplicationContext(), dashboard.class);
+            intent.putExtra("check",check);
+
+            startActivity(intent);
+        }
 
     }
 

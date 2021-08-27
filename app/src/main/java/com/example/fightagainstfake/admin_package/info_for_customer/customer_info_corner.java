@@ -37,7 +37,10 @@ public class customer_info_corner extends Fragment {
         binding=FragmentCustomerInfoCornerBinding.inflate(inflater,container,false);
         data = new ArrayList<>();
         adapter = new admin_info_corner_adapter(data, getContext());
-        binding.recv.setLayoutManager(new LinearLayoutManager(getContext()));
+        LinearLayoutManager layoutManager=new LinearLayoutManager(getContext());
+        layoutManager.setStackFromEnd(true);
+        layoutManager.setReverseLayout(true);
+        binding.recv.setLayoutManager(layoutManager);
         binding.recv.setAdapter(adapter);
         getData();
 
@@ -55,8 +58,14 @@ public class customer_info_corner extends Fragment {
 
                     String date = map.get("date");
                     String postdata = map.get("postdata");
+                    String imgUrl=null;
+                    if (map.get("imgUrl")!=null) {
+                        imgUrl = map.get("imgUrl");
+                    }
                     model_info_corner model = new model_info_corner();
                     model.setPostdata(postdata);
+                    if (imgUrl!=null)
+                        model.setImgUrl(imgUrl);
                     model.setDate(date);
                     data.add(model);
 

@@ -41,15 +41,14 @@
             android:exported="true" />
         <activity
             android:name=".admin_package.complaints_details"
-            android:exported="true"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+            android:exported="true" />
         <activity
             android:name=".complaints.complaintAdd"
             android:exported="true" />
         <activity
             android:name=".admin_package.dashboard"
             android:exported="true"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+            android:theme="@style/Theme.Design.NoActionBar"  />
         <activity
             android:name=".authentication.Forgot_Password"
             android:exported="true" />
