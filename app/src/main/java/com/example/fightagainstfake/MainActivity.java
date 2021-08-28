@@ -25,6 +25,7 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -78,11 +79,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     ActivityMainBinding activityMainBinding;
     FirebaseUser firebaseUser;
     ImageView navUserDp, editDp;
-    String phone;
-    private DatabaseReference reference;
+    private DatabaseReference reference;/*
     private StorageReference storageReference;
     private Uri filepath;
-    private Bitmap bitmap;
+    private Bitmap bitmap;*/
 
     ArrayList<model> data;
 
@@ -92,23 +92,23 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         activityMainBinding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(activityMainBinding.getRoot());
         setSupportActionBar(activityMainBinding.toolBar);
-        FirebaseUser user=FirebaseAuth.getInstance().getCurrentUser();
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+      // Toast.makeText(MainActivity.this, user.getUid(), Toast.LENGTH_LONG).show();
 
-        FirebaseMessaging.getInstance().getToken().addOnSuccessListener(new OnSuccessListener<String>() {
-                                @Override
-                                public void onSuccess(String s) {
+        /*FirebaseMessaging.getInstance().getToken().addOnSuccessListener(new OnSuccessListener<String>() {
+            @Override
+            public void onSuccess(String s) {
 
-                                    String currentuserId=user.getUid();
+                String currentuserId = user.getUid();
 
-                                    DatabaseReference reference= FirebaseDatabase.getInstance().getReference("Users").child(currentuserId).child("DeviceToken");
-                                    reference.setValue(s);
+                DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users").child(currentuserId).child("DeviceToken");
+                reference.setValue(s);
 
 
-                                }
-                            });
+            }
+        });*/
 
         changeColor(R.color.themeColor);
-        phone = getIntent().getStringExtra("phone");
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, activityMainBinding.drawerLayout, activityMainBinding.toolBar, R.string.open, R.string.close);
@@ -146,8 +146,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.nav_posts:
-                Intent i=new Intent(MainActivity.this, AddPosts.class);
-                i.putExtra("check",0);
+                Intent i = new Intent(MainActivity.this, AddPosts.class);
                 startActivity(i);
                 break;
             case R.id.nav_info:
@@ -168,16 +167,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 Intent intent = new Intent(Intent.ACTION_SEND);
                 intent.setData(Uri.parse("mailto:"));
                 intent.putExtra(Intent.EXTRA_EMAIL, "sceptre112358@gmail.com");
+                intent.putExtra(Intent.EXTRA_SUBJECT,"Mail us at \"sceptre112358@gmail.com\"");
                 intent.setType("message/*");
                 Intent chooser = Intent.createChooser(intent, "Send Email");
                 startActivity(chooser);
                 break;
             case R.id.logout:
-                FirebaseMessaging.getInstance().deleteToken();
+              /*  FirebaseMessaging.getInstance().deleteToken();
 
 
-                DatabaseReference reference= FirebaseDatabase.getInstance().getReference("Users").child(firebaseUser.getUid()).child("DeviceToken");
-                reference.setValue("NotSet");
+                DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users").child(firebaseUser.getUid()).child("DeviceToken");
+                reference.setValue("NotSet");*/
 
 
                 FirebaseAuth.getInstance().signOut();
@@ -192,20 +192,20 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     public void update_nav_header() {
         View headerView = activityMainBinding.navView.getHeaderView(0);
-      /*  TextView navName = headerView.findViewById(R.id.header_name);
+        TextView navName = headerView.findViewById(R.id.header_name);
         TextView navUserName = headerView.findViewById(R.id.header_username);
-*/
+
 
         navUserDp = headerView.findViewById(R.id.fraud_dp);
         editDp = headerView.findViewById(R.id.update_pic);
         reference = FirebaseDatabase.getInstance().getReference().child("Users");
-       /* reference.child(firebaseUser.getUid()).addValueEventListener(new ValueEventListener() {
+        reference.child(firebaseUser.getUid()).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-                        UserModel model = snapshot.getValue(UserModel.class);
-                            navName.setText(model.getName());
-                            navUserName.setText(model.getUsername());
+                UserModel model = snapshot.getValue(UserModel.class);
+                navName.setText(model.getName());
+                navUserName.setText(model.getUsername());
 
 
             }
@@ -214,9 +214,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             public void onCancelled(@NonNull DatabaseError error) {
 
             }
-        });*/
+        });
 
-        storageReference = FirebaseStorage.getInstance().getReference();
+        /*storageReference = FirebaseStorage.getInstance().getReference();
         navUserDp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -241,9 +241,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     }
                 }).check();
             }
-        });
+        });*/
 
-        editDp.setOnClickListener(new View.OnClickListener() {
+        /*editDp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (bitmap != null) {
@@ -254,11 +254,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     editDp.setVisibility(View.INVISIBLE);
                 }
             }
-        });
+        });*/
     }
 
 
-    @Override
+    /*@Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 50 && resultCode == RESULT_OK) {
@@ -273,7 +273,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
         }
     }
-
 
 
     public void updateFirebase() {
@@ -306,7 +305,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                                     }
                                 });
                                 progressDialog.dismiss();
-                                navUserDp.setVisibility(View.GONE);
+                                navUserDp.setVisibility(View.INVISIBLE);
                                 Toast.makeText(MainActivity.this, "Successfully Updated!", Toast.LENGTH_SHORT).show();
                             }
                         });
@@ -316,5 +315,5 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             progressDialog.setMessage("Uploaded : " + (int) percent + "%");
         });
     }
-
+*/
 }

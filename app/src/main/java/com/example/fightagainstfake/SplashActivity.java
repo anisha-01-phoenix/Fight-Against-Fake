@@ -28,11 +28,6 @@ public class SplashActivity extends AppCompatActivity {
             getSupportActionBar().hide();
             changeColor(R.color.additionalColor);
 
-
-
-
-
-
             ObjectAnimator objectAnimator=ObjectAnimator.ofPropertyValuesHolder(activitySplashBinding.logo,
                     PropertyValuesHolder.ofFloat("scaleX",1.2f),
                     PropertyValuesHolder.ofFloat("scaleY",1.2f));

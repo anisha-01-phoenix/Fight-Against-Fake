@@ -3,6 +3,7 @@ package com.example.fightagainstfake.authentication;
 import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.util.Pair;
 import android.view.View;
 import android.widget.Toast;
@@ -16,6 +17,7 @@ import com.example.fightagainstfake.Posts.AddPosts;
 import com.example.fightagainstfake.admin_package.dashboard;
 import com.example.fightagainstfake.databinding.ActivityLoginScreenBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -105,9 +107,10 @@ public class loginScreen extends AppCompatActivity {
 
                         if (task.isSuccessful()) {
 
-                            FirebaseUser user=FirebaseAuth.getInstance().getCurrentUser();
+                          //  FirebaseUser user=FirebaseAuth.getInstance().getCurrentUser();
 
-                            FirebaseMessaging.getInstance().getToken().addOnSuccessListener(new OnSuccessListener<String>() {
+
+                          /*  FirebaseMessaging.getInstance().getToken().addOnSuccessListener(new OnSuccessListener<String>() {
                                 @Override
                                 public void onSuccess(String s) {
 
@@ -117,12 +120,13 @@ public class loginScreen extends AppCompatActivity {
                                     reference.setValue(s);
 
 
-                                
-                                   binding.pbar.setVisibility(View.INVISIBLE);
+
 
 
                                 }
                             });
+*/
+                            binding.pbar.setVisibility(View.INVISIBLE);
 
                             Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                             intent.putExtra("check",check);

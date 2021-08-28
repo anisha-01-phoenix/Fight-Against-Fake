@@ -2,16 +2,24 @@ package com.example.fightagainstfake;
 
 public class UserModel {
 
-    private String id, name, username,phone;
+    private String id, name, username,token;
 
-    public UserModel(String id, String name, String username, String phone) {
+    public UserModel(String id, String name, String username, String token) {
         this.id = id;
         this.name = name;
         this.username = username;
-        this.phone = phone;
+        this.token = token;
     }
 
     public UserModel() {
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
 
     public String getId() {
@@ -38,11 +46,4 @@ public class UserModel {
         this.username = username;
     }
 
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
 }

@@ -5,6 +5,7 @@ import android.animation.PropertyValuesHolder;
 import android.animation.ValueAnimator;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -12,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.fightagainstfake.MainActivity;
+import com.example.fightagainstfake.UserModel;
 import com.example.fightagainstfake.databinding.ActivityOtpScreenBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -65,14 +67,6 @@ public class otpScreen extends AppCompatActivity {
         mAuth=FirebaseAuth.getInstance();
         mAuth.setLanguageCode("fr");
 
-
-        FirebaseAuth firebaseAuth=FirebaseAuth.getInstance();
-        firebaseAuth.createUserWithEmailAndPassword(smail,sPassword).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-
-            }
-        });
         mCallbacks=new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
 
 
@@ -84,7 +78,7 @@ public class otpScreen extends AppCompatActivity {
 
             @Override
             public void onVerificationFailed(@NonNull FirebaseException e) {
-
+                Log.d("OTP failed!",e.getMessage());
             }
 
             @Override
@@ -159,12 +153,20 @@ public class otpScreen extends AppCompatActivity {
                 if (task.isSuccessful()) {
                     binding.progressBar.setVisibility(View.INVISIBLE);
 
+                    FirebaseAuth firebaseAuth=FirebaseAuth.getInstance();
+                    firebaseAuth.createUserWithEmailAndPassword(smail,sPassword).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+
+                        }
+                    });
+
                     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                     FirebaseMessaging.getInstance().getToken().addOnSuccessListener(new OnSuccessListener<String>() {
                         @Override
                         public void onSuccess(String s) {
 
-                            String currentuserId = user.getUid();
+                         //   String currentuserId = user.getUid();
                             token = s;
 
 
@@ -174,7 +176,7 @@ public class otpScreen extends AppCompatActivity {
 
                     String uid = user.getUid();
                     DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users").child(uid);
-                    Map<String, String> map = new HashMap<>();
+                    /*Map<String, String> map = new HashMap<>();
                     map.put("name", sname);
                     map.put("username", susername);
                     map.put("id", uid);
@@ -182,13 +184,20 @@ public class otpScreen extends AppCompatActivity {
                     map.put("phoneNo", sphone);
                     map.put("DeviceToken",token);
                     reference.setValue(map);
+*/
 
+                    UserModel model=new UserModel();
+                    model.setId(user.getUid());
+                    model.setName(sname);
+                    model.setUsername(susername);
+                    model.setToken(token);
+                    reference.setValue(model);
 
                     Intent intent1 = new Intent(getApplicationContext(), MainActivity.class);
 
                     intent1.putExtra("phone", sphone);
 
-                    intent1.putExtra("check", "0");
+                    intent1.putExtra("check", 0);
 
 
                     startActivity(intent1);
