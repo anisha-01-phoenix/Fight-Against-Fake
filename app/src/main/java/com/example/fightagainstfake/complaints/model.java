@@ -2,7 +2,37 @@ package com.example.fightagainstfake.complaints;
 
 public class model {
 
-    String complainId,complaintTitle,datetime,proof,status,uid;
+    String complainId,complaintTitle,datetime,proof,status,uid,proofurl,username;
+
+    public model(String complainId, String complaintTitle, String datetime, String proof, String status, String uid, String proofurl, String username) {
+        this.complainId = complainId;
+        this.complaintTitle = complaintTitle;
+        this.datetime = datetime;
+        this.proof = proof;
+        this.status = status;
+        this.uid = uid;
+        this.proofurl = proofurl;
+        this.username = username;
+    }
+
+    public model() {
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getProofurl() {
+        return proofurl;
+    }
+
+    public void setProofurl(String proofurl) {
+        this.proofurl = proofurl;
+    }
 
     public String getComplainId() {
         return complainId;

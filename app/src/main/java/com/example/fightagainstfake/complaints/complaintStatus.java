@@ -43,11 +43,24 @@ public class complaintStatus extends Fragment {
 
         data = new ArrayList<>();
         adapter = new adapter(data, getContext());
-        binding.complaintRec.setLayoutManager(new LinearLayoutManager(getContext()));
+        LinearLayoutManager linearLayoutManager=new LinearLayoutManager(getContext());
+        linearLayoutManager.setReverseLayout(true);
+        linearLayoutManager.setStackFromEnd(true);
+        binding.complaintRec.setLayoutManager(linearLayoutManager);
         binding.complaintRec.setAdapter(adapter);
 
 
         getComplaintStatus();
+
+        if(data.size()<=0)
+        {
+            binding.complaintSs.setVisibility(View.VISIBLE);
+        }
+        else
+        {
+            binding.complaintSs.setVisibility(View.INVISIBLE);
+        }
+
 
         return binding.getRoot();
     }
@@ -69,14 +82,24 @@ public class complaintStatus extends Fragment {
                     String title = map.get("complaintTitle");
                     String status = map.get("status");
                     String id = map.get("complainId");
+                    String proof=map.get("proof");
+                    String username=map.get("username");
+                    String url=null;
+                    if (map.get("proofurl")!=null)
+                        url=map.get("proofurl");
+
 
                     model model = new model();
                     model.setComplaintTitle(title);
                     model.setStatus(status);
                     model.setDatetime(date);
                     model.setComplainId(id);
+                    model.setProof(proof);
+                    model.setProofurl(url);
+                    model.setUsername(username);
                     data.add(model);
-
+                    if(model!=null)
+                        binding.complaintSs.setVisibility(View.INVISIBLE);
                 }
                 adapter.notifyDataSetChanged();
 

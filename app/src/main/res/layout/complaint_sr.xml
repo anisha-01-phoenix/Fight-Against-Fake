@@ -36,6 +36,14 @@
                     android:textColor="@color/themeColor"
                     android:textSize="13sp" />
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Complaint ID:  "
+                    android:layout_toLeftOf="@+id/id"
+                    android:fontFamily="@font/heading"
+                    android:textColor="@color/additionalColor"/>
+
 
                 <TextView
                     android:id="@+id/id"
@@ -68,16 +76,41 @@
 
                 <TextView
                     android:id="@+id/status"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:layout_marginBottom="15dp"
                     android:text="Registered Successfully"
                     android:textColor="#31A736"
+                    android:fontFamily="@font/text"
                     android:textStyle="bold" />
 
 
+
             </RelativeLayout>
+
+            <TextView
+                android:id="@+id/proof"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:fontFamily="@font/text"
+                android:text="Proof"
+                android:textSize="15dp"
+                android:textColor="#9C27B0"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/chk_proof"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Check your proofs here -> "
+                android:layout_marginLeft="200dp"
+                android:layout_marginRight="10dp"
+                android:visibility="gone"
+                android:drawableEnd="@drawable/ic_baseline_post_24"
+                android:textColor="@color/themeColor"/>
+
 
 
 

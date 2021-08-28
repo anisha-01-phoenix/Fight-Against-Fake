@@ -51,8 +51,9 @@
 
         <ImageView
             android:id="@+id/show_complain_pic"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_margin="5dp"
             android:src="@drawable/docs"
             android:layout_gravity="center_horizontal"
             android:background="@drawable/img_border"/>
@@ -98,7 +99,7 @@
             android:paddingLeft="20dp"
             android:paddingRight="20dp"
             android:textSize="18dp"
-            android:text="Add"
+            android:text=" register my complaint "
             android:textColor="@color/white" />
 
 

@@ -7,6 +7,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -50,6 +51,18 @@ public class admin_info_corner extends Fragment {
                 startActivity(new Intent(getActivity(), info_corner_post.class));
             }
         });
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+
+                adapter.info_shimmer=false;
+                adapter.notifyDataSetChanged();
+
+            }
+        },5000);
+
+
         return binding.getRoot();
     }
 

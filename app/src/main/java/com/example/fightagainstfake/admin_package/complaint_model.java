@@ -3,7 +3,29 @@ package com.example.fightagainstfake.admin_package;
 public class complaint_model {
     String
     complainId,
-    complaintTitle,datetime ,proof,status ,uid,username;
+    complaintTitle,datetime ,proof,status ,uid,username, proofurl;
+
+    public complaint_model(String complainId, String complaintTitle, String datetime, String proof, String status, String uid, String username, String proofurl) {
+        this.complainId = complainId;
+        this.complaintTitle = complaintTitle;
+        this.datetime = datetime;
+        this.proof = proof;
+        this.status = status;
+        this.uid = uid;
+        this.username = username;
+        this.proofurl = proofurl;
+    }
+
+    public complaint_model() {
+    }
+
+    public String getProofurl() {
+        return proofurl;
+    }
+
+    public void setProofurl(String proofurl) {
+        this.proofurl = proofurl;
+    }
 
     public String getComplainId() {
         return complainId;

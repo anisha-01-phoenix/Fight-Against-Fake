@@ -74,6 +74,15 @@ public class dashboard extends AppCompatActivity {
                         getSupportFragmentManager().beginTransaction().replace(R.id.homecontainer,new post_home()).commit();*/
                         binding.drawer.closeDrawer(GravityCompat.START);
                         break;
+
+
+                    case R.id.admin_info:
+                        getSupportFragmentManager().beginTransaction().replace(R.id.homecontainer,new admin_info_corner()).commit();
+                        binding.logo00.setText("INFO CORNER");
+                        binding.drawer.closeDrawer(GravityCompat.START);
+                        break;
+
+
                     case R.id.logout2:
                         FirebaseAuth.getInstance().signOut();
                         startActivity(new Intent(dashboard.this, Startscreen.class));
