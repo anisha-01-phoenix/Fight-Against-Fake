@@ -63,7 +63,7 @@ public class AdvertisementPosts extends AppCompatActivity {
         activityAdvertisementPostsBinding = ActivityAdvertisementPostsBinding.inflate(getLayoutInflater());
         setContentView(activityAdvertisementPostsBinding.getRoot());
         getSupportActionBar().hide();
-        String complainId = getrandomstring(6);
+        String complainId = getrandomstring(4);
         activityAdvertisementPostsBinding.upload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

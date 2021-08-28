@@ -49,6 +49,43 @@
                 android:textColorHint="@color/additionalColor" />
         </com.google.android.material.textfield.TextInputLayout>
 
+        <ImageView
+            android:id="@+id/show_complain_pic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/docs"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/img_border"/>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Upload Screenshots/Photo: "
+                android:layout_marginRight="5dp"
+                android:layout_marginLeft="80dp"
+                android:padding="5dp"
+                android:fontFamily="@font/text"
+                android:textSize="15dp"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/additionalColor"
+                android:gravity="center_horizontal"/>
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/upload_files"
+                android:id="@+id/upload_complain_proof"
+                android:padding="3dp"/>
+
+
+        </LinearLayout>
+
 
         <Button
             android:id="@+id/btn_addNP"

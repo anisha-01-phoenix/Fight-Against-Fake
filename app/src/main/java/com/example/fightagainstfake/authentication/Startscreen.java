@@ -33,9 +33,13 @@ public class Startscreen extends AppCompatActivity {
         super.onStart();
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if (user != null) {
-            Intent intent = new Intent(Startscreen.this, MainActivity.class);
-            startActivity(intent);
-            finish();
+            if (user.getEmail().equals("admin58@sceptre.com")) {
+                startActivity(new Intent(Startscreen.this, dashboard.class));
+            } else {
+                Intent intent = new Intent(Startscreen.this, MainActivity.class);
+                startActivity(intent);
+                finish();
+            }
 
         }
     }
@@ -51,8 +55,8 @@ public class Startscreen extends AppCompatActivity {
         findViewById(R.id.asUser).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(Startscreen.this,loginScreen.class);
-                intent.putExtra("check",0);
+                Intent intent = new Intent(Startscreen.this, loginScreen.class);
+                intent.putExtra("check", 0);
                 startActivity(intent);
             }
         });
@@ -75,9 +79,9 @@ public class Startscreen extends AppCompatActivity {
         LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.MATCH_PARENT);
-        lp.leftMargin=5;
-        lp.rightMargin=5;
-        lp.gravity=0;
+        lp.leftMargin = 5;
+        lp.rightMargin = 5;
+        lp.gravity = 0;
         input.setLayoutParams(lp);
         input.setHint("Enter Your Passcode Here....");
         input.setHintTextColor(getResources().getColor(R.color.purple_500));
@@ -88,28 +92,24 @@ public class Startscreen extends AppCompatActivity {
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         String password = input.getText().toString();
-                        if (password.equals("1413914"))
-                        {
+                        if (password.equals("1413914")) {
 
-                            FirebaseAuth auth=FirebaseAuth.getInstance();
-                            auth.signInWithEmailAndPassword("admin58@sceptre.com","admin#7").addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                            FirebaseAuth auth = FirebaseAuth.getInstance();
+                            auth.signInWithEmailAndPassword("admin58@sceptre.com", "admin#7").addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                                 @Override
                                 public void onComplete(@NonNull Task<AuthResult> task) {
-                                        if (task.isSuccessful())
-                                        {
-                                            Intent intent=new Intent(Startscreen.this, dashboard.class);
-                                            Toast.makeText(Startscreen.this, "Welcome back!", Toast.LENGTH_SHORT).show();
+                                    if (task.isSuccessful()) {
+                                        Intent intent = new Intent(Startscreen.this, dashboard.class);
+                                        Toast.makeText(Startscreen.this, "Welcome back!", Toast.LENGTH_SHORT).show();
 
 
-                                            intent.putExtra("check",1);
-                                            startActivity(intent);
+                                        intent.putExtra("check", 1);
+                                        startActivity(intent);
 
-                                        }
+                                    }
                                 }
                             });
-                        }
-                        else
-                        {
+                        } else {
                             Toast.makeText(Startscreen.this, "Wrong password!", Toast.LENGTH_SHORT).show();
                         }
                     }
@@ -124,8 +124,6 @@ public class Startscreen extends AppCompatActivity {
 
         alertDialog.show();
     }
-
-
 
 
     public void changeColor(int resource) {
