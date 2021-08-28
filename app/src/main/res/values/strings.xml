@@ -20,5 +20,6 @@
     </style>
 
     <string name="title_activity_maps">MapsActivity</string>
+    <string name="apiKey">AIzaSyBW1Dfkisapm83l_ctZ7xAbBCrvFvAzUIY</string>
 
 </resources>
