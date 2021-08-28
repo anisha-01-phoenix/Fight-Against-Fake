@@ -1,7 +1,6 @@
 package com.example.fightagainstfake.admin_package;
 
 
-
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -16,12 +15,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.fightagainstfake.Posts.Activities.FullImageView;
 import com.example.fightagainstfake.R;
+import com.facebook.shimmer.ShimmerFrameLayout;
 
 import java.util.ArrayList;
 
-public class admin_info_corner_adapter extends  RecyclerView.Adapter<admin_info_corner_adapter.v2holder>{
+public class admin_info_corner_adapter extends RecyclerView.Adapter<admin_info_corner_adapter.v2holder> {
     ArrayList<model_info_corner> data;
     Context context;
+    public boolean info_shimmer = true;
 
     public admin_info_corner_adapter(ArrayList<model_info_corner> data, Context context) {
         this.data = data;
@@ -38,38 +39,48 @@ public class admin_info_corner_adapter extends  RecyclerView.Adapter<admin_info_
 
     @Override
     public void onBindViewHolder(@NonNull v2holder holder, int position) {
-        holder.date.setText(data.get(position).getDate());
-        holder.post.setText(data.get(position).getPostdata());
+        if (info_shimmer) {
+            holder.shimmerFrameLayout.startShimmer();
+        } else {
+            holder.shimmerFrameLayout.stopShimmer();
+            holder.shimmerFrameLayout.setShimmer(null);
+            holder.date.setBackground(null);
+            holder.post.setBackground(null);
+            holder.date.setText(data.get(position).getDate());
+            holder.post.setText(data.get(position).getPostdata());
 
-        if (data.get(position).getImgUrl()!=null) {
-            holder.info_pic.setVisibility(View.VISIBLE);
-            Glide.with(context).load(data.get(position).getImgUrl()).into(holder.info_pic);
-            holder.info_pic.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent=new Intent(context, FullImageView.class);
-                    intent.putExtra("zoom",data.get(position).getImgUrl());
-                    context.startActivity(intent);
-                }
-            });
+            if (data.get(position).getImgUrl() != null) {
+                holder.info_pic.setVisibility(View.VISIBLE);
+                Glide.with(context).load(data.get(position).getImgUrl()).into(holder.info_pic);
+                holder.info_pic.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(context, FullImageView.class);
+                        intent.putExtra("zoom", data.get(position).getImgUrl());
+                        context.startActivity(intent);
+                    }
+                });
+            }
         }
-
 
     }
 
     @Override
     public int getItemCount() {
-        return data.size();
+        return info_shimmer?10:data.size();
     }
 
     public class v2holder extends RecyclerView.ViewHolder {
-        TextView date,post;
+        TextView date, post;
         ImageView info_pic;
+        ShimmerFrameLayout shimmerFrameLayout;
+
         public v2holder(@NonNull View itemView) {
             super(itemView);
-            date=itemView.findViewById(com.example.fightagainstfake.R.id.com_date_admin_info);
-            post=itemView.findViewById(com.example.fightagainstfake.R.id.titlecompalint_admin_info);
-            info_pic=itemView.findViewById(R.id.info_img);
+            date = itemView.findViewById(com.example.fightagainstfake.R.id.com_date_admin_info);
+            post = itemView.findViewById(com.example.fightagainstfake.R.id.titlecompalint_admin_info);
+            info_pic = itemView.findViewById(R.id.info_img);
+            shimmerFrameLayout = itemView.findViewById(R.id.info_shimmer);
         }
     }
 }

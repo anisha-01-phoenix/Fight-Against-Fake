@@ -39,13 +39,21 @@
 
 
                 <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Complaint Id:  "
+                    android:layout_toLeftOf="@id/id_admin"
+                    android:fontFamily="@font/heading"
+                    android:textColor="@color/additionalColor"/>
+
+                <TextView
                     android:id="@+id/id_admin"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
                     android:layout_marginRight="5dp"
-                    android:text="complaint Id"
                     android:fontFamily="@font/heading"
+                    android:text="complaint Id"
                     android:textColor="@color/additionalColor"
                     android:textStyle="bold" />
 
@@ -76,11 +84,12 @@
                     android:layout_alignParentStart="true"
 
                     android:layout_alignParentTop="true"
-                    android:layout_marginStart="10dp"
+                    android:layout_marginStart="12dp"
                     android:layout_marginTop="0dp"
                     android:layout_marginEnd="15dp"
                     android:layout_toStartOf="@+id/status_admin"
                     android:text="Username"
+                    android:fontFamily="@font/button"
                     android:textColor="@color/themeColor"
                     android:textStyle="bold" />
 
@@ -93,11 +102,22 @@
                     android:layout_marginEnd="16dp"
                     android:layout_marginBottom="15dp"
                     android:text="Registered Successfully"
+                    android:fontFamily="@font/text"
                     android:textColor="#31A736"
                     android:textStyle="bold" />
 
 
             </RelativeLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/proof_admin"
+                android:text="proof"
+                android:layout_marginLeft="12dp"
+                android:layout_marginBottom="3dp"
+                android:fontFamily="@font/heading"
+                android:textColor="#9C27B0"/>
 
 
 

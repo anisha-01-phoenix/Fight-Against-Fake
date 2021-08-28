@@ -116,6 +116,7 @@ public class ChatActivity extends AppCompatActivity {
         });
 
         layoutManager = new LinearLayoutManager(this);
+        layoutManager.setStackFromEnd(true);
         activityChatBinding.rvChats.setLayoutManager(layoutManager);
         messages(user.getUid(), userid);
         list = new ArrayList<>();

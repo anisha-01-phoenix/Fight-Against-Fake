@@ -2,6 +2,7 @@ package com.example.fightagainstfake.admin_package.info_for_customer;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -43,6 +44,16 @@ public class customer_info_corner extends Fragment {
         binding.recv.setLayoutManager(layoutManager);
         binding.recv.setAdapter(adapter);
         getData();
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+
+                adapter.info_shimmer=false;
+                adapter.notifyDataSetChanged();
+
+            }
+        },3000);
 
         return  binding.getRoot();
     }

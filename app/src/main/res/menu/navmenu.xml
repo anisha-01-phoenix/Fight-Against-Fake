@@ -10,7 +10,12 @@
     <item
         android:id="@+id/advert_admin"
         android:icon="@drawable/ic_baseline_post_24"
-        android:title="Advertisments"/>
+        android:title="Posts"/>
+
+        <item
+            android:id="@+id/admin_info"
+            android:icon="@drawable/ic_baseline_info_24"
+            android:title="Info Corner"/>
     </group>
 
 

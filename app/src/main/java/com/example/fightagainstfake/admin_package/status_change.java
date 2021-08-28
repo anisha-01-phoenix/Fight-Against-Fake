@@ -42,7 +42,7 @@ binding.seen.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListen
             binding.inProgress.setChecked(false);
             status="Accepted";
         } else if (!buttonView.isChecked()) {
-           status="no proof";
+           status="No Proof";
         }
     }
 });
@@ -56,7 +56,7 @@ binding.seen.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListen
                     binding.seen.setChecked(false);
                     status="In Progress";
                 } else if (!buttonView.isChecked()) {
-                    status="no proof";
+                    status="No Proof";
                 }
             }
         });
@@ -70,7 +70,7 @@ binding.seen.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListen
                   binding.inProgress.setChecked(false);
                     status="Rejected";
                 } else if (!buttonView.isChecked()) {
-                    status="no proof";
+                    status="No Proof";
                 }
             }
         });
@@ -84,7 +84,7 @@ binding.seen.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListen
                     binding.inProgress.setChecked(false);
                     status="Completed";
                 } else if (!buttonView.isChecked()) {
-                    status="no proof";
+                    status="No Proof";
 
                 }
             }
@@ -102,7 +102,7 @@ binding.statusChange.setOnClickListener(new View.OnClickListener() {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 complaint_model complaint_model=snapshot.getValue(com.example.fightagainstfake.admin_package.complaint_model.class);
                 String username=complaint_model.getUsername();
-              //  Log.v("yuyu",username);
+                String proofurl=complaint_model.getProofurl();
                 String compId=complaint_model.getComplainId();
                 String titlee=complaint_model.getComplaintTitle();
                 String proof=complaint_model.getProof();
@@ -118,6 +118,7 @@ binding.statusChange.setOnClickListener(new View.OnClickListener() {
                 complaintModel.setProof(proof);
                 complaintModel.setDatetime(datetime);
                 complaintModel.setUsername(username);
+                complaintModel.setProofurl(proofurl);
                 complaintModel.setUid(uid);
                 Log.v("status",status);
                 complaintModel.setStatus(status);

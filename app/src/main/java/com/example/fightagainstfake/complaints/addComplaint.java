@@ -35,6 +35,16 @@ public class addComplaint extends Fragment {
             }
         });
 
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+
+                binding.arrowShimmer.setVisibility(View.VISIBLE);
+
+
+            }
+        },20000);
+
         Handler handler = new Handler();
         Runnable run = new Runnable() {
             @Override
