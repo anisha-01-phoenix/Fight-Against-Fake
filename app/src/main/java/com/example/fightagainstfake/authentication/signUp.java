@@ -52,6 +52,7 @@ public class signUp extends AppCompatActivity {
     FirebaseAuth auth;
     DatabaseReference reference;
     private String token;
+    int iuy=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +65,7 @@ public class signUp extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(signUp.this, loginScreen.class));
+
             }
         });
 
