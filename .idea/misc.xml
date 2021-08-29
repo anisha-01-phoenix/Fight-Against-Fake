@@ -3,6 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Fight-Against-Fake/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/Fight-Against-Fake/app/src/main/res/layout/activity_maps.xml" value="0.1" />
+        <entry key="..\:/Fight-Against-Fake/app/src/main/res/menu/activity_main_drawer.xml" value="0.4" />
+        <entry key="..\:/Fight-Against-Fake/app/src/main/res/menu/maps.xml" value="0.2" />
+        <entry key="..\:/Fight-Against-Fake/app/src/main/res/menu/navmenu.xml" value="0.2234375" />
         <entry key="..\:/Users/ANISHA/AndroidStudioProjects/FightAgainstFake/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2703125" />
         <entry key="..\:/Users/ANISHA/AndroidStudioProjects/FightAgainstFake/app/src/main/res/drawable-v24/tab_indicator2.xml" value="0.2703125" />
         <entry key="..\:/Users/ANISHA/AndroidStudioProjects/FightAgainstFake/app/src/main/res/drawable/admin.xml" value="0.2703125" />
@@ -71,7 +76,7 @@
         <entry key="..\:/Users/ANISHA/AndroidStudioProjects/FightAgainstFake/app/src/main/res/layout/activity_info_corner_post.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/ANISHA/AndroidStudioProjects/FightAgainstFake/app/src/main/res/layout/activity_intro.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/ANISHA/AndroidStudioProjects/FightAgainstFake/app/src/main/res/layout/activity_login.xml" value="0.24010416666666667" />
-        <entry key="..\:/Users/ANISHA/AndroidStudioProjects/FightAgainstFake/app/src/main/res/layout/activity_login_screen.xml" value="0.264" />
+        <entry key="..\:/Users/ANISHA/AndroidStudioProjects/FightAgainstFake/app/src/main/res/layout/activity_login_screen.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/ANISHA/AndroidStudioProjects/FightAgainstFake/app/src/main/res/layout/activity_main.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/ANISHA/AndroidStudioProjects/FightAgainstFake/app/src/main/res/layout/activity_maps.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/ANISHA/AndroidStudioProjects/FightAgainstFake/app/src/main/res/layout/activity_normal_posts.xml" value="0.25" />

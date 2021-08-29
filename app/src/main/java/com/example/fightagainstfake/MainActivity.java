@@ -1,6 +1,7 @@
 package com.example.fightagainstfake;
 
 
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -21,6 +22,17 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 
+
+import com.example.fightagainstfake.Maps.MapsActivity;
+
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
+import androidx.core.view.GravityCompat;
+
 import com.example.fightagainstfake.Maps.MapsActivity;
 
 import com.example.fightagainstfake.Posts.AddPosts;
@@ -38,6 +50,9 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
+import com.google.firebase.messaging.FirebaseMessaging;
+
 
 import java.util.ArrayList;
 
@@ -60,9 +75,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setContentView(activityMainBinding.getRoot());
         setSupportActionBar(activityMainBinding.toolBar);
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-      // Toast.makeText(MainActivity.this, user.getUid(), Toast.LENGTH_LONG).show();
+        // Toast.makeText(MainActivity.this, user.getUid(), Toast.LENGTH_LONG).show();
 
-        /*FirebaseMessaging.getInstance().getToken().addOnSuccessListener(new OnSuccessListener<String>() {
+        FirebaseMessaging.getInstance().getToken().addOnSuccessListener(new OnSuccessListener<String>() {
             @Override
             public void onSuccess(String s) {
 
@@ -73,7 +88,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 
             }
-        });*/
+        });
 
         changeColor(R.color.themeColor);
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
@@ -134,7 +149,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 Intent intent = new Intent(Intent.ACTION_SEND);
                 intent.setData(Uri.parse("mailto:"));
                 intent.putExtra(Intent.EXTRA_EMAIL, "sceptre112358@gmail.com");
-                intent.putExtra(Intent.EXTRA_SUBJECT,"Mail us at \"sceptre112358@gmail.com\"");
+                intent.putExtra(Intent.EXTRA_SUBJECT, "Mail us at \"sceptre112358@gmail.com\"");
                 intent.setType("message/*");
                 Intent chooser = Intent.createChooser(intent, "Send Email");
                 startActivity(chooser);
