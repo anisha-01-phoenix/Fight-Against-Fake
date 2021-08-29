@@ -33,16 +33,16 @@
                     android:layout_marginEnd="5dp"
                     android:fontFamily="@font/heading"
                     android:text="20-08-2021 11:24"
-                    android:textColor="@color/themeColor"
+                    android:textColor="@color/additionalColor"
                     android:textSize="13sp" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Complaint ID:  "
                     android:layout_toLeftOf="@+id/id"
                     android:fontFamily="@font/heading"
-                    android:textColor="@color/additionalColor"/>
+                    android:text="Complaint ID:  "
+                    android:textColor="#673AB7" />
 
 
                 <TextView
@@ -52,7 +52,7 @@
                     android:layout_alignParentEnd="true"
                     android:layout_marginRight="5dp"
                     android:text="complaint Id"
-                    android:textColor="@color/additionalColor"
+                    android:textColor="@color/themeColor"
                     android:fontFamily="@font/heading"
                     android:textStyle="bold" />
 
@@ -68,7 +68,7 @@
                 android:textSize="18sp"
                 android:fontFamily="@font/text"
 
-                android:textColor="@color/additionalColor"/>
+                android:textColor="@color/themeColor"/>
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -80,32 +80,52 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:layout_marginBottom="15dp"
+                    android:fontFamily="@font/text"
                     android:text="Registered Successfully"
                     android:textColor="#31A736"
-                    android:fontFamily="@font/text"
                     android:textStyle="bold" />
 
 
 
             </RelativeLayout>
 
-            <TextView
-                android:id="@+id/proof"
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
+                android:layout_margin="10dp">
+
+                <TextView
+                    android:id="@+id/tv20"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/text"
+                    android:text="Proof Verification Status:   "
+                    android:textColor="#9C27B0"
+                    android:textSize="15dp"
+                    android:textStyle="bold" />
+
+
+            <TextView
+                android:id="@+id/proof"
+                android:layout_toRightOf="@id/tv20"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:fontFamily="@font/text"
                 android:text="Proof"
                 android:textSize="15dp"
                 android:textColor="#9C27B0"
                 android:textStyle="bold" />
 
+
+            </RelativeLayout>
+
+
             <TextView
                 android:id="@+id/chk_proof"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Check your proofs here -> "
-                android:layout_marginLeft="200dp"
+                android:layout_marginLeft="150dp"
                 android:layout_marginRight="10dp"
                 android:visibility="gone"
                 android:drawableEnd="@drawable/ic_baseline_post_24"

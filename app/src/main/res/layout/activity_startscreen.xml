@@ -24,14 +24,14 @@
         app:layout_constraintVertical_bias="0.4"/>
 
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/asUser"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="30dp"
-        android:background="@drawable/button"
         android:fontFamily="@font/button"
         android:text="USER"
+        android:background="@drawable/button"
         android:textColor="@color/themeColor"
         android:textSize="25dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -41,7 +41,7 @@
         app:layout_constraintVertical_bias="0.56" />
 
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/asAdmin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

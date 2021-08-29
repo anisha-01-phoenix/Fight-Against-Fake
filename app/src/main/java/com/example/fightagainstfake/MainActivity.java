@@ -1,15 +1,30 @@
 package com.example.fightagainstfake;
 
 
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
+import androidx.core.view.GravityCompat;
+
+
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+
+
+import com.example.fightagainstfake.Maps.MapsActivity;
+
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
@@ -19,14 +34,14 @@ import androidx.core.content.ContextCompat;
 import androidx.core.view.GravityCompat;
 
 import com.example.fightagainstfake.Maps.MapsActivity;
+
 import com.example.fightagainstfake.Posts.AddPosts;
 import com.example.fightagainstfake.admin_package.info_for_customer.customer_info_corner;
 import com.example.fightagainstfake.authentication.Startscreen;
 import com.example.fightagainstfake.complaints.addComplaint;
 import com.example.fightagainstfake.complaints.complaintStatus;
-import com.example.fightagainstfake.complaints.model;
+import com.example.fightagainstfake.complaints.ModelComplaint;
 import com.example.fightagainstfake.databinding.ActivityMainBinding;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -35,7 +50,9 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
 import com.google.firebase.messaging.FirebaseMessaging;
+
 
 import java.util.ArrayList;
 
@@ -49,7 +66,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private Uri filepath;
     private Bitmap bitmap;*/
 
-    ArrayList<model> data;
+    ArrayList<ModelComplaint> data;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

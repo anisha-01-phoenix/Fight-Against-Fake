@@ -22,16 +22,17 @@
         app:layout_constraintTop_toTopOf="parent" />
 
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/tab_indicator"
+        android:background="@drawable/btn"
         android:drawableRight="@drawable/arrow"
         android:gravity="center"
         android:fontFamily="@font/button"
         android:transitionName="bttn"
         android:paddingLeft="30dp"
+        android:textSize="18dp"
         android:paddingRight="30dp"
         android:text="Next "
         android:onClick="next"

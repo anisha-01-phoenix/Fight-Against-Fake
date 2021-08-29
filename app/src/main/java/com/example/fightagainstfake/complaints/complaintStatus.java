@@ -1,20 +1,14 @@
 package com.example.fightagainstfake.complaints;
 
-import android.app.ActionBar;
 import android.os.Bundle;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.SearchView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
-import com.example.fightagainstfake.R;
 import com.example.fightagainstfake.databinding.FragmentComplaintStatusBinding;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -32,7 +26,7 @@ public class complaintStatus extends Fragment {
 
     FragmentComplaintStatusBinding binding;
     adapter adapter;
-    ArrayList<model> data;
+    ArrayList<ModelComplaint> data;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -89,16 +83,16 @@ public class complaintStatus extends Fragment {
                         url=map.get("proofurl");
 
 
-                    model model = new model();
-                    model.setComplaintTitle(title);
-                    model.setStatus(status);
-                    model.setDatetime(date);
-                    model.setComplainId(id);
-                    model.setProof(proof);
-                    model.setProofurl(url);
-                    model.setUsername(username);
-                    data.add(model);
-                    if(model!=null)
+                    ModelComplaint ModelComplaint = new ModelComplaint();
+                    ModelComplaint.setComplaintTitle(title);
+                    ModelComplaint.setStatus(status);
+                    ModelComplaint.setDatetime(date);
+                    ModelComplaint.setComplainId(id);
+                    ModelComplaint.setProof(proof);
+                    ModelComplaint.setProofurl(url);
+                    ModelComplaint.setUsername(username);
+                    data.add(ModelComplaint);
+                    if(ModelComplaint !=null)
                         binding.complaintSs.setVisibility(View.INVISIBLE);
                 }
                 adapter.notifyDataSetChanged();
@@ -117,9 +111,9 @@ public class complaintStatus extends Fragment {
 
     private void filter(String text){
 
-        ArrayList<model> filteredList=new ArrayList<>();
+        ArrayList<ModelComplaint> filteredList=new ArrayList<>();
 
-        for(model item:data){
+        for(ModelComplaint item:data){
 
             if(item.getComplaintTitle().toLowerCase().contains(text.toLowerCase(Locale.ROOT))){
                 filteredList.add(item);

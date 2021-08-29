@@ -40,7 +40,7 @@
                 android:layout_marginEnd="5dp"
                 android:background="@color/shimmer"
                 android:fontFamily="@font/heading"
-                android:textColor="@color/themeColor"
+                android:textColor="#9C27B0"
                 android:textSize="13sp" />
 
 
@@ -64,7 +64,7 @@
             android:textSize="18sp"
             android:fontFamily="@font/text"
             android:background="@color/shimmer"
-            android:textColor="@color/additionalColor"/>
+            android:textColor="@color/themeColor"/>
 
         <RelativeLayout
             android:layout_width="match_parent"

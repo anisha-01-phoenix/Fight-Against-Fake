@@ -33,7 +33,6 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textColor="@color/themeColor"
         android:fontFamily="@font/heading"
-        android:text="FIGHT AGAINST FAKE"
         android:textSize="15sp"/>
 
     <TextView

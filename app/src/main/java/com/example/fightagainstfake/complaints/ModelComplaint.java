@@ -1,10 +1,10 @@
 package com.example.fightagainstfake.complaints;
 
-public class model {
+public class ModelComplaint {
 
     String complainId,complaintTitle,datetime,proof,status,uid,proofurl,username;
 
-    public model(String complainId, String complaintTitle, String datetime, String proof, String status, String uid, String proofurl, String username) {
+    public ModelComplaint(String complainId, String complaintTitle, String datetime, String proof, String status, String uid, String proofurl, String username) {
         this.complainId = complainId;
         this.complaintTitle = complaintTitle;
         this.datetime = datetime;
@@ -15,7 +15,7 @@ public class model {
         this.username = username;
     }
 
-    public model() {
+    public ModelComplaint() {
     }
 
     public String getUsername() {

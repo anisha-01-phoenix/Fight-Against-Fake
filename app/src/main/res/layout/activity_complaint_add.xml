@@ -36,7 +36,14 @@
             android:layout_marginLeft="5dp"
             android:layout_marginTop="20dp"
             android:layout_marginRight="5dp"
-            android:background="@drawable/tab_text"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            app:boxStrokeColor="@color/additionalColor"
+            app:boxStrokeWidth="3dp"
+            app:boxStrokeErrorColor="#F44336"
+            app:boxCornerRadiusBottomEnd="10dp"
+            app:boxCornerRadiusBottomStart="10dp"
+            app:boxCornerRadiusTopEnd="10dp"
+            app:boxCornerRadiusTopStart="10dp"
             android:padding="5dp">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -62,6 +69,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
             android:orientation="horizontal">
 
             <TextView
@@ -80,7 +88,7 @@
             <ImageView
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:src="@drawable/upload_files"
+                android:src="@drawable/upload"
                 android:id="@+id/upload_complain_proof"
                 android:padding="3dp"/>
 
@@ -88,13 +96,13 @@
         </LinearLayout>
 
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_addNP"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/tab_indicator"
+            android:layout_marginTop="100dp"
+            android:background="@drawable/btn"
             android:fontFamily="@font/button"
             android:paddingLeft="20dp"
             android:paddingRight="20dp"

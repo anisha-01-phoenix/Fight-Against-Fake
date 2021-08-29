@@ -1,9 +1,7 @@
 package com.example.fightagainstfake.admin_package;
 
 public class complaint_model {
-    String
-    complainId,
-    complaintTitle,datetime ,proof,status ,uid,username, proofurl;
+    String    complainId, complaintTitle,datetime ,proof,status ,uid,username, proofurl;
 
     public complaint_model(String complainId, String complaintTitle, String datetime, String proof, String status, String uid, String username, String proofurl) {
         this.complainId = complainId;
