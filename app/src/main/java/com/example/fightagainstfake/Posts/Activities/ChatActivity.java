@@ -182,7 +182,7 @@ public class ChatActivity extends AppCompatActivity {
 
     private void sendNotification() {
 
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users").child(userid).child("DeviceToken");
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users").child(userid).child("token");
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
