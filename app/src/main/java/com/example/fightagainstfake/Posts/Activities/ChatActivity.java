@@ -114,7 +114,7 @@ public class ChatActivity extends AppCompatActivity {
                     if (activityChatBinding.startRv.getVisibility() == View.VISIBLE)
                         activityChatBinding.startRv.setVisibility(View.INVISIBLE);
 
-                    DatabaseReference referenc = FirebaseDatabase.getInstance().getReference("Users").child(user.getUid()).child("status");
+                    DatabaseReference referenc = FirebaseDatabase.getInstance().getReference("Users").child(userid).child("status");
                     referenc.addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
