@@ -95,7 +95,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
       // Toast.makeText(MainActivity.this, user.getUid(), Toast.LENGTH_LONG).show();
 
-        /*FirebaseMessaging.getInstance().getToken().addOnSuccessListener(new OnSuccessListener<String>() {
+        FirebaseMessaging.getInstance().getToken().addOnSuccessListener(new OnSuccessListener<String>() {
             @Override
             public void onSuccess(String s) {
 
@@ -106,7 +106,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 
             }
-        });*/
+        });
 
         changeColor(R.color.themeColor);
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();

@@ -110,11 +110,11 @@ public class loginScreen extends AppCompatActivity {
                           //  FirebaseUser user=FirebaseAuth.getInstance().getCurrentUser();
 
 
-                          /*  FirebaseMessaging.getInstance().getToken().addOnSuccessListener(new OnSuccessListener<String>() {
+                            FirebaseMessaging.getInstance().getToken().addOnSuccessListener(new OnSuccessListener<String>() {
                                 @Override
                                 public void onSuccess(String s) {
 
-                                    String currentuserId=user.getUid();
+                                    String currentuserId=FirebaseAuth.getInstance().getCurrentUser().getUid();
 
                                     DatabaseReference reference= FirebaseDatabase.getInstance().getReference("Users").child(currentuserId).child("DeviceToken");
                                     reference.setValue(s);
@@ -125,7 +125,7 @@ public class loginScreen extends AppCompatActivity {
 
                                 }
                             });
-*/
+
                             binding.pbar.setVisibility(View.INVISIBLE);
 
                             Intent intent = new Intent(getApplicationContext(), MainActivity.class);
