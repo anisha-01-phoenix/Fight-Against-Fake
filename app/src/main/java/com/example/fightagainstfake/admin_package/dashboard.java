@@ -50,7 +50,7 @@ public class dashboard extends AppCompatActivity {
         setContentView(v);
         setSupportActionBar(binding.toolbar);
 
-
+        changeColor(R.color.themeColor);
         getSupportFragmentManager().beginTransaction().replace(R.id.homecontainer, new complaint_home()).commit();
         binding.logo00.setText("COMPLAINTS");
         toggle = new ActionBarDrawerToggle(this, binding.drawer, binding.toolbar, R.string.open, R.string.close);
@@ -97,6 +97,15 @@ public class dashboard extends AppCompatActivity {
                 return true;
             }
         });
+    }
+
+    public void changeColor(int resourcecolor) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            getWindow().setStatusBarColor(ContextCompat.getColor(getApplicationContext(), resourcecolor));
+        }
+
+        ActionBar bar = getSupportActionBar();
+        bar.setBackgroundDrawable(new ColorDrawable(getResources().getColor(resourcecolor)));
     }
 
 

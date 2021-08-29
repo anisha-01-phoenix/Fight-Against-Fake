@@ -29,6 +29,7 @@
                 android:layout_height="100dp"
                 android:layout_alignParentStart="true"
                 android:src="@drawable/docs"
+                android:contextClickable="true"
                 android:visibility="gone"/>
 
 
@@ -39,13 +40,13 @@
                 android:layout_marginStart="5dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginEnd="5dp"
-                android:text=" "
-                android:background="@color/shimmer"
-                android:layout_toRightOf="@id/info_img"
                 android:layout_marginBottom="5dp"
+                android:layout_toRightOf="@id/info_img"
+                android:background="@color/shimmer"
                 android:fontFamily="@font/text"
                 android:padding="10dp"
-                android:textColor="@color/additionalColor"
+                android:text=" "
+                android:textColor="@color/themeColor"
                 android:textSize="18sp" />
 
 
@@ -59,11 +60,11 @@
                 android:layout_marginTop="12dp"
                 android:layout_marginEnd="4dp"
                 android:layout_marginBottom="4dp"
+                android:background="@color/shimmer"
                 android:fontFamily="@font/heading"
                 android:padding="3dp"
-                android:background="@color/shimmer"
                 android:text="                             "
-                android:textColor="@color/themeColor"
+                android:textColor="#9C27B0"
                 android:textSize="13sp" />
 
 

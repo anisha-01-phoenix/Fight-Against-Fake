@@ -15,7 +15,9 @@ import android.widget.Toast;
 
 import com.example.fightagainstfake.Posts.Activities.FullImageView;
 import com.example.fightagainstfake.R;
+import com.example.fightagainstfake.UserModel;
 import com.example.fightagainstfake.authentication.Startscreen;
+import com.example.fightagainstfake.complaints.ModelComplaint;
 import com.example.fightagainstfake.databinding.ActivityComplaintsDetailsBinding;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -42,22 +44,21 @@ public class complaints_details extends AppCompatActivity {
         username = intent.getStringExtra("username");
         uid = intent.getStringExtra("uid");
         proof = intent.getStringExtra("proof");
+        status = intent.getStringExtra("status");
         proofurl = intent.getStringExtra("proofurl");
         binding.dateCA.setText(post_date);
         binding.idCA.setText(complaintId);
         binding.titleCA.setText(title);
         binding.usernameCA.setText(username);
+        binding.proofCA.setText(proof);
+        binding.statusCA.setText(status);
 
         DatabaseReference ref1 = FirebaseDatabase.getInstance().getReference("complaint").child(uid).child(complaintId);
         ref1.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                Map<String, String> map = (Map<String, String>) snapshot.getValue();
-                complaint_model model = new complaint_model();
-                model.setStatus(map.get("status"));
-                model.setProof(map.get("proof"));
-                binding.proofCA.setText(map.get("proof"));
-                binding.statusCA.setText(map.get("status"));
+                ModelComplaint model = snapshot.getValue(ModelComplaint.class);
+                binding.statusCA.setText(model.getStatus());
 
             }
 
@@ -70,8 +71,8 @@ public class complaints_details extends AppCompatActivity {
         ref2.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                Map<String, String> map = (Map<String, String>) snapshot.getValue();
-                binding.nameCA.setText(map.get("name"));
+                UserModel model = snapshot.getValue(UserModel.class);
+                binding.nameCA.setText(model.getName());
             }
 
             @Override
@@ -83,13 +84,67 @@ public class complaints_details extends AppCompatActivity {
         binding.statusChange.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Bundle bundle = new Bundle();
+                final String[] statArray={"Pending","In Progress","Completed","Rejected"};
+                AlertDialog.Builder alertDialog=new AlertDialog.Builder(complaints_details.this);
+                alertDialog.setTitle("SET STATUS");
+                alertDialog.setSingleChoiceItems(statArray, 0, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                                status=statArray[which];
+
+                    }
+                });
+
+                alertDialog.setPositiveButton("SET STATUS", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        DatabaseReference db3 = FirebaseDatabase.getInstance().getReference("complaint").child(uid).child(complaintId);
+                        DatabaseReference db1 = FirebaseDatabase.getInstance().getReference("totalcomplaints").child(complaintId);
+
+                        db3.addValueEventListener(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                ModelComplaint complaint=snapshot.getValue(ModelComplaint.class);
+                                proof=complaint.getProof();
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError error) {
+
+                            }
+                        });
+
+                        binding.proofCA.setText(proof);
+                        binding.statusCA.setText(status);
+                        ModelComplaint model = new ModelComplaint();
+                        model.setComplainId(complaintId);
+                        model.setComplaintTitle(title);
+                        model.setDatetime(post_date);
+                        model.setProof(proof);
+                        model.setProofurl(proofurl);
+                        model.setStatus(status);
+                        model.setUid(uid);
+                        model.setUsername(username);
+                        db1.setValue(model);
+                        db3.setValue(model);
+                    }
+                });
+
+                alertDialog.setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+                alertDialog.show();
+
+               /* Bundle bundle = new Bundle();
                 bundle.putString("uid", uid);
                 bundle.putString("complaintId", complaintId);
                 bundle.putString("status1", status);
                 status_change statusChange = new status_change();
                 statusChange.setArguments(bundle);
-                statusChange.show(getSupportFragmentManager(), statusChange.getTag());
+                statusChange.show(getSupportFragmentManager(), statusChange.getTag());*/
             }
         });
 
@@ -108,12 +163,12 @@ public class complaints_details extends AppCompatActivity {
                 lp.rightMargin = 5;
                 lp.gravity = 0;
                 input.setLayoutParams(lp);
-                input.setHint("Comments regarding the Proofs....");
+                input.setHint("Comments regarding Proofs....");
                 input.setHintTextColor(getResources().getColor(R.color.purple_500));
                 alertDialog.setView(input);
                 alertDialog.setIcon(R.drawable.ic_baseline_post_24);
 
-                alertDialog.setNeutralButton("CHECK PROOF", new DialogInterface.OnClickListener() {
+                alertDialog.setPositiveButton("CHECK PROOF", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         if (proofurl == null) {
@@ -126,7 +181,7 @@ public class complaints_details extends AppCompatActivity {
                     }
                 });
 
-                alertDialog.setPositiveButton("UPDATE PROOF STATUS", new DialogInterface.OnClickListener() {
+                alertDialog.setNeutralButton("UPDATE PROOF STATUS", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         if (input.getText().toString().isEmpty()) {
@@ -138,7 +193,31 @@ public class complaints_details extends AppCompatActivity {
 
                         DatabaseReference db3 = FirebaseDatabase.getInstance().getReference("complaint").child(uid).child(complaintId);
                         DatabaseReference db1 = FirebaseDatabase.getInstance().getReference("totalcomplaints").child(complaintId);
-                        complaint_model model = new complaint_model(complaintId, title, post_date, input.getText().toString(), status, uid, username, proofurl);
+
+                        db3.addValueEventListener(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                    ModelComplaint complaint=snapshot.getValue(ModelComplaint.class);
+                                    status=complaint.getStatus();
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError error) {
+
+                            }
+                        });
+
+                        binding.proofCA.setText(input.getText().toString());
+                        binding.statusCA.setText(status);
+                        ModelComplaint model = new ModelComplaint();
+                        model.setComplainId(complaintId);
+                        model.setComplaintTitle(title);
+                        model.setDatetime(post_date);
+                        model.setProof(input.getText().toString());
+                        model.setProofurl(proofurl);
+                        model.setStatus(status);
+                        model.setUid(uid);
+                        model.setUsername(username);
                         db1.setValue(model);
                         db3.setValue(model);
                     }

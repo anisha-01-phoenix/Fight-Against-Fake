@@ -95,17 +95,18 @@
 
     </RelativeLayout>
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/status_change"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
         android:layout_gravity="center"
         android:layout_marginTop="39dp"
         android:layout_marginBottom="19dp"
-        android:background="@drawable/tab_indicator"
+        android:background="@drawable/btn"
+        android:textSize="16dp"
         android:fontFamily="@font/button"
         android:gravity="center"
         android:padding="5dp"
-        android:text="  Save Status  "
+        android:text="  Set Status  "
         android:textColor="@color/white" />
 </LinearLayout>

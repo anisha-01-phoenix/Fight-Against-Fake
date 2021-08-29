@@ -48,19 +48,24 @@
     </com.facebook.shimmer.ShimmerFrameLayout>
 
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/addComplaint"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:layout_gravity="center"
-        android:layout_margin="30dp"
-        android:background="@drawable/tab_indicator"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="30dp"
+        android:background="@drawable/btn"
         android:drawableStart="@drawable/ic_baseline_add"
         android:elevation="100dp"
-        android:padding="5dp"
+        android:textSize="15dp"
+        android:padding="8dp"
         android:text="LODGE COMPLAINT"
+        app:tint="@color/white"
         android:textColor="@color/white" />
 
 

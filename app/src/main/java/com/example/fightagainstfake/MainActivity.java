@@ -2,7 +2,6 @@ package com.example.fightagainstfake;
 
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,43 +9,27 @@ import androidx.core.content.ContextCompat;
 import androidx.core.view.GravityCompat;
 
 
-import android.Manifest;
-import android.app.ProgressDialog;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 
-import android.util.Log;
-
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 
 import com.example.fightagainstfake.Maps.MapsActivity;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
-import androidx.core.view.GravityCompat;
 
 import com.example.fightagainstfake.Posts.AddPosts;
 import com.example.fightagainstfake.admin_package.info_for_customer.customer_info_corner;
 import com.example.fightagainstfake.authentication.Startscreen;
 import com.example.fightagainstfake.complaints.addComplaint;
 import com.example.fightagainstfake.complaints.complaintStatus;
-import com.example.fightagainstfake.complaints.model;
+import com.example.fightagainstfake.complaints.ModelComplaint;
 import com.example.fightagainstfake.databinding.ActivityMainBinding;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -55,22 +38,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.messaging.FirebaseMessaging;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
-import com.google.firebase.storage.UploadTask;
-import com.karumi.dexter.Dexter;
-import com.karumi.dexter.PermissionToken;
-import com.karumi.dexter.listener.PermissionDeniedResponse;
-import com.karumi.dexter.listener.PermissionGrantedResponse;
-import com.karumi.dexter.listener.PermissionRequest;
-import com.karumi.dexter.listener.single.PermissionListener;
-
-import java.io.FileNotFoundException;
-import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 import java.util.ArrayList;
 
@@ -84,7 +51,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private Uri filepath;
     private Bitmap bitmap;*/
 
-    ArrayList<model> data;
+    ArrayList<ModelComplaint> data;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

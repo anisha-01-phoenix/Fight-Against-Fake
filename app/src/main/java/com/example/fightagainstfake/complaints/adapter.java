@@ -17,12 +17,12 @@ import java.util.ArrayList;
 
 public class adapter extends RecyclerView.Adapter<adapter.viewHolderComplaints> {
 
-    ArrayList<model> data;
+    ArrayList<ModelComplaint> data;
     Context context;
 
 
 
-    public adapter(ArrayList<model> data, Context context) {
+    public adapter(ArrayList<ModelComplaint> data, Context context) {
         this.data = data;
         this.context = context;
     }
@@ -86,7 +86,7 @@ public class adapter extends RecyclerView.Adapter<adapter.viewHolderComplaints> 
         return data.size();
     }
 
-    public  void filterList(ArrayList<model>filteredList){
+    public  void filterList(ArrayList<ModelComplaint>filteredList){
 
         data=filteredList;
         notifyDataSetChanged();

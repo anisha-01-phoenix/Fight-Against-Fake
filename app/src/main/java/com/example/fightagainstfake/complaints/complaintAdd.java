@@ -39,8 +39,6 @@ import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Random;
 
 
@@ -121,7 +119,7 @@ public class complaintAdd extends AppCompatActivity {
 
 
                     String complainId = getrandomstring(4);
-                    DatabaseReference reference = FirebaseDatabase.getInstance().getReference("complaint").child(user.getUid()).child(complainId);
+                    DatabaseReference reference = FirebaseDatabase.getInstance().getReference("complaint").child(user.getUid());
 
                     String complaintTitle = binding.addNormalPostEditText.getEditText().getText().toString().trim();
                     Calendar calendar = Calendar.getInstance();
@@ -147,12 +145,12 @@ public class complaintAdd extends AppCompatActivity {
                                         Toast.makeText(getApplicationContext(), complainId, Toast.LENGTH_SHORT).show();
                                         proofurl=uri.toString();
                                         String id=getrandomstring(4);
-                                        model map=new model(id,complaintTitle,datetime,"Not Verified Yet!",status,user.getUid(),proofurl,username);
-                                        reference.setValue(map);
+                                        ModelComplaint map=new ModelComplaint(id,complaintTitle,datetime,"Not Verified Yet!",status,user.getUid(),proofurl,username);
+                                        reference.child(id).setValue(map);
 
 
                                         DatabaseReference reference1 = FirebaseDatabase.getInstance().getReference("totalcomplaints");
-                                        reference1.child(complainId).setValue(map);
+                                        reference1.child(id).setValue(map);
 
                                         progressDialog.dismiss();
                                     }
@@ -168,8 +166,8 @@ public class complaintAdd extends AppCompatActivity {
                     }
                     else
                     {
-                        model map=new model(complainId,complaintTitle,datetime,proof,status,user.getUid(),null,username);
-                        reference.setValue(map);
+                        ModelComplaint map=new ModelComplaint(complainId,complaintTitle,datetime,proof,status,user.getUid(),null,username);
+                        reference.child(complainId).setValue(map);
 
 
                         DatabaseReference reference1 = FirebaseDatabase.getInstance().getReference("totalcomplaints");
