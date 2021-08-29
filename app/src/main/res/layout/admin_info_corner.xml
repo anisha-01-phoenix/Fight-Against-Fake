@@ -12,6 +12,11 @@
 
 
 
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/info_shimmer"
+        android:background="@color/white">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -34,7 +39,8 @@
                 android:layout_marginStart="5dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginEnd="5dp"
-                android:text="hello"
+                android:text=" "
+                android:background="@color/shimmer"
                 android:layout_toRightOf="@id/info_img"
                 android:layout_marginBottom="5dp"
                 android:fontFamily="@font/text"
@@ -55,13 +61,17 @@
                 android:layout_marginBottom="4dp"
                 android:fontFamily="@font/heading"
                 android:padding="3dp"
-                android:text="20-08-2021 11:24"
+                android:background="@color/shimmer"
+                android:text="                             "
                 android:textColor="@color/themeColor"
                 android:textSize="13sp" />
 
 
 
         </RelativeLayout>
+
+    </com.facebook.shimmer.ShimmerFrameLayout>
+
 
 
 

@@ -12,7 +12,7 @@
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_marginTop="20dp"
-        android:src="@drawable/splash" />
+        android:src="@drawable/logo" />
 
     <ImageView
         android:id="@+id/update_pic"
@@ -20,9 +20,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_baseline_edit_24"
-        android:layout_marginLeft="100dp"
+        android:layout_marginLeft="70dp"
         android:layout_marginTop="-30dp"
-        android:background="@drawable/img_border"
         android:padding="5dp"/>
 
 

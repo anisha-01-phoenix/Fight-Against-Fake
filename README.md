@@ -55,11 +55,9 @@ In order to verify whether the complaint lodged by the victim is a authentic or 
  5) Retrofit
  ### Libraries:
  1) Glide
- 2) Circular Image View
- 3) Shimmer
- 4) Dexter
- 5) Baseflow/PhotoView
- 6) Volley
+ 2) Shimmer
+ 3) Dexter
+ 4) Volley
  
 
 

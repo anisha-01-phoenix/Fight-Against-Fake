@@ -50,7 +50,6 @@ public class complaintAdd extends AppCompatActivity {
     Boolean upload=false;
     private StorageReference storageReference;
     private Uri filepath;
-    String proofurl;
     private Bitmap bitmap;
 
     @Override
@@ -59,6 +58,31 @@ public class complaintAdd extends AppCompatActivity {
         binding = ActivityComplaintAddBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         getSupportActionBar().hide();
+
+        binding.uploadComplainProof.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Dexter.withContext(getApplicationContext()).withPermission(Manifest.permission.READ_EXTERNAL_STORAGE).withListener(new PermissionListener() {
+                    @Override
+                    public void onPermissionGranted(PermissionGrantedResponse permissionGrantedResponse) {
+                        Intent intent = new Intent();
+                        intent.setType("image/*");
+                        intent.setAction(Intent.ACTION_GET_CONTENT);
+                        startActivityForResult(Intent.createChooser(intent, "Select image"), 7);
+                    }
+
+                    @Override
+                    public void onPermissionDenied(PermissionDeniedResponse permissionDeniedResponse) {
+
+                    }
+
+                    @Override
+                    public void onPermissionRationaleShouldBeShown(PermissionRequest permissionRequest, PermissionToken permissionToken) {
+                        permissionToken.continuePermissionRequest();
+                    }
+                }).check();
+            }
+        });
 
 
         binding.btnAddNP.setOnClickListener(new View.OnClickListener() {
@@ -76,48 +100,27 @@ public class complaintAdd extends AppCompatActivity {
 
         String post = binding.addNormalPostEditText.getEditText().getText().toString();
         if (post.isEmpty()) {
-            binding.addNormalPostEditText.setError("Add The Post");
+            binding.addNormalPostEditText.setError("Enter your Complaints here");
             binding.addNormalPostEditText.requestFocus();
             return;
         }
 
             storageReference= FirebaseStorage.getInstance().getReference();
-            binding.uploadComplainProof.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Dexter.withContext(getApplicationContext()).withPermission(Manifest.permission.READ_EXTERNAL_STORAGE).withListener(new PermissionListener() {
-                        @Override
-                        public void onPermissionGranted(PermissionGrantedResponse permissionGrantedResponse) {
-                            Intent intent = new Intent();
-                            intent.setType("image/*");
-                            intent.setAction(Intent.ACTION_GET_CONTENT);
-                            startActivityForResult(Intent.createChooser(intent, "Select image"), 7);
-                        }
 
-                        @Override
-                        public void onPermissionDenied(PermissionDeniedResponse permissionDeniedResponse) {
-
-                        }
-
-                        @Override
-                        public void onPermissionRationaleShouldBeShown(PermissionRequest permissionRequest, PermissionToken permissionToken) {
-                            permissionToken.continuePermissionRequest();
-                        }
-                    }).check();
-                }
-            });
             FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
             DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users").child(user.getUid()).child("username");
 
             reference.addValueEventListener(new ValueEventListener() {
+                String proofurl=null;
+
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
 
                     String username = snapshot.getValue(String.class);
 
 
-                    String complainId = "Complaint ID: " + getrandomstring(4);
+                    String complainId = getrandomstring(4);
                     DatabaseReference reference = FirebaseDatabase.getInstance().getReference("complaint").child(user.getUid()).child(complainId);
 
                     String complaintTitle = binding.addNormalPostEditText.getEditText().getText().toString().trim();
@@ -125,9 +128,8 @@ public class complaintAdd extends AppCompatActivity {
                     SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yy  HH:mm");
                     String datetime = dateFormat.format(calendar.getTime());
 
-                    String proof = "noProof";
-                    String status = "successfully registered";
-                    proofurl=null;
+                    String proof = "No Proof!";
+                    String status = "Successfully Registered";
 
                     if (upload)
                     {
@@ -142,9 +144,16 @@ public class complaintAdd extends AppCompatActivity {
                                 uploader.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                                     @Override
                                     public void onSuccess(Uri uri) {
-                                        String complainId = getrandomstring(6);
                                         Toast.makeText(getApplicationContext(), complainId, Toast.LENGTH_SHORT).show();
                                         proofurl=uri.toString();
+                                        String id=getrandomstring(4);
+                                        model map=new model(id,complaintTitle,datetime,"Not Verified Yet!",status,user.getUid(),proofurl,username);
+                                        reference.setValue(map);
+
+
+                                        DatabaseReference reference1 = FirebaseDatabase.getInstance().getReference("totalcomplaints");
+                                        reference1.child(complainId).setValue(map);
+
                                         progressDialog.dismiss();
                                     }
                                 });
@@ -157,11 +166,20 @@ public class complaintAdd extends AppCompatActivity {
                             }
                         });
                     }
+                    else
+                    {
+                        model map=new model(complainId,complaintTitle,datetime,proof,status,user.getUid(),null,username);
+                        reference.setValue(map);
 
 
-                    String uid = user.getUid();
+                        DatabaseReference reference1 = FirebaseDatabase.getInstance().getReference("totalcomplaints");
+                        reference1.child(complainId).setValue(map);
 
-                    Map<String, String> map = new HashMap<>();
+                    }
+
+
+
+                  /*  Map<String, String> map = new HashMap<>();
                     map.put("complaintTitle", complaintTitle);
                     map.put("datetime", datetime);
                     map.put("proof", proof);
@@ -171,11 +189,9 @@ public class complaintAdd extends AppCompatActivity {
                     map.put("complainId", complainId);
                     map.put("username", username);
 
-                    reference.setValue(map);
+                    reference.setValue(map);*/
 
 
-                    DatabaseReference reference1 = FirebaseDatabase.getInstance().getReference("totalcomplaints");
-                    reference1.child(complainId).setValue(map);
 
                     binding.addNormalPostEditText.getEditText().setText("");
 

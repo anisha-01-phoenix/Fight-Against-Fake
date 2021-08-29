@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,31 +7,61 @@
     android:background="@drawable/background"
     tools:context=".complaints.addComplaint">
 
-    <VideoView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="10dp"
-        android:id="@+id/video_view"/>
 
+    <VideoView
+        android:id="@+id/video_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginRight="5dp"
+        android:backgroundTint="@color/white"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp" />
+
+
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:id="@+id/arrow_shimmer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@id/video_view"
+        android:layout_above="@id/addComplaint"
+        android:layout_marginRight="40dp"
+        android:layout_marginBottom="40dp"
+        app:shimmer_direction="top_to_bottom"
+        android:elevation="100dp"
+        android:visibility="gone">
+
+
+        <ImageView
+            android:id="@+id/arrow"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:alpha="1"
+            android:padding="10dp"
+            android:elevation="100dp"
+            android:rotation="90"
+            android:src="@drawable/arrow"
+            app:tint="@color/themeColor" />
+
+    </com.facebook.shimmer.ShimmerFrameLayout>
 
 
     <Button
         android:id="@+id/addComplaint"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
         android:layout_gravity="center"
+        android:layout_margin="30dp"
         android:background="@drawable/tab_indicator"
         android:drawableStart="@drawable/ic_baseline_add"
         android:elevation="100dp"
-        android:text="LODGE COMPLAINT"
-        android:textColor="@color/white"
         android:padding="5dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.95"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.95" />
+        android:text="LODGE COMPLAINT"
+        android:textColor="@color/white" />
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>

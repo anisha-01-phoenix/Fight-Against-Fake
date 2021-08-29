@@ -168,10 +168,11 @@ public class ChatActivity extends AppCompatActivity {
             }
         });
 
-        LinearLayoutManager manager = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false);
 
-
-        activityChatBinding.rvChats.setLayoutManager(manager);
+    
+        layoutManager = new LinearLayoutManager(this);
+        layoutManager.setStackFromEnd(true);
+        activityChatBinding.rvChats.setLayoutManager(layoutManager);
 
         messages(user.getUid(), userid);
         list = new ArrayList<>();

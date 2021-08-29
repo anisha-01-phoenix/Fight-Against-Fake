@@ -12,8 +12,6 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.fightagainstfake.R;
-import com.example.fightagainstfake.complaints.adapter;
-import com.example.fightagainstfake.complaints.model;
 
 import java.util.ArrayList;
 
@@ -25,6 +23,7 @@ public class admin_recv_adapter extends RecyclerView.Adapter<admin_recv_adapter.
         this.data = data;
         this.context = context;
     }
+
     @NonNull
     @Override
     public vholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -39,16 +38,32 @@ public class admin_recv_adapter extends RecyclerView.Adapter<admin_recv_adapter.
         holder.status.setText(data.get(position).getStatus());
         holder.date.setText(data.get(position).getDate());
         holder.username.setText(data.get(position).getUsername());
+        holder.proof.setText(data.get(position).getProof());
+
+        String status = data.get(position).getStatus();
+        if (status != null) {
+            if (status.equals("Accepted"))
+                holder.status.setTextColor(context.getResources().getColor(R.color.accepted));
+            if (status.equals("In Progress"))
+                holder.status.setTextColor(context.getResources().getColor(R.color.in_progress));
+            if (status.equals("Completed"))
+                holder.status.setTextColor(context.getResources().getColor(R.color.Completed));
+            if (status.equals("Rejected"))
+                holder.status.setTextColor(context.getResources().getColor(R.color.Rejected));
+        }
+
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(context,complaints_details.class);
-               intent.putExtra("date",data.get(position).getDate());
-               intent.putExtra("status",data.get(position).getStatus());
-               intent.putExtra("compid",data.get(position).getComplaintId());
-               intent.putExtra("title",data.get(position).getTitle());
-               intent.putExtra("username",data.get(position).getUsername());
-               intent.putExtra("uid",data.get(position).getUid());
+                Intent intent = new Intent(context, complaints_details.class);
+                intent.putExtra("date", data.get(position).getDate());
+                intent.putExtra("status", data.get(position).getStatus());
+                intent.putExtra("compid", data.get(position).getComplaintId());
+                intent.putExtra("title", data.get(position).getTitle());
+                intent.putExtra("username", data.get(position).getUsername());
+                intent.putExtra("uid", data.get(position).getUid());
+                intent.putExtra("proof", data.get(position).getProof());
+                intent.putExtra("proofurl", data.get(position).getProofurl());
                 context.startActivity(intent);
             }
         });
@@ -60,16 +75,18 @@ public class admin_recv_adapter extends RecyclerView.Adapter<admin_recv_adapter.
     }
 
     public class vholder extends RecyclerView.ViewHolder {
-        TextView status,complaintId,title,date,username;
+        TextView status, complaintId, title, date, username, proof;
         CardView cardView;
+
         public vholder(@NonNull View itemView) {
             super(itemView);
-            status=itemView.findViewById(R.id.status_admin);
-            date=itemView.findViewById(R.id.com_date_admin);
-            complaintId=itemView.findViewById(R.id.id_admin);
-            title=itemView.findViewById(R.id.titlecompalint_admin);
-            username=itemView.findViewById(R.id.username_admin);
-            cardView=itemView.findViewById(R.id.cvg);
+            status = itemView.findViewById(R.id.status_admin);
+            date = itemView.findViewById(R.id.com_date_admin);
+            complaintId = itemView.findViewById(R.id.id_admin);
+            title = itemView.findViewById(R.id.titlecompalint_admin);
+            username = itemView.findViewById(R.id.username_admin);
+            proof = itemView.findViewById(R.id.proof_admin);
+            cardView = itemView.findViewById(R.id.cvg);
         }
     }
 }
