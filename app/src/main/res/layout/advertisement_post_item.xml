@@ -155,11 +155,12 @@
 
 
                 <ImageView
-                    android:id="@+id/ap_downvote"
+                    android:id="@+id/ap_comment"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="200dp"
-                    android:src="@drawable/downvote_outline" />
+                    android:src="@drawable/ic_baseline_message_24"
+                    />
 
                 <TextView
                     android:id="@+id/ap_downvote_count"
@@ -172,12 +173,14 @@
                     android:textSize="16sp" />
 
                 <ImageView
-                    android:id="@+id/ap_comment"
+
+                    android:id="@+id/ap_downvote"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
                     android:layout_marginRight="40dp"
-                    android:src="@drawable/ic_baseline_message_24" />
+                    android:src="@drawable/downvote_outline"
+                     />
 
 
             </RelativeLayout>

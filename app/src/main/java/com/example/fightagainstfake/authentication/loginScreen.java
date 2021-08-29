@@ -74,7 +74,7 @@ public class loginScreen extends AppCompatActivity {
         binding.bttn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                binding.pbar.setVisibility(View.VISIBLE);
+
                 String email = binding.lemail.getEditText().getText().toString().trim();
                 String password = binding.lpassword.getEditText().getText().toString().trim();
 
@@ -90,11 +90,12 @@ public class loginScreen extends AppCompatActivity {
                     return;
                 }
 
-
+                binding.pbar.setVisibility(View.VISIBLE);
                 mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
 
+                        binding.pbar.setVisibility(View.INVISIBLE);
                         if (task.isSuccessful()) {
 
                             //  FirebaseUser user=FirebaseAuth.getInstance().getCurrentUser();
@@ -106,7 +107,7 @@ public class loginScreen extends AppCompatActivity {
 
                                     String currentuserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
-                                    DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users").child(currentuserId).child("DeviceToken");
+                                    DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users").child(currentuserId).child("dt");
                                     reference.setValue(s);
 
 
