@@ -51,7 +51,7 @@ public class signUp extends AppCompatActivity {
     ActivitySignUpBinding binding;
     FirebaseAuth auth;
     DatabaseReference reference;
-    private String token;
+    private String DeviceToken;
     int iuy=0;
 
     @Override
@@ -153,8 +153,8 @@ public class signUp extends AppCompatActivity {
                             @Override
                             public void onSuccess(String s) {
 
-                                token = s;
-                                UserModel model = new UserModel(auth.getCurrentUser().getUid(), sname, sUsername, token);
+                                DeviceToken = s;
+                                UserModel model = new UserModel(auth.getCurrentUser().getUid(), sname, sUsername, DeviceToken);
                                 reference.child(auth.getCurrentUser().getUid()).setValue(model);
                             }
                         });

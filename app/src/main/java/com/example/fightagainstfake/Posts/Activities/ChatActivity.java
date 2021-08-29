@@ -35,9 +35,45 @@ public class ChatActivity extends AppCompatActivity {
     ActivityChatBinding activityChatBinding;
     private LinearLayoutManager layoutManager;
     private ChatAdapter adapter;
-
+    String mssg;
     String userid;
 
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        if (FirebaseAuth.getInstance().getCurrentUser() != null) {
+            updateStatus("offline");
+        }
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        if (FirebaseAuth.getInstance().getCurrentUser() != null) {
+            updateStatus("online");
+        }
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+
+        if (FirebaseAuth.getInstance().getCurrentUser() != null) {
+            updateStatus("offline");
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        if (FirebaseAuth.getInstance().getCurrentUser() != null) {
+            updateStatus("offline");
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,7 +104,7 @@ public class ChatActivity extends AppCompatActivity {
         activityChatBinding.send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String mssg = activityChatBinding.addComment.getText().toString();
+                mssg = activityChatBinding.addComment.getText().toString();
                 Calendar calendar = Calendar.getInstance();
                 SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yy  HH:mm");
                 String datetime = dateFormat.format(calendar.getTime());
@@ -78,7 +114,24 @@ public class ChatActivity extends AppCompatActivity {
                     if (activityChatBinding.startRv.getVisibility() == View.VISIBLE)
                         activityChatBinding.startRv.setVisibility(View.INVISIBLE);
 
-                    sendNotification();
+                    DatabaseReference referenc = FirebaseDatabase.getInstance().getReference("Users").child(user.getUid()).child("status");
+                    referenc.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                            String status = snapshot.getValue(String.class);
+                            if (status.equals("offline")) {
+                                sendNotification();
+                            }
+
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });
+
 
                     Chat chat = new Chat(user.getUid(), userid, datetime, mssg);
                     FirebaseDatabase.getInstance().getReference().child("Chats").push().setValue(chat);
@@ -115,9 +168,12 @@ public class ChatActivity extends AppCompatActivity {
             }
         });
 
+
+    
         layoutManager = new LinearLayoutManager(this);
         layoutManager.setStackFromEnd(true);
         activityChatBinding.rvChats.setLayoutManager(layoutManager);
+
         messages(user.getUid(), userid);
         list = new ArrayList<>();
 
@@ -141,7 +197,7 @@ public class ChatActivity extends AppCompatActivity {
                         String username = snapshot.getValue(String.class);
 
 
-                        FcmNotificationsSender notificationsSender = new FcmNotificationsSender(token, username, "IMPORTANT", getApplicationContext(), ChatActivity.this);
+                        FcmNotificationsSender notificationsSender = new FcmNotificationsSender(token, username, mssg, getApplicationContext(), ChatActivity.this);
 
                         notificationsSender.SendNotifications();
 
@@ -191,6 +247,17 @@ public class ChatActivity extends AppCompatActivity {
 
             }
         });
+
+    }
+
+
+    public void updateStatus(String status) {
+
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        String uid = user.getUid();
+
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users").child(uid);
+        reference.child("status").setValue(status);
 
     }
 

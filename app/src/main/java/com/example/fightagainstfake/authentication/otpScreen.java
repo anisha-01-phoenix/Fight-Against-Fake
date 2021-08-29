@@ -190,7 +190,7 @@ public class otpScreen extends AppCompatActivity {
                     model.setId(user.getUid());
                     model.setName(sname);
                     model.setUsername(susername);
-                    model.setToken(token);
+                    model.setDeviceToken(token);
                     reference.setValue(model);
 
                     Intent intent1 = new Intent(getApplicationContext(), MainActivity.class);
