@@ -44,12 +44,14 @@ import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
+
 public class info_corner_post extends AppCompatActivity {
 ActivityInfoCornerPostBinding binding;
 Boolean isUpload=false;
     private StorageReference storageReference;
     private Uri filepath;
     private Bitmap bitmap;
+    String post;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,7 +94,7 @@ Boolean isUpload=false;
         binding.btnAddNP.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String post = binding.addNormalPostEditText.getEditText().getText().toString();
+                 post = binding.addNormalPostEditText.getEditText().getText().toString();
                 if (post.isEmpty()) {
                     binding.addNormalPostEditText.setError("Add Updates!");
                     binding.addNormalPostEditText.requestFocus();
@@ -158,7 +160,8 @@ Boolean isUpload=false;
     }
 
     private void sendNOtification() {
-        FcmNotificationsSender notificationsSender=new FcmNotificationsSender("/topics/all","Admin Info","IMPORTANT",getApplicationContext(),info_corner_post.this);
+
+        FcmNotificationsSender notificationsSender=new FcmNotificationsSender("/topics/all","Admin Info",post,getApplicationContext(),info_corner_post.this);
         notificationsSender.SendNotifications();
 
     }

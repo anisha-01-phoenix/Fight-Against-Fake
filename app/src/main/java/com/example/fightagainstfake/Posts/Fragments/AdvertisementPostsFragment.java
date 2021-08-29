@@ -29,6 +29,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class AdvertisementPostsFragment extends Fragment implements SearchView.OnQueryTextListener {
     FragmentAdvertisementPostsBinding fragmentAdvertisementPostsBinding;
@@ -103,11 +104,23 @@ public class AdvertisementPostsFragment extends Fragment implements SearchView.O
 
     @Override
     public boolean onQueryTextChange(String newText) {
-  // adapter.getFilter().flter(newText);
+        filter(newText.toString());
         return false;
     }
 
+    private void filter(String text) {
 
+        ArrayList<ModelClass> filteredList = new ArrayList<>();
+
+        for (ModelClass item : list) {
+
+            if (item.getPost().toLowerCase().contains(text.toLowerCase(Locale.ROOT))) {
+                filteredList.add(item);
+            }
+        }
+        adapter.filterList(filteredList);
+
+    }
 
 
 

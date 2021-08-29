@@ -1,19 +1,14 @@
 package com.example.fightagainstfake.Posts.Adapters;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -31,13 +26,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.orhanobut.dialogplus.DialogPlus;
-import com.orhanobut.dialogplus.ViewHolder;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Random;
 
 public class AdvertiseAdapter extends RecyclerView.Adapter<AdvertiseAdapter.AdvertiseViewHolder> {
 
@@ -164,6 +154,7 @@ public class AdvertiseAdapter extends RecyclerView.Adapter<AdvertiseAdapter.Adve
             if (modelClass.getUserID().equals(firebaseUser.getUid())) {
 //               holder.delete.setVisibility(View.VISIBLE);
                 holder.edit.setVisibility(View.VISIBLE);
+                holder.chat.setVisibility(View.INVISIBLE);
                 holder.edit.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -176,91 +167,6 @@ public class AdvertiseAdapter extends RecyclerView.Adapter<AdvertiseAdapter.Adve
                         context.startActivity(intent);
                     }
                 });
-                       /*
-                        final DialogPlus dialogPlus=DialogPlus.newDialog(context)
-                                .setContentHolder(new ViewHolder(R.layout.dialog_content))
-                                .setExpanded(true)
-                                .create();
-                        View view1=dialogPlus.getHolderView();
-                        final EditText editPost=view1.findViewById(R.id.edit_post);
-                        Button submit=view1.findViewById(R.id.btn_edit);
-                        editPost.setText(modelClass.getPost());
-                        dialogPlus.show();
-                        submit.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                *//*String postid= modelClass.getPostID();
-                                String  ImageUrl= modelClass.getImageUrl();
-                                FirebaseDatabase.getInstance().getReference("AdvertisementPosts").child(postid).setValue(null);
-                                Calendar calendar=Calendar.getInstance();
-                                SimpleDateFormat dateFormat=new SimpleDateFormat("dd/MM/yy  HH:mm");
-                                String datetime=dateFormat.format(calendar.getTime())+" (edited)";
-                                modelClass.setPost(editPost.getText().toString());
-                                modelClass.setTime(datetime);
-                                modelClass.setImageUrl(ImageUrl);
-                                modelClass.setUserID(firebaseUser.getUid());
-                                DatabaseReference databaseReference=FirebaseDatabase.getInstance().getReference("AdvertisementPosts");
-                                modelClass.setPostID(databaseReference.push().getKey());
-                                FirebaseDatabase.getInstance().getReference("AdvertisementPosts").push().setValue(modelClass);
-                                dialogPlus.dismiss();
-                                            notifyDataSetChanged();  Toast.makeText(context, "Posts Updated!", Toast.LENGTH_SHORT).show();
-*//*
-                 *//* final Map<String,Object> map=new HashMap<>();
-                                map.put("post",editPost.getText().toString());
-                                DatabaseReference reference=FirebaseDatabase.getInstance().getReference("AdvertisementPosts");
-                                reference.child(modelClass.getPostID()).addValueEventListener(new ValueEventListener() {
-                                    @Override
-                                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                        if (snapshot.exists())
-                                            reference.child(modelClass.getPostID()).updateChildren(map);
-                                        else
-                                            reference.child(modelClass.getPostID()).setValue(map);
-
-                                    }
-
-                                    @Override
-                                    public void onCancelled(@NonNull DatabaseError error) {
-
-                                    }
-                                });*//*
-
-
-                            }
-                        });
-
-                    }
-                });*/
-
-/*
-                holder.delete.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        final AlertDialog.Builder builder=new AlertDialog.Builder(context);
-                        builder.setTitle("Delete Post");
-                        builder.setMessage("Are you sure you want to delete this post?");
-                        builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-
-                            */
-/*    FirebaseDatabase.getInstance().getReference().child("Advertisement Post").child(modelClass.getPostID()).removeValue();
-
-                                notifyItemRemoved(position);
-                                Toast.makeText(context, "Post Deleted!", Toast.LENGTH_SHORT).show();*//*
-
-
-                            }
-                        });
-                        builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                dialog.dismiss();
-                            }
-                        });
-                        builder.create().show();
-                    }
-                });
-*/
 
             }
 
@@ -273,6 +179,12 @@ public class AdvertiseAdapter extends RecyclerView.Adapter<AdvertiseAdapter.Adve
     @Override
     public int getItemCount() {
         return isApShimmer ? 5 : list.size();
+    }
+
+    public void filterList(ArrayList<ModelClass> filteredList) {
+        list = filteredList;
+        notifyDataSetChanged();
+
     }
 
     public class AdvertiseViewHolder extends RecyclerView.ViewHolder {
