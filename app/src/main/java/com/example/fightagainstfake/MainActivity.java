@@ -43,10 +43,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     ActivityMainBinding activityMainBinding;
     FirebaseUser firebaseUser;
     ImageView navUserDp, editDp;
-    private DatabaseReference reference;/*
-    private StorageReference storageReference;
-    private Uri filepath;
-    private Bitmap bitmap;*/
+    private DatabaseReference reference;
+
 
     ArrayList<ModelComplaint> data;
 
@@ -113,6 +111,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 Intent i = new Intent(MainActivity.this, AddPosts.class);
                 startActivity(i);
                 break;
+
+            case R.id.recent_chats:
+                Intent i1 = new Intent(MainActivity.this, recentChats.class);
+                startActivity(i1);
+                break;
+
             case R.id.nav_info:
                 activityMainBinding.textView10.setText("INFO UPDATES");
                 getSupportFragmentManager().beginTransaction().addToBackStack(null).replace(R.id.complaintContainer, new customer_info_corner()).commit();
