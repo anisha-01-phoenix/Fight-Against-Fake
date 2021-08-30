@@ -1,7 +1,15 @@
 package com.example.fightagainstfake;
 
 public class model_recentchants {
-    String username,name,statusonline;
+    String username,name,statusonline,frontuserid;
+
+    public String getFrontuserid() {
+        return frontuserid;
+    }
+
+    public void setFrontuserid(String frontuserid) {
+        this.frontuserid = frontuserid;
+    }
 
     public String getUsername() {
         return username;

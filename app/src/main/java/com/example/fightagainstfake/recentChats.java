@@ -62,6 +62,7 @@ adapter_rc adapter;
                             modelRecentchants.setStatusonline(statusl);
                             modelRecentchants.setUsername(username);
                             modelRecentchants.setName(name);
+                            modelRecentchants.setFrontuserid(uidl);
                             data.add(modelRecentchants);
 
                             adapter.notifyDataSetChanged();

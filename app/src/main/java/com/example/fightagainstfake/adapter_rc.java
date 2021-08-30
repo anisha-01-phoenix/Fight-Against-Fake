@@ -1,6 +1,7 @@
 package com.example.fightagainstfake;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.fightagainstfake.Posts.Activities.ChatActivity;
 import com.example.fightagainstfake.admin_package.admin_recv_adapter;
 
 import java.util.ArrayList;
@@ -38,7 +40,9 @@ holder.statusonline.setText(data.get(position).getStatusonline());
 holder.cardView.setOnClickListener(new View.OnClickListener() {
     @Override
     public void onClick(View v) {
-
+        Intent intent=new Intent(context, ChatActivity.class);
+        intent.putExtra("userid",data.get(position).getFrontuserid());
+        context.startActivity(intent);
     }
 });
     }
