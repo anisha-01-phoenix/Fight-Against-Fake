@@ -19,8 +19,12 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.messaging.FirebaseMessaging;
 
 import java.util.HashMap;
@@ -107,55 +111,72 @@ public class signUp extends AppCompatActivity {
             return;
         }
 
-        binding.pb.setVisibility(View.VISIBLE);
+        Query query1 = FirebaseDatabase.getInstance().getReference("Users").orderByChild("username").equalTo(sUsername);
 
+        query1.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-        auth.createUserWithEmailAndPassword(sEmail, sPassword).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-
+                if (snapshot.exists())
+                {
+                    binding.username.setError("Username already exists.Use some other username");
+                    binding.username.requestFocus();
+                }
+            }
 
             @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-
-                binding.pb.setVisibility(View.INVISIBLE);
-                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                user.sendEmailVerification().addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void unused) {
-                        Toast.makeText(getApplicationContext(), "Check your email and verify it using the verification link!", Toast.LENGTH_SHORT).show();
-
-
-                        if (user.isEmailVerified()) {
-                            Toast.makeText(getApplicationContext(), "Email Verified Successfully! Now you can Signin!", Toast.LENGTH_SHORT).show();
-
-                        }
-                        FirebaseMessaging.getInstance().getToken().addOnSuccessListener(new OnSuccessListener<String>() {
-                            @Override
-                            public void onSuccess(String s) {
-
-                                UserModel model = new UserModel(auth.getCurrentUser().getUid(), sname, sUsername, s);
-                                reference.child(auth.getCurrentUser().getUid()).setValue(model);
-                                DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users").child(auth.getCurrentUser().getUid()).child("dt");
-                                reference.setValue(s);
-                                DatabaseReference reference1 = FirebaseDatabase.getInstance().getReference("user for rc").child(auth.getCurrentUser().getUid());
-                                Map<String,String>map=new HashMap<>();
-                                map.put("name",sname);
-                                map.put("username",sUsername);
-                                reference1.setValue(map);
-                            }
-                        });
-                    }
-                }).addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.d("Email Failed", e.getMessage());
-                    }
-                });
-
+            public void onCancelled(@NonNull DatabaseError error) {
 
             }
         });
+        binding.pb.setVisibility(View.VISIBLE);
+
+        SignUp(sUsername, sEmail, sname, sPassword);
 
     }
 
+    private void SignUp(String sUsername, String sEmail, String sname, String sPassword) {
+
+        auth.createUserWithEmailAndPassword(sEmail, sPassword).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if (task.isSuccessful()) {
+                    auth.getCurrentUser().sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if (task.isSuccessful()) {
+                                Toast.makeText(signUp.this, "User Registered Successfully! Check your email and verify it", Toast.LENGTH_SHORT).show();
+                                binding.pb.setVisibility(View.INVISIBLE);
+                            } else {
+                                Toast.makeText(signUp.this, "User Registered Successfully. But failed to send verification Link to Email.\\n Error : \" + task.getException().getMessage()", Toast.LENGTH_SHORT).show();
+                                binding.pb.setVisibility(View.INVISIBLE);
+                            }
+                            FirebaseAuth.getInstance().signOut();
+                        }
+                    });
+                    FirebaseMessaging.getInstance().getToken().addOnSuccessListener(new OnSuccessListener<String>() {
+                        @Override
+                        public void onSuccess(String s) {
+
+                            UserModel model = new UserModel(auth.getCurrentUser().getUid(), sname, sUsername, s);
+                            reference.child(auth.getCurrentUser().getUid()).setValue(model);
+                            DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users").child(auth.getCurrentUser().getUid()).child("dt");
+                            reference.setValue(s);
+                            DatabaseReference reference1 = FirebaseDatabase.getInstance().getReference("user for rc").child(auth.getCurrentUser().getUid());
+                            Map<String, String> map = new HashMap<>();
+                            map.put("name", sname);
+                            map.put("username", sUsername);
+                            reference1.setValue(map);
+                        }
+                    });
+                } else {
+                    Toast.makeText(getApplicationContext(), task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                }
+
+            }
+        });
+    }
 
 }
+
+

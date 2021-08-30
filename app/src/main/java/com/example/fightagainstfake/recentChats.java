@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 
 import com.example.fightagainstfake.databinding.ActivityRecentChatsBinding;
 import com.google.firebase.auth.FirebaseAuth;
@@ -64,6 +65,10 @@ adapter_rc adapter;
                             modelRecentchants.setName(name);
                             modelRecentchants.setFrontuserid(uidl);
                             data.add(modelRecentchants);
+                            if(data.size()<=0)
+                                binding.recentIcon.setVisibility(View.VISIBLE);
+                            else
+                                binding.recentIcon.setVisibility(View.INVISIBLE);
 
                             adapter.notifyDataSetChanged();
                         }
