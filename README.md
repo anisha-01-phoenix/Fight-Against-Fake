@@ -6,15 +6,15 @@ The app will provide a safe platform for people to come forward and speak out th
 Check App Slides https://docs.google.com/presentation/d/1bCrBu2swPZepPh1BR2LyrNpiEqhU4MTYYWravWNs1J0/edit?usp=sharing
 
 ## Features of the App
-  Complaint System 
-  Posts related to other illegal scams and frauds faced by Users
-  Posts related to Awareness and Knowledge about prevention from fraudsters (Info Corner).
-  Advertisement System, where you can get help from others.
+    Complaint System 
+    Posts related to other illegal scams and frauds faced by Users
+    Posts related to Awareness and Knowledge about prevention from fraudsters (Info Corner).
+    Advertisement System, where you can get help from others.
 
 ## Additional Features
-  Recent Searches
-  Contact the Developers
-  Chat System to help other Users in need.
+    Recent Searches
+    Contact the Developers
+    Chat System to help other Users in need.
 
 ## Authentication
 The App will allow users to authenticate themselves using their email IDs (via Email verification). To remain anonymous they can choose any username and post their grievances using that username. Their identity won’t be revealed to anyone if they want to post something. Neither will the identity be revealed when the User is registering a Complaint to the Admin. All the users will be provided with a random Complaint ID to enable smooth functioning of the Complaint System.
