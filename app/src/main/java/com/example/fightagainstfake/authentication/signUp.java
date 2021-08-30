@@ -111,24 +111,6 @@ public class signUp extends AppCompatActivity {
             return;
         }
 
-        Query query1 = FirebaseDatabase.getInstance().getReference("Users").orderByChild("username").equalTo(sUsername);
-
-        query1.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-
-                if (snapshot.exists())
-                {
-                    binding.username.setError("Username already exists.Use some other username");
-                    binding.username.requestFocus();
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
         binding.pb.setVisibility(View.VISIBLE);
 
         SignUp(sUsername, sEmail, sname, sPassword);
