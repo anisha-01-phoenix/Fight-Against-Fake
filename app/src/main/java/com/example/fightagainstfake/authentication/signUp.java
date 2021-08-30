@@ -23,6 +23,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.messaging.FirebaseMessaging;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class signUp extends AppCompatActivity {
 
     ActivitySignUpBinding binding;
@@ -133,6 +136,11 @@ public class signUp extends AppCompatActivity {
                                 reference.child(auth.getCurrentUser().getUid()).setValue(model);
                                 DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users").child(auth.getCurrentUser().getUid()).child("dt");
                                 reference.setValue(s);
+                                DatabaseReference reference1 = FirebaseDatabase.getInstance().getReference("user for rc").child(auth.getCurrentUser().getUid());
+                                Map<String,String>map=new HashMap<>();
+                                map.put("name",sname);
+                                map.put("username",sUsername);
+                                reference1.setValue(map);
                             }
                         });
                     }

@@ -49,7 +49,7 @@ adapter_rc adapter;
                 for(DataSnapshot s:snapshot.getChildren()){
                     Map<String, String> map = (Map<String, String>) s.getValue();
                     String uidl=map.get("uid");
-                    DatabaseReference ref= FirebaseDatabase.getInstance().getReference("Users").child(uidl);
+                    DatabaseReference ref= FirebaseDatabase.getInstance().getReference("users for rc").child(uidl);
                     ref.addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
