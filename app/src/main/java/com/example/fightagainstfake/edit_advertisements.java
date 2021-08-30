@@ -146,16 +146,7 @@ x=1;
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-if(x==0){
-    DatabaseReference reference1 = FirebaseDatabase.getInstance().getReference("AdvertisementPosts");
-    new_model_advertisement model_advertisement=new new_model_advertisement();
-    model_advertisement.setImageUrl(imageurl);
-    model_advertisement.setPost(post);
-    model_advertisement.setPostID(postid);
-    model_advertisement.setUserID(uid);
-    model_advertisement.setTime(time);
-    reference1.push().setValue(model_advertisement);
-}
+
         Intent intent = new Intent(getApplicationContext(), AddPosts.class);
         //intent.putExtra("check","0");
 

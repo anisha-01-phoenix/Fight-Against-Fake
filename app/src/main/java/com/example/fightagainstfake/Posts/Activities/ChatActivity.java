@@ -2,6 +2,7 @@ package com.example.fightagainstfake.Posts.Activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -25,7 +26,6 @@ import com.google.firebase.database.ValueEventListener;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.HashMap;
 
 public class ChatActivity extends AppCompatActivity {
     FirebaseUser user;
@@ -40,48 +40,19 @@ public class ChatActivity extends AppCompatActivity {
 
 
     @Override
-    protected void onPause() {
-        super.onPause();
-
-        if (FirebaseAuth.getInstance().getCurrentUser() != null) {
-            updateStatus("offline");
-        }
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-
-        if (FirebaseAuth.getInstance().getCurrentUser() != null) {
-            updateStatus("online");
-        }
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-
-        if (FirebaseAuth.getInstance().getCurrentUser() != null) {
-            updateStatus("offline");
-        }
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-
-        if (FirebaseAuth.getInstance().getCurrentUser() != null) {
-            updateStatus("offline");
-        }
-    }
-
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         activityChatBinding = ActivityChatBinding.inflate(getLayoutInflater());
         setContentView(activityChatBinding.getRoot());
         getSupportActionBar().hide();
 
+        LinearLayoutManager manager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+        manager.setStackFromEnd(true);
+        activityChatBinding.rvChats.setLayoutManager(manager);
+        list = new ArrayList<>();
+        adapter = new ChatAdapter(getApplicationContext(), list);
+        activityChatBinding.rvChats.setAdapter(adapter);
+        activityChatBinding.rvChats.hasFixedSize();
 
         intent = getIntent();
         userid = intent.getStringExtra("userid");
@@ -100,11 +71,15 @@ public class ChatActivity extends AppCompatActivity {
             }
         });
 
+        getMessages();
+
 
         activityChatBinding.send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mssg = activityChatBinding.addComment.getText().toString();
+
+
+                mssg = activityChatBinding.addComment.getText().toString().trim();
                 Calendar calendar = Calendar.getInstance();
                 SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yy  HH:mm");
                 String datetime = dateFormat.format(calendar.getTime());
@@ -113,6 +88,51 @@ public class ChatActivity extends AppCompatActivity {
                 else {
                     if (activityChatBinding.startRv.getVisibility() == View.VISIBLE)
                         activityChatBinding.startRv.setVisibility(View.INVISIBLE);
+
+
+                    DatabaseReference myuser = FirebaseDatabase.getInstance().getReference("Users").child(userid).child("username");
+                    myuser.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                            String opp = snapshot.getValue(String.class);
+
+                            DatabaseReference me = FirebaseDatabase.getInstance().getReference("Users").child(user.getUid()).child("username");
+                            me.addValueEventListener(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                                    String me = snapshot.getValue(String.class);
+
+
+                                    String mainname = me + opp;
+                                    String mirror = opp + me;
+
+                                    DatabaseReference ref1 = FirebaseDatabase.getInstance().getReference("Chats").child(mainname);
+                                    DatabaseReference ref2 = FirebaseDatabase.getInstance().getReference("Chats").child(mirror);
+
+                                    Chat chat = new Chat(user.getUid(), userid, datetime, mssg);
+                                    ref1.push().setValue(chat);
+                                    ref2.push().setValue(chat);
+
+                                    activityChatBinding.addComment.setText("");
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError error) {
+
+                                }
+                            });
+
+
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });
+
 
                     DatabaseReference referenc = FirebaseDatabase.getInstance().getReference("Users").child(userid).child("status");
                     referenc.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -133,49 +153,80 @@ public class ChatActivity extends AppCompatActivity {
                     });
 
 
-                    Chat chat = new Chat(user.getUid(), userid, datetime, mssg);
-                    FirebaseDatabase.getInstance().getReference().child("Chats").push().setValue(chat);
-
-
-                    HashMap<String, String> chatNotification = new HashMap<>();
-                    chatNotification.put("from", user.getUid());
-                    chatNotification.put("msg", "msg");
-
-                    DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Notification").child(userid);
-                    reference.push().setValue(chatNotification);
-
-
-                    FirebaseDatabase.getInstance().getReference("Users").child(user.getUid()).addValueEventListener(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot snapshot) {
-                            UserModel userModel = snapshot.getValue(UserModel.class);
-
-
-                        }
-
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError error) {
-
-                        }
-                    });
-
-
                 }
 
-
-                activityChatBinding.addComment.setText("");
 
             }
         });
 
 
-    
-        layoutManager = new LinearLayoutManager(this);
-        layoutManager.setStackFromEnd(true);
-        activityChatBinding.rvChats.setLayoutManager(layoutManager);
+    }
 
-        messages(user.getUid(), userid);
-        list = new ArrayList<>();
+
+    private void getMessages() {
+
+
+        DatabaseReference myuser = FirebaseDatabase.getInstance().getReference("Users").child(userid).child("username");
+        myuser.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                String opp = snapshot.getValue(String.class);
+
+                DatabaseReference me = FirebaseDatabase.getInstance().getReference("Users").child(user.getUid()).child("username");
+                me.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                        String me = snapshot.getValue(String.class);
+
+
+                        String mainname = me + opp;
+
+                        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Chats").child(mainname);
+                        reference.addValueEventListener(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                                list.clear();
+
+                                for (DataSnapshot s : snapshot.getChildren()) {
+
+                                    Chat chat = s.getValue(Chat.class);
+
+                                    Log.v("sandy", chat.getMessage());
+                                    list.add(chat);
+
+
+                                }
+                                adapter.notifyDataSetChanged();
+                                activityChatBinding.rvChats.smoothScrollToPosition(activityChatBinding.rvChats.getAdapter().getItemCount());
+
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError error) {
+
+                            }
+                        });
+
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
 
 
     }
@@ -222,35 +273,6 @@ public class ChatActivity extends AppCompatActivity {
     }
 
 
-    private void messages(String myID, String otherID) {
-        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Chats");
-        ref.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                list.clear();
-                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                    Chat chats = dataSnapshot.getValue(Chat.class);
-                    if ((chats.getReceiver().equals(otherID) && chats.getSender().equals(myID)) || (chats.getSender().equals(otherID) && chats.getReceiver().equals(myID)))
-                        list.add(chats);
-                }
-
-                if (list.size() == 0)
-                    activityChatBinding.startRv.setVisibility(View.VISIBLE);
-
-                adapter = new ChatAdapter(ChatActivity.this, list);
-                activityChatBinding.rvChats.setAdapter(adapter);
-                adapter.notifyDataSetChanged();
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-
-    }
-
-
     public void updateStatus(String status) {
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
@@ -259,6 +281,43 @@ public class ChatActivity extends AppCompatActivity {
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users").child(uid);
         reference.child("status").setValue(status);
 
+    }
+
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        if (FirebaseAuth.getInstance().getCurrentUser() != null) {
+            updateStatus("offline");
+        }
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        if (FirebaseAuth.getInstance().getCurrentUser() != null) {
+            updateStatus("online");
+        }
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+
+        if (FirebaseAuth.getInstance().getCurrentUser() != null) {
+            updateStatus("offline");
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        if (FirebaseAuth.getInstance().getCurrentUser() != null) {
+            updateStatus("offline");
+        }
     }
 
 
