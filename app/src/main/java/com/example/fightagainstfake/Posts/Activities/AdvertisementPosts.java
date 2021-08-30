@@ -1,33 +1,24 @@
 package com.example.fightagainstfake.Posts.Activities;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-
 import android.Manifest;
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.view.View;
-import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.fightagainstfake.ModelClass;
 import com.example.fightagainstfake.Posts.AddPosts;
-import com.example.fightagainstfake.Posts.Fragments.AdvertisementPostsFragment;
 import com.example.fightagainstfake.databinding.ActivityAdvertisementPostsBinding;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
@@ -57,7 +48,7 @@ public class AdvertisementPosts extends AppCompatActivity {
     Uri filepath;
     Bitmap bitmap;
     StorageReference storageReference;
-    Boolean isUploaded=false;
+    Boolean isUploaded = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -101,7 +92,7 @@ public class AdvertisementPosts extends AppCompatActivity {
                 } else {
                     reference = FirebaseDatabase.getInstance().getReference("AdvertisementPosts");
                     firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-                    storageReference= FirebaseStorage.getInstance().getReference();
+                    storageReference = FirebaseStorage.getInstance().getReference();
                     Calendar calendar = Calendar.getInstance();
                     SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MMM-yyyy  HH:mm");
                     String time = dateFormat.format(calendar.getTime());
@@ -117,10 +108,10 @@ public class AdvertisementPosts extends AppCompatActivity {
                                     @Override
                                     public void onSuccess(Uri uri) {
                                         String complainId = getrandomstring(6);
-                                        Toast.makeText(getApplicationContext(), complainId, Toast.LENGTH_SHORT).show();
+                                        //  Toast.makeText(getApplicationContext(), complainId, Toast.LENGTH_SHORT).show();
                                         ModelClass modelClass = new ModelClass(firebaseUser.getUid(), complainId, time, post, uri.toString());
                                         reference.push().setValue(modelClass);
-                                        Toasty.success(getApplicationContext(),"Advertisement Added").show();
+                                        Toasty.success(getApplicationContext(), "Advertisement Added").show();
                                         progressDialog.dismiss();
                                         startActivity(new Intent(AdvertisementPosts.this, AddPosts.class));
                                         finish();
@@ -134,12 +125,10 @@ public class AdvertisementPosts extends AppCompatActivity {
                                 progressDialog.setMessage("Uploading : " + (int) percent + "%");
                             }
                         });
-                    }
-                    else
-                    {
+                    } else {
                         ModelClass modelClass = new ModelClass(firebaseUser.getUid(), complainId, time, post, "not uploaded");
                         reference.push().setValue(modelClass);
-                        Toasty.success(getApplicationContext(),"Advertisement Added").show();
+                        Toasty.success(getApplicationContext(), "Advertisement Added").show();
                         startActivity(new Intent(AdvertisementPosts.this, AddPosts.class));
                         finish();
                     }
@@ -159,12 +148,13 @@ public class AdvertisementPosts extends AppCompatActivity {
                 inputStream = getContentResolver().openInputStream(filepath);
                 bitmap = BitmapFactory.decodeStream(inputStream);
                 activityAdvertisementPostsBinding.imgUploadedFiles.setImageBitmap(bitmap);
-                isUploaded=true;
+                isUploaded = true;
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             }
         }
     }
+
     public static String getrandomstring(int i) {
         final String chaaracters = "abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGHIJklMNOPQRSTUV";
         StringBuilder result = new StringBuilder();

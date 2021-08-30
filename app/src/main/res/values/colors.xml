@@ -4,8 +4,8 @@
     <color name="additionalColor">#3F51B5</color>
     <color name="shimmer">#dddddd</color>
 
-    <color name="accepted">#092BEC</color>
-    <color name="in_progress">#FFC107</color>
+    <color name="accepted">#FFC107</color>
+    <color name="in_progress">#092BEC</color>
     <color name="Completed">#4CAF50</color>
     <color name="Rejected">#E11212</color>
 

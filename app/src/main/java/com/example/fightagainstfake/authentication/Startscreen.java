@@ -9,7 +9,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
@@ -25,6 +24,8 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import es.dmoral.toasty.Toasty;
+
 public class Startscreen extends AppCompatActivity {
     FirebaseUser user;
 
@@ -35,6 +36,7 @@ public class Startscreen extends AppCompatActivity {
         if (user != null) {
             if (user.getEmail().equals("admin58@sceptre.com")) {
                 startActivity(new Intent(Startscreen.this, dashboard.class));
+                finish();
             } else {
                 Intent intent = new Intent(Startscreen.this, MainActivity.class);
                 startActivity(intent);
@@ -100,17 +102,18 @@ public class Startscreen extends AppCompatActivity {
                                 public void onComplete(@NonNull Task<AuthResult> task) {
                                     if (task.isSuccessful()) {
                                         Intent intent = new Intent(Startscreen.this, dashboard.class);
-                                        Toast.makeText(Startscreen.this, "Welcome back!", Toast.LENGTH_SHORT).show();
+                                        Toasty.success(Startscreen.this, "Welcome back!").show();
 
 
                                         intent.putExtra("check", 1);
                                         startActivity(intent);
+                                        finish();
 
                                     }
                                 }
                             });
                         } else {
-                            Toast.makeText(Startscreen.this, "Wrong password!", Toast.LENGTH_SHORT).show();
+                            Toasty.error(Startscreen.this, "Wrong password!").show();
                         }
                     }
                 });

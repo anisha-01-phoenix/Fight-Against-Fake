@@ -169,7 +169,7 @@ public class signUp extends AppCompatActivity {
                             reference1.setValue(map);
                         }
                     });
-                } else {
+                } else {binding.pb.setVisibility(View.INVISIBLE);
                     Toast.makeText(getApplicationContext(), task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                 }
 

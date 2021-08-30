@@ -2,7 +2,6 @@ package com.example.fightagainstfake.Posts.Adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -27,7 +26,7 @@ public class ChatAdapter extends RecyclerView.Adapter {
 
     @Override
     public int getItemViewType(int position) {
-        FirebaseUser firebaseUser= FirebaseAuth.getInstance().getCurrentUser();
+        FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         if (list.get(position).getSender().equals(firebaseUser.getUid()))
             return 0;
         else
@@ -38,15 +37,12 @@ public class ChatAdapter extends RecyclerView.Adapter {
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        LayoutInflater layoutInflater=LayoutInflater.from(context);
-        if (viewType==0)
-        {
-            MyChatsLayoutBinding myChatsLayoutBinding=MyChatsLayoutBinding.inflate(layoutInflater,parent,false);
+        LayoutInflater layoutInflater = LayoutInflater.from(context);
+        if (viewType == 0) {
+            MyChatsLayoutBinding myChatsLayoutBinding = MyChatsLayoutBinding.inflate(layoutInflater, parent, false);
             return new MyMssgViewHolder(myChatsLayoutBinding);
-        }
-        else
-        {
-            OthersChatsLayoutBinding othersChatsLayoutBinding=OthersChatsLayoutBinding.inflate(layoutInflater,parent,false);
+        } else {
+            OthersChatsLayoutBinding othersChatsLayoutBinding = OthersChatsLayoutBinding.inflate(layoutInflater, parent, false);
             return new OthersMssgViewHolder(othersChatsLayoutBinding);
         }
 
@@ -54,14 +50,11 @@ public class ChatAdapter extends RecyclerView.Adapter {
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-        if (holder instanceof MyMssgViewHolder)
-        {
-            MyMssgViewHolder myMssgViewHolder=(MyMssgViewHolder) holder;
+        if (holder instanceof MyMssgViewHolder) {
+            MyMssgViewHolder myMssgViewHolder = (MyMssgViewHolder) holder;
             myMssgViewHolder.myChatsLayoutBinding.setMyChat(list.get(position));
-        }
-        else
-        {
-            OthersMssgViewHolder othersMssgViewHolder=(OthersMssgViewHolder) holder;
+        } else {
+            OthersMssgViewHolder othersMssgViewHolder = (OthersMssgViewHolder) holder;
             othersMssgViewHolder.othersChatsLayoutBinding.setOtherChat(list.get(position));
         }
 
@@ -72,19 +65,21 @@ public class ChatAdapter extends RecyclerView.Adapter {
         return list.size();
     }
 
-    public class MyMssgViewHolder extends RecyclerView.ViewHolder{
+    public class MyMssgViewHolder extends RecyclerView.ViewHolder {
         MyChatsLayoutBinding myChatsLayoutBinding;
+
         public MyMssgViewHolder(MyChatsLayoutBinding myChatsLayoutBinding) {
             super(myChatsLayoutBinding.getRoot());
-            this.myChatsLayoutBinding=myChatsLayoutBinding;
+            this.myChatsLayoutBinding = myChatsLayoutBinding;
         }
     }
 
-    public class OthersMssgViewHolder extends RecyclerView.ViewHolder{
+    public class OthersMssgViewHolder extends RecyclerView.ViewHolder {
         OthersChatsLayoutBinding othersChatsLayoutBinding;
+
         public OthersMssgViewHolder(OthersChatsLayoutBinding othersChatsLayoutBinding) {
             super(othersChatsLayoutBinding.getRoot());
-            this.othersChatsLayoutBinding=othersChatsLayoutBinding;
+            this.othersChatsLayoutBinding = othersChatsLayoutBinding;
         }
     }
 }

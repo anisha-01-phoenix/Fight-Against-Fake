@@ -31,6 +31,8 @@ adapter_rc adapter;
         super.onCreate(savedInstanceState);
         binding=ActivityRecentChatsBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        getSupportActionBar().hide();
         binding.chatList.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         data=new ArrayList<>();
         adapter=new adapter_rc(data,this);
@@ -39,6 +41,13 @@ adapter_rc adapter;
 
         user= FirebaseAuth.getInstance().getCurrentUser();
         getData();
+
+        if(data.size()<=0)
+            binding.recentIcon.setVisibility(View.VISIBLE);
+        else
+            binding.recentIcon.setVisibility(View.INVISIBLE);
+
+
     }
 
     private void getData() {
@@ -65,10 +74,9 @@ adapter_rc adapter;
                             modelRecentchants.setName(name);
                             modelRecentchants.setFrontuserid(uidl);
                             data.add(modelRecentchants);
-                            if(data.size()<=0)
-                                binding.recentIcon.setVisibility(View.VISIBLE);
-                            else
-                                binding.recentIcon.setVisibility(View.INVISIBLE);
+if(modelRecentchants!=null){
+    binding.recentIcon.setVisibility(View.INVISIBLE);
+}
 
                             adapter.notifyDataSetChanged();
                         }

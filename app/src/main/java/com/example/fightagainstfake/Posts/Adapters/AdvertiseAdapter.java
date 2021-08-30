@@ -67,8 +67,9 @@ public class AdvertiseAdapter extends RecyclerView.Adapter<AdvertiseAdapter.Adve
             ModelClass modelClass = list.get(position);
             holder.dateTime.setText(modelClass.getTime());
             holder.post.setText(modelClass.getPost());
-            if (modelClass.getImageUrl() != null) {
+            if (!modelClass.getImageUrl().equals("not uploaded")) {
                 holder.docs.setVisibility(View.VISIBLE);
+                holder.scam_alert.setVisibility(View.INVISIBLE);
                 Glide.with(context).load(modelClass.getImageUrl()).into(holder.docs);
                 holder.docs.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -78,7 +79,7 @@ public class AdvertiseAdapter extends RecyclerView.Adapter<AdvertiseAdapter.Adve
                         context.startActivity(intent);
                     }
                 });
-            } else {
+            } else  {
                 holder.docs.setVisibility(View.INVISIBLE);
                 holder.scam_alert.setVisibility(View.VISIBLE);
             }
