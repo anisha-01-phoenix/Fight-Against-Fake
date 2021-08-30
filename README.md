@@ -1,5 +1,17 @@
 # Fight-Against-Fake
 
+<img src="https://user-images.githubusercontent.com/79041804/131370306-097c9b96-690a-43cb-aaa3-50ddffe558e4.jpg" width="200" height="400">     <img src="https://user-images.githubusercontent.com/79041804/131370681-4f25b274-977a-4de2-a8d2-549bb81d5bab.jpg" width="200" height="400">                
+  
+  
+ 
+<img src="https://user-images.githubusercontent.com/79041804/131370899-4a70883a-b114-4977-99dd-743ab7932dcd.jpg" width="200" height="400">  <img src="https://user-images.githubusercontent.com/79041804/131371121-d8adde03-77a3-4046-b239-6757fbb95544.jpeg" width="200" height="400">
+
+
+
+
+
+  
+  
 ## About the App
 The app will provide a safe platform for people to come forward and speak out their grievances. Tha main aim is to stop the fraud people for bullying the innocent and give a platform for these innocent victims to get justice.
 
@@ -20,6 +32,7 @@ Check App Slides https://docs.google.com/presentation/d/1bCrBu2swPZepPh1BR2LyrNp
 The App will allow users to authenticate themselves using their email IDs (via Email verification). To remain anonymous they can choose any username and post their grievances using that username. Their identity won’t be revealed to anyone if they want to post something. Neither will the identity be revealed when the User is registering a Complaint to the Admin. All the users will be provided with a random Complaint ID to enable smooth functioning of the Complaint System.
 
 
+
 ## Dashboard
 After authentication, the user will reach the dashboard. Here the user can see posts and advertisements of other users. There will be options in the dashboard to go to the following pages:
   Add posts
@@ -33,9 +46,12 @@ After authentication, the user will reach the dashboard. Here the user can see p
 There will be two types of posts in the Dashboard:
   Normal posts 
   Advertisement Posts
+ 
   
   #### Normal Posts
   These posts will be mainly from other users who have been victims of fraudsters. These posts will not contain the name of the person who has posted it. Its aim is to give knowledge to the other users of how frauds and scams are carried out and how one can take precautions from such traps.
+  
+ 
   
   #### Advertisement Posts
   Through these posts Users can advertise for genuine needs and other help. In order to post these, the user needs to upload some relevant documents along with the other post in order to prove that the need is genuine and is not any kind of fraud. If no documents are uploaded the post will automatically be posted along with a message that “This may be fake”.
