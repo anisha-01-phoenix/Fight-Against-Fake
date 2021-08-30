@@ -42,7 +42,6 @@ public class AddPosts extends AppCompatActivity  {
         activityAddPostsBinding.viewPager.setAdapter(adapter);
         activityAddPostsBinding.tablayout.setupWithViewPager(activityAddPostsBinding.viewPager);
         check=getIntent().getIntExtra("check",0);
-
     }
 
     public void goBack(View view) {
