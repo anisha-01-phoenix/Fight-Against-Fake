@@ -10,7 +10,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="All Chats"
+        android:text="Recent Chats"
         android:textAllCaps="true"
         android:textColor="@color/white"
         android:fontFamily="@font/heading"
@@ -21,6 +21,7 @@
         android:textSize="25dp"
         android:layout_marginTop="15dp"/>
 
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -28,15 +29,6 @@
         android:orientation="vertical"
         android:layout_marginTop="80dp">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="NO CONTACTS"
-            android:gravity="center_horizontal|center_vertical"
-            android:textSize="30dp"
-            android:id="@+id/noContacts"
-            android:visibility="gone"
-            />
 
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
@@ -46,9 +38,35 @@
             android:layout_marginLeft="10dp"
             android:id="@+id/chatList"/>
 
+        <LinearLayout
+            android:id="@+id/recent_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:visibility="gone"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_gravity="center"
+                android:src="@drawable/recent_search" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:fontFamily="@font/button"
+                android:gravity="center"
+                android:text="No Chats Yet"
+                android:textColor="@color/themeColor"
+                android:textSize="25dp" />
+
+
+        </LinearLayout>
+
 
     </RelativeLayout>
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
