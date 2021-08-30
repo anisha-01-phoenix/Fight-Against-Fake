@@ -55,17 +55,21 @@ In order to verify whether the complaint lodged by the victim is a authentic or 
  ### Platforms:
  1) Android Studio (Java and XML)
  2) Adobe XD for making the App UI
- ### Tech Stck:
+ 3) Canva for making Logo
+ 4) Kinemaster for Video Making
+ 
+ ### Tech Stack:
  1) Firebase Authentication
  2) Firebase Realtime Database
  3) Firebase Cloud Storage
  4) Firebase Cloud Messaging
- 5) Retrofit
+ 
  ### Libraries:
  1) Glide
  2) Shimmer
  3) Dexter
  4) Volley
+ 5) Toasty
  
 
 
