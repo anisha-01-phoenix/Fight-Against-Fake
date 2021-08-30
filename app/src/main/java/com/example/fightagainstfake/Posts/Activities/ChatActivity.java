@@ -75,12 +75,22 @@ public class ChatActivity extends AppCompatActivity {
 
         getMessages();
 
+        if(list.size()<=0)
+        {
+            activityChatBinding.startRv.setVisibility(View.VISIBLE);
+        }
+        else
+        {
+            activityChatBinding.startRv.setVisibility(View.INVISIBLE);
+        }
+
+
 
         activityChatBinding.send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-recentchats();
+                recentchats();
                 mssg = activityChatBinding.addComment.getText().toString().trim();
                 Calendar calendar = Calendar.getInstance();
                 SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yy  HH:mm");
@@ -166,12 +176,12 @@ recentchats();
 
     private void recentchats() {
         DatabaseReference myuser = FirebaseDatabase.getInstance().getReference("recent chats").child(user.getUid()).child(userid);
-        Map<String, String> map=new HashMap<>();
-        map.put("uid",userid);
+        Map<String, String> map = new HashMap<>();
+        map.put("uid", userid);
         myuser.setValue(map);
         DatabaseReference myuser2 = FirebaseDatabase.getInstance().getReference("recent chats").child(userid).child(user.getUid());
-        Map<String, String> map2=new HashMap<>();
-        map2.put("uid",user.getUid());
+        Map<String, String> map2 = new HashMap<>();
+        map2.put("uid", user.getUid());
         myuser2.setValue(map2);
     }
 
@@ -210,7 +220,10 @@ recentchats();
                                     Log.v("sandy", chat.getMessage());
                                     list.add(chat);
 
+                                   if(chat!=null){
+                                       activityChatBinding.startRv.setVisibility(View.INVISIBLE);
 
+                                   }
                                 }
                                 adapter.notifyDataSetChanged();
                                 activityChatBinding.rvChats.smoothScrollToPosition(activityChatBinding.rvChats.getAdapter().getItemCount());

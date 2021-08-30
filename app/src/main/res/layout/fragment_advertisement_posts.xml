@@ -1,40 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".Posts.Fragments.AdvertisementPostsFragment">
 
     <SearchView
         android:id="@+id/search_view"
-        android:queryHint="Seach by keywords"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="5dp"
         android:layout_marginTop="15dp"
         android:layout_marginRight="5dp"
-        android:background="@drawable/tab_text" />
+        android:background="@drawable/tab_text"
+        android:queryHint="Seach by keywords" />
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_advertisementPosts"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="15dp"
-        android:paddingTop="20dp"
-        android:background="@drawable/rv_bg"
         android:layout_below="@id/search_view"
-        android:id="@+id/rv_advertisementPosts"/>
+        android:layout_marginTop="15dp"
+        android:background="@drawable/rv_bg"
+        android:paddingTop="20dp" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/addAdvertisement"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:elevation="50dp"
-        android:backgroundTint="@color/themeColor"
-        android:src="@drawable/ic_baseline_add"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        app:tint="@color/white"
-        android:layout_margin="10dp"/>
+        android:layout_margin="10dp"
+        android:backgroundTint="@color/themeColor"
+        android:elevation="50dp"
+        android:src="@drawable/ic_baseline_add"
+        app:tint="@color/white" />
 
 </RelativeLayout>

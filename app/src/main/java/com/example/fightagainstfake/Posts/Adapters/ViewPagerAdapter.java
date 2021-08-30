@@ -12,8 +12,8 @@ import com.example.fightagainstfake.Posts.Fragments.NormalPostsFragment;
 import java.util.ArrayList;
 
 public class ViewPagerAdapter extends FragmentPagerAdapter {
-    ArrayList<Fragment> fragments=new ArrayList<>();
-    ArrayList<String> strings=new ArrayList<>();
+    ArrayList<Fragment> fragments = new ArrayList<>();
+    ArrayList<String> strings = new ArrayList<>();
 
     public ViewPagerAdapter(@NonNull FragmentManager fm) {
         super(fm);
@@ -22,9 +22,9 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
     @NonNull
     @Override
     public Fragment getItem(int position) {
-        if (position==0)
+        if (position == 0)
             return new NormalPostsFragment();
-        else if (position==1)
+        else if (position == 1)
             return new AdvertisementPostsFragment();
         else
             return null;
@@ -35,8 +35,7 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
         return fragments.size();
     }
 
-    public void add(Fragment fr, String str)
-    {
+    public void add(Fragment fr, String str) {
         fragments.add(fr);
         strings.add(str);
     }

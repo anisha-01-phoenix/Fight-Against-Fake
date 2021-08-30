@@ -41,6 +41,8 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Random;
 
+import es.dmoral.toasty.Toasty;
+
 
 public class complaintAdd extends AppCompatActivity {
 
@@ -177,28 +179,16 @@ public class complaintAdd extends AppCompatActivity {
 
 
 
-                  /*  Map<String, String> map = new HashMap<>();
-                    map.put("complaintTitle", complaintTitle);
-                    map.put("datetime", datetime);
-                    map.put("proof", proof);
-                    map.put("proofurl",proofurl);
-                    map.put("status", status);
-                    map.put("uid", uid);
-                    map.put("complainId", complainId);
-                    map.put("username", username);
-
-                    reference.setValue(map);*/
-
-
 
                     binding.addNormalPostEditText.getEditText().setText("");
 
                     //  Toasty.success(getApplicationContext(), "Successfully Registered").show();
-                    Toast.makeText(complaintAdd.this, "Succesfully Registered!", Toast.LENGTH_SHORT).show();
+                    Toasty.success(complaintAdd.this, "Succesfully Registered!").show();
 
                     Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                     intent.putExtra("check", 1);
                     startActivity(intent);
+                    finish();
 
 
                 }

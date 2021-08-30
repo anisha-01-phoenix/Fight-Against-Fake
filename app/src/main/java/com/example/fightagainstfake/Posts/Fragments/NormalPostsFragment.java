@@ -2,15 +2,14 @@ package com.example.fightagainstfake.Posts.Fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-
 import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.fightagainstfake.ModelClass;
 import com.example.fightagainstfake.Posts.Activities.NormalPosts;
@@ -37,32 +36,35 @@ public class NormalPostsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        fragmentNormalPostsBinding=FragmentNormalPostsBinding.inflate(getLayoutInflater());
+        fragmentNormalPostsBinding = FragmentNormalPostsBinding.inflate(getLayoutInflater());
         fragmentNormalPostsBinding.addNormalPost.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getActivity(), NormalPosts.class));
             }
         });
-        layoutManager=new LinearLayoutManager(getActivity());
+        layoutManager = new LinearLayoutManager(getActivity());
         layoutManager.setStackFromEnd(true);
         layoutManager.setReverseLayout(true);
-        reference= FirebaseDatabase.getInstance().getReference("NormalPosts");
+        reference = FirebaseDatabase.getInstance().getReference("NormalPosts");
         fragmentNormalPostsBinding.rvNormalPosts.setLayoutManager(layoutManager);
-        list=new ArrayList<>();
+        list = new ArrayList<>();
+
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 list.clear();
-                for (DataSnapshot dataSnapshot: snapshot.getChildren())
-                {
-                    modelClass =dataSnapshot.getValue(ModelClass.class);
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                    modelClass = dataSnapshot.getValue(ModelClass.class);
                     list.add(modelClass);
                 }
 
-                adapter=new NormalAdapter(getContext(),list);
+                adapter = new NormalAdapter(getContext(), list);
+
                 fragmentNormalPostsBinding.rvNormalPosts.setAdapter(adapter);
+                adapter.shimmering=false;
                 adapter.notifyDataSetChanged();
+              //  adapter.shimmering=false;
             }
 
             @Override
@@ -74,11 +76,11 @@ public class NormalPostsFragment extends Fragment {
             @Override
             public void run() {
 
-                adapter.shimmering=false;
+                adapter.shimmering = false;
                 adapter.notifyDataSetChanged();
 
             }
-        },3000);
+        }, 3000);
         return fragmentNormalPostsBinding.getRoot();
     }
 
