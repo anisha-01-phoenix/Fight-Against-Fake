@@ -26,6 +26,8 @@ import com.google.firebase.database.ValueEventListener;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Map;
 
 public class ChatActivity extends AppCompatActivity {
     FirebaseUser user;
@@ -78,7 +80,7 @@ public class ChatActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-
+recentchats();
                 mssg = activityChatBinding.addComment.getText().toString().trim();
                 Calendar calendar = Calendar.getInstance();
                 SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yy  HH:mm");
@@ -160,6 +162,17 @@ public class ChatActivity extends AppCompatActivity {
         });
 
 
+    }
+
+    private void recentchats() {
+        DatabaseReference myuser = FirebaseDatabase.getInstance().getReference("recent chats").child(user.getUid()).child(userid);
+        Map<String, String> map=new HashMap<>();
+        map.put("uid",userid);
+        myuser.setValue(map);
+        DatabaseReference myuser2 = FirebaseDatabase.getInstance().getReference("recent chats").child(userid).child(user.getUid());
+        Map<String, String> map2=new HashMap<>();
+        map2.put("uid",user.getUid());
+        myuser2.setValue(map2);
     }
 
 
