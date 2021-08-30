@@ -35,18 +35,18 @@ The App will allow users to authenticate themselves using their email IDs (via E
 
 ## Dashboard
 After authentication, the user will reach the dashboard. Here the user can see posts and advertisements of other users. There will be options in the dashboard to go to the following pages:
-  Add posts
-  Lodge a complaint
-  View important messages and Precautions from the Admin
-  Recent Chats
-  Contact the Developers
-  Logout
+  1) Add posts
+  2) Lodge a complaint
+  3) View important messages and Precautions from the Admin
+  4) Recent Chats
+  5) Contact the Developers
+  6) Logout
 
 ### Posts in the Dashboard
 There will be two types of posts in the Dashboard:
-  Normal posts 
-  Advertisement Posts
- 
+    1) Normal posts 
+    2) Advertisement Posts
+
   
   #### Normal Posts
   These posts will be mainly from other users who have been victims of fraudsters. These posts will not contain the name of the person who has posted it. Its aim is to give knowledge to the other users of how frauds and scams are carried out and how one can take precautions from such traps.
@@ -86,11 +86,4 @@ In order to verify whether the complaint lodged by the victim is a authentic or 
  3) Dexter
  4) Volley
  5) Toasty
- 
-
-
-
-
-
-
 
