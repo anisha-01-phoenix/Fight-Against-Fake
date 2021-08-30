@@ -144,7 +144,7 @@ public class complaintAdd extends AppCompatActivity {
                                 uploader.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                                     @Override
                                     public void onSuccess(Uri uri) {
-                                        Toast.makeText(getApplicationContext(), complainId, Toast.LENGTH_SHORT).show();
+                                     //   Toast.makeText(getApplicationContext(), complainId, Toast.LENGTH_SHORT).show();
                                         proofurl=uri.toString();
                                         String id=getrandomstring(4);
                                         ModelComplaint map=new ModelComplaint(id,complaintTitle,datetime,"Not Verified Yet!",status,user.getUid(),proofurl,username);
@@ -154,7 +154,7 @@ public class complaintAdd extends AppCompatActivity {
                                         DatabaseReference reference1 = FirebaseDatabase.getInstance().getReference("totalcomplaints");
                                         reference1.child(id).setValue(map);
 
-                                        progressDialog.dismiss();
+                                       // progressDialog.dismiss();
                                     }
                                 });
                             }
