@@ -49,17 +49,17 @@ adapter_rc adapter;
                 for(DataSnapshot s:snapshot.getChildren()){
                     Map<String, String> map = (Map<String, String>) s.getValue();
                     String uidl=map.get("uid");
-                    DatabaseReference ref= FirebaseDatabase.getInstance().getReference("users for rc").child(uidl);
-                    ref.addValueEventListener(new ValueEventListener() {
+                    DatabaseReference ref1= FirebaseDatabase.getInstance().getReference("user for rc").child(uidl);
+                    ref1.addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
                             Map<String, String> map = (Map<String, String>) snapshot.getValue();
                             String name=map.get("name");
-                            String statusl=map.get("status");
+                           // String statusl=map.get("status");
                             String username=map.get("username");
                          //   Log.v("jkjk",name+statusl+username);
                             model_recentchants modelRecentchants=new model_recentchants();
-                            modelRecentchants.setStatusonline(statusl);
+                           // modelRecentchants.setStatusonline(statusl);
                             modelRecentchants.setUsername(username);
                             modelRecentchants.setName(name);
                             modelRecentchants.setFrontuserid(uidl);
