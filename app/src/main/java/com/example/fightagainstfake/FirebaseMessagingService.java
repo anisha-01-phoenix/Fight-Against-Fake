@@ -57,7 +57,7 @@ public class FirebaseMessagingService extends com.google.firebase.messaging.Fire
         }
 
 
-        Intent resultIntent = new Intent(this, customer_info_corner.class);
+        Intent resultIntent = new Intent(this, recentChats.class);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 1, resultIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 
 

@@ -36,7 +36,7 @@ public class adapter_rc extends RecyclerView.Adapter<adapter_rc.v5holder> {
     public void onBindViewHolder(@NonNull v5holder holder, int position) {
 holder.username.setText(data.get(position).getUsername());
 holder.name.setText(data.get(position).getName());
-holder.statusonline.setText(data.get(position).getStatusonline());
+//holder.statusonline.setText(data.get(position).getStatusonline());
 holder.cardView.setOnClickListener(new View.OnClickListener() {
     @Override
     public void onClick(View v) {
