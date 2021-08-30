@@ -17,6 +17,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
+import es.dmoral.toasty.Toasty;
+
 public class NormalPosts extends AppCompatActivity {
 
     ActivityNormalPostsBinding activityNormalPostsBinding;
@@ -46,7 +48,7 @@ public class NormalPosts extends AppCompatActivity {
                     String time=dateFormat.format(calendar.getTime());
                     ModelClass modelClass =new ModelClass(reference.push().getKey(),time,post);
                     reference.push().setValue(modelClass);
-                    Toast.makeText(NormalPosts.this, "Post Added", Toast.LENGTH_SHORT).show();
+                    Toasty.success(getApplicationContext(),"Post Added").show();
                     startActivity(new Intent(NormalPosts.this, AddPosts.class));
                 }
             }

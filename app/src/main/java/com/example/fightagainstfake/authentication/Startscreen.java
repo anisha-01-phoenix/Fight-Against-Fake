@@ -135,4 +135,5 @@ public class Startscreen extends AppCompatActivity {
         bar.setBackgroundDrawable(new ColorDrawable(getResources().getColor(resource)));
 
     }
+
 }

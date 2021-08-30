@@ -47,6 +47,8 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Random;
 
+import es.dmoral.toasty.Toasty;
+
 public class AdvertisementPosts extends AppCompatActivity {
 
     ActivityAdvertisementPostsBinding activityAdvertisementPostsBinding;
@@ -118,9 +120,10 @@ public class AdvertisementPosts extends AppCompatActivity {
                                         Toast.makeText(getApplicationContext(), complainId, Toast.LENGTH_SHORT).show();
                                         ModelClass modelClass = new ModelClass(firebaseUser.getUid(), complainId, time, post, uri.toString());
                                         reference.push().setValue(modelClass);
-                                        Toast.makeText(AdvertisementPosts.this, "Post Added", Toast.LENGTH_SHORT).show();
+                                        Toasty.success(getApplicationContext(),"Advertisement Added").show();
                                         progressDialog.dismiss();
                                         startActivity(new Intent(AdvertisementPosts.this, AddPosts.class));
+                                        finish();
                                     }
                                 });
                             }
@@ -136,8 +139,9 @@ public class AdvertisementPosts extends AppCompatActivity {
                     {
                         ModelClass modelClass = new ModelClass(firebaseUser.getUid(), complainId, time, post, "not uploaded");
                         reference.push().setValue(modelClass);
-                        Toast.makeText(AdvertisementPosts.this, "Post Added", Toast.LENGTH_SHORT).show();
+                        Toasty.success(getApplicationContext(),"Advertisement Added").show();
                         startActivity(new Intent(AdvertisementPosts.this, AddPosts.class));
+                        finish();
                     }
 
                 }

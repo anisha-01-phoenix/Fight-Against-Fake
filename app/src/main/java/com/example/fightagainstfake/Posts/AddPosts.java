@@ -51,6 +51,7 @@ public class AddPosts extends AppCompatActivity  {
             intent.putExtra("check",check);
 
             startActivity(intent);
+           // finish();
         }
         else
         {
