@@ -3,8 +3,7 @@
 ## About the App
 The app will provide a safe platform for people to come forward and speak out their grievances. Tha main aim is to stop the fraud people for bullying the innocent and give a platform for these innocent victims to get justice.
 
-Check App Slides https://docs.google.com/presentation/d/1bCrBu2swPZepPh1BR2LyrNpiEqhU4MTYYWravWNs1J0/edit?usp=sharing
-
+Check App Slides shorturl.at/itwCS
 ## Features of the App
 1) Complaint System 
 2) Map showing the nearest police stations
