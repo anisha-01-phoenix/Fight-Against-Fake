@@ -39,32 +39,41 @@
         <activity
             android:name=".Maps.MapsActivity"
             android:exported="true"
-            android:label="@string/title_activity_maps" />
+            android:label="@string/title_activity_maps"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".admin_package.info_corner_post"
-            android:exported="true" />
+            android:exported="true"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".admin_package.complaints_details"
-            android:exported="true" />
+            android:exported="true"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".complaints.complaintAdd"
-            android:exported="true" />
+            android:exported="true"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".edit_advertisements"
-            android:exported="true" />
+            android:exported="true"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".admin_package.dashboard"
             android:exported="true"
-            android:theme="@style/Theme.Design.NoActionBar" />
+            android:theme="@style/Theme.Design.NoActionBar"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".authentication.Forgot_Password"
-            android:exported="true" />
+            android:exported="true"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".authentication.Startscreen"
-            android:exported="true" />
+            android:exported="true"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".SplashActivity"
-            android:exported="true">
+            android:exported="true"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -73,33 +82,42 @@
         </activity>
         <activity
             android:name=".Posts.Activities.FullImageView"
-            android:exported="true" />
+            android:exported="true"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".Posts.Activities.ChatActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".Posts.AddPosts"
-            android:exported="true" />
+            android:exported="true"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".Posts.Activities.AdvertisementPosts"
             android:exported="true"
-            android:theme="@style/Theme.MaterialComponents" />
+            android:theme="@style/Theme.MaterialComponents"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".Posts.Activities.NormalPosts"
-            android:exported="true" />
+            android:exported="true"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".MainActivity"
             android:exported="true"
-            android:theme="@style/Theme.Design.NoActionBar" />
+            android:theme="@style/Theme.Design.NoActionBar"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".authentication.otpScreen"
-            android:exported="true" />
+            android:exported="true"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".authentication.signUp"
-            android:exported="true" />
+            android:exported="true"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".authentication.loginScreen"
-            android:exported="true" />
+            android:exported="true"
+            android:screenOrientation="portrait"/>
 
         <service
             android:name=".FirebaseMessagingService"
